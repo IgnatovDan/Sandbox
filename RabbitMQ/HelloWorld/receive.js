@@ -1,3 +1,5 @@
+// https://www.rabbitmq.com/tutorials/tutorial-one-javascript.html
+
 const amqp = require('amqplib/callback_api');
 
 console.log('Starting...');
