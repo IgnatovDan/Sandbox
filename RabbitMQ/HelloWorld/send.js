@@ -15,7 +15,7 @@ amqp.connect('amqp://localhost', function(error0, connection){
             throw error1;
         }
         const queue = 'hello1';
-        const message = 'Hello my world';
+        const message = 'Hello my world, ' + Date.now();
 
         console.log('Creating a queue...');
         channel.assertQueue(queue, {
@@ -24,12 +24,22 @@ amqp.connect('amqp://localhost', function(error0, connection){
 
         console.log('Sending a message...');
         channel.sendToQueue(queue, Buffer.from(message));
-        console.log('The message was sent.');
+        console.log('The message was sent: ' + message);
 
-        console.log('Closing the connection...');
-        connection.close();
+        //console.log('Closing the connection...');
+        //connection.close(); - message is not sent syncronously and will lost if 'close' method is called immediately
 
-        console.log('process.exit(0)');
-        process.exit(0);
-    })
+        //console.log('process.exit(0)');
+        //process.exit(0);
+    });
+    setTimeout(
+        () => {
+            console.log('Closing the connection...');
+            connection.close();
+    
+            console.log('process.exit(0)');
+            process.exit(0);
+        },
+        500
+    );
 });
