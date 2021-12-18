@@ -1,5 +1,8 @@
 // https://www.rabbitmq.com/tutorials/tutorial-one-javascript.html
 
+// RabbitMQ management UI: http://localhost:15672/ 
+// guest/guest
+
 const amqp = require('amqplib/callback_api');
 
 console.log('Starting...');
@@ -23,15 +26,9 @@ amqp.connect('amqp://localhost', function(error0, connection) {
 
         console.log('Receiving a message...');
         channel.consume(queue, function(msg) {
-            console.log(" [x] Received %s", msg.content.toString());
+            console.log("Message was received: " + msg.content.toString());
         }, {
             noAck: true
         });
-        channel.consume(queue, 
-            function(msg) {
-                console.log(msg.content.toString());
-            },
-            { noAsk: true }
-        );
     });
 });
