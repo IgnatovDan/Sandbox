@@ -24,11 +24,18 @@ amqp.connect('amqp://localhost', function(error0, connection) {
             durable: false
         });
 
-        console.log('Receiving a message...');
-        channel.consume(queue, function(msg) {
-            console.log("Message was received: " + msg.content.toString());
+        channel.consume(queue, function (msg) {
+            const messageText = msg.content.toString();
+            console.log(messageText + ' consumed');
+            setTimeout(
+                () => {
+                    console.log(messageText + ' processed at ' + new Date().toISOString());
+                    channel.ack(msg);
+                },
+                messageText.split('.').length * 1000
+            );
         }, {
-            noAck: true
+            noAck: false
         });
     });
 });
