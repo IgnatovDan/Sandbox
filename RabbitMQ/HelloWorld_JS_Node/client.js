@@ -18,15 +18,17 @@ amqp.connect('amqp://localhost', function(error0, connection){
 
         console.log('Creating a queue...');
         channel.assertQueue(queue, {
-            durable: false
+            durable: true
         });
 
+        let messageCounter = 0;
         function sendMessagesByInterval() {
             setTimeout(
                 () => {
-                    const message = 'Hello my world, ' + new Date().toISOString() + ' ' + String('.').repeat(Math.floor(Math.random() * 10));
+                    messageCounter++;
+                    const message = `Hello (${messageCounter}), ${new Date().toISOString()} ${String('.').repeat(Math.floor(Math.random() * 10))}`;
                     console.log(message + ' sending...');
-                    channel.sendToQueue(queue, Buffer.from(message));
+                    channel.sendToQueue(queue, Buffer.from(message), { persistent: true });
                     console.log(message + ' was sent');
                     sendMessagesByInterval();
                 },

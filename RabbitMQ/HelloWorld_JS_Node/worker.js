@@ -21,15 +21,18 @@ amqp.connect('amqp://localhost', function(error0, connection) {
 
         console.log('Creating a queue...');
         channel.assertQueue(queue, {
-            durable: false
+            durable: true
         });
+        channel.prefetch(1);
 
+        let messageCounter = 0;
         channel.consume(queue, function (msg) {
             const messageText = msg.content.toString();
-            console.log(messageText + ' consumed');
+            const consumedMessageNumber = ++messageCounter;
+            console.log(`${messageText} consumed (${consumedMessageNumber})`);
             setTimeout(
                 () => {
-                    console.log(messageText + ' processed at ' + new Date().toISOString());
+                    console.log(`${messageText} (${consumedMessageNumber}) processed at ${new Date().toISOString()}`);
                     channel.ack(msg);
                 },
                 messageText.split('.').length * 1000
