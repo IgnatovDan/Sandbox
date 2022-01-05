@@ -1,27 +1,31 @@
 https://learn.javascript.ru/courses/htmlcss
 
 1 лекция 29.11:
-https://xiper.net/learn/css/inheritance-and-cascade/cascade.html
-https://css-live.ru/css/nikto-ne-znaet-css-specifichnost-ne-kaskad.html
-https://meyerweb.com/eric/tools/css/reset/
-https://github.com/necolas/normalize.css/
-https://habr.com/ru/post/256109/
-https://ru.bem.info/methodology/naming-convention/
-https://ru.bem.info/methodology/css/#%D0%BC%D0%B8%D0%BA%D1%81%D1%8B
-https://habr.com/ru/post/305548/
-https://medium.com/@innabelaya/%D0%B1%D1%8D%D0%BC-%D0%B4%D0%BB%D1%8F-%D0%BD%D0%B0%D1%87%D0%B8%D0%BD%D0%B0%D1%8E%D1%89%D0%B8%D1%85-%D0%BE%D1%87%D0%B5%D0%B2%D0%B8%D0%B4%D0%BD%D1%8B%D0%B5-%D0%B8-%D0%BD%D0%B5%D0%BE%D1%87%D0%B5%D0%B2%D0%B8%D0%B4%D0%BD%D1%8B%D0%B5-%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D1%8B-%D0%B2%D0%B5%D1%80%D1%81%D1%82%D0%BA%D0%B8-1a21d67cf840
+
+- https://xiper.net/learn/css/inheritance-and-cascade/cascade.html
+- https://css-live.ru/css/nikto-ne-znaet-css-specifichnost-ne-kaskad.html
+- https://meyerweb.com/eric/tools/css/reset/
+- https://github.com/necolas/normalize.css/
+- https://habr.com/ru/post/256109/
+- https://ru.bem.info/methodology/naming-convention/
+- https://ru.bem.info/methodology/css/#%D0%BC%D0%B8%D0%BA%D1%81%D1%8B
+- https://habr.com/ru/post/305548/
+- https://medium.com/@innabelaya/%D0%B1%D1%8D%D0%BC-%D0%B4%D0%BB%D1%8F-%D0%BD%D0%B0%D1%87%D0%B8%D0%BD%D0%B0%D1%8E%D1%89%D0%B8%D1%85-%D0%BE%D1%87%D0%B5%D0%B2%D0%B8%D0%B4%D0%BD%D1%8B%D0%B5-%D0%B8-%D0%BD%D0%B5%D0%BE%D1%87%D0%B5%D0%B2%D0%B8%D0%B4%D0%BD%D1%8B%D0%B5-%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D1%8B-%D0%B2%D0%B5%D1%80%D1%81%D1%82%D0%BA%D0%B8-1a21d67cf840
 
 2 лекция 02.12:
-https://developer.mozilla.org/en-US/docs/Learn/Accessibility/What_is_accessibility
-* https://weblind.ru/inner.html#image-content
-https://developer.mozilla.org/ru/docs/Learn/Accessibility/WAI-ARIA_basics
-https://webref.ru/layout/advanced-html-css/semantics-accessibility
-https://habr.com/ru/company/htmlacademy/blog/546500/
-https://habr.com/ru/post/477520/
-https://habr.com/ru/company/ruvds/blog/523370/
-https://css-live.ru/articles/blochnyx-i-strochnyx-elementov-v-html-bolshe-net.html
-презентация по флексам – https://lection2-presentation.netlify.app/?full#1
-* https://doka.guide/
+- https://developer.mozilla.org/en-US/docs/Learn/Accessibility/What_is_accessibility
+- https://weblind.ru/inner.html#image-content
+- https://developer.mozilla.org/ru/docs/Learn/Accessibility/WAI-ARIA_basics
+- https://webref.ru/layout/advanced-html-css/semantics-accessibility
+- [Habr - Забудьте про div, семантика спасёт интернет](https://habr.com/ru/company/htmlacademy/blog/546500/) -1
+- [Habr - Знакомьтесь, details](https://habr.com/ru/post/477520/) +1
+- [Habr - Аккордеон, faq, спойлер и другие раскрывающиеся виджеты](https://habr.com/ru/post/465623/) +1
+- [Habr - CSS-переменные](https://habr.com/ru/company/ruvds/blog/523370/)
+- [youtube, 40min - Семантика для циников](https://www.youtube.com/watch?v=bDYEnNzprzE) +1
+- [Book/Blog - Inclusive Components](https://inclusive-components.design/) +1
+- [css-live.ru - «Блочных и строчных элементов» в HTML больше нет](https://css-live.ru/articles/blochnyx-i-strochnyx-elementov-v-html-bolshe-net.html)
+- презентация по флексам – https://lection2-presentation.netlify.app/?full#1
+- https://doka.guide/
 
 3 лекция 06.12:
 презентация по grid – https://lection3-css-grid-presentation.netlify.app/?full#1
