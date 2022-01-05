@@ -1,5 +1,7 @@
 Course description: https://learn.javascript.ru/courses/htmlcss
+
 My upstream with final results: https://github.com/js-tasks-ru/htmlcss-20211125_dan-ignatov
+
 My origin with step by step progress: https://github.com/IgnatovDan/htmlcss-20211125_dan-ignatov
 
 1 лекция 29.11:
