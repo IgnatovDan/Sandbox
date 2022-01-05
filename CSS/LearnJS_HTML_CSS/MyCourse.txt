@@ -1,2 +1,0 @@
-upstream: https://github.com/js-tasks-ru/htmlcss-20211125_dan-ignatov
-origin: https://github.com/IgnatovDan/htmlcss-20211125_dan-ignatov
