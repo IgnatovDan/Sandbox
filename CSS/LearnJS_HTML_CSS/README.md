@@ -15,8 +15,8 @@ My origin with step by step progress: https://github.com/IgnatovDan/htmlcss-2021
 - https://ru.bem.info/methodology/css/#%D0%BC%D0%B8%D0%BA%D1%81%D1%8B
 - [Habr - Сражаясь с БЭМ: 10 основных ошибок и как их избежать](https://habr.com/ru/post/305548/)
 - https://medium.com/@innabelaya/%D0%B1%D1%8D%D0%BC-%D0%B4%D0%BB%D1%8F-%D0%BD%D0%B0%D1%87%D0%B8%D0%BD%D0%B0%D1%8E%D1%89%D0%B8%D1%85-%D0%BE%D1%87%D0%B5%D0%B2%D0%B8%D0%B4%D0%BD%D1%8B%D0%B5-%D0%B8-%D0%BD%D0%B5%D0%BE%D1%87%D0%B5%D0%B2%D0%B8%D0%B4%D0%BD%D1%8B%D0%B5-%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D1%8B-%D0%B2%D0%B5%D1%80%D1%81%D1%82%D0%BA%D0%B8-1a21d67cf840
-- [Никто не знает, как работает каскад](https://habr.com/ru/company/htmlacademy/blog/590779/)
-- [Никто не знает CSS: специфичность — не каскад](https://css-live.ru/css/nikto-ne-znaet-css-specifichnost-ne-kaskad.html)
+- [Habr - Никто не знает, как работает каскад](https://habr.com/ru/company/htmlacademy/blog/590779/) +1
+- [css-live - Никто не знает CSS: специфичность — не каскад](https://css-live.ru/css/nikto-ne-znaet-css-specifichnost-ne-kaskad.html) +1
 
 2 лекция 02.12:
 - https://developer.mozilla.org/en-US/docs/Learn/Accessibility/What_is_accessibility
