@@ -32,9 +32,11 @@ My origin with step by step progress: https://github.com/IgnatovDan/htmlcss-2021
 - [Book/Blog - Inclusive Components](https://inclusive-components.design/) +1
 - [css-live.ru - «Блочных и строчных элементов» в HTML больше нет](https://css-live.ru/articles/blochnyx-i-strochnyx-elementov-v-html-bolshe-net.html)
 - [MDN - CSS Flow Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flow_Layout)
-- [w3.org - Generated content, automatic numbering, and lists. ::before|::after](https://www.w3.org/TR/CSS2/generate.html)
+- [w3.org - CSS Flexible Box Layout Module Level 1](https://www.w3.org/TR/css-flexbox-1/) +1
+- [w3.org - Generated content, automatic numbering, and lists. ::before|::after](https://www.w3.org/TR/CSS2/generate.html) +1
 - презентация по флексам – https://lection2-presentation.netlify.app/?full#1
 - https://doka.guide/
+- [CSS Pseudo-Elements Module Level 4](https://www.w3.org/TR/css-pseudo-4/) +1
 
 3 лекция 06.12:
 презентация по grid – https://lection3-css-grid-presentation.netlify.app/?full#1
