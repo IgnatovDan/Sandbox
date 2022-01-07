@@ -18,6 +18,7 @@ My origin with step by step progress: https://github.com/IgnatovDan/htmlcss-2021
 - [Habr - Никто не знает, как работает каскад](https://habr.com/ru/company/htmlacademy/blog/590779/) +1
 - [css-live - Никто не знает CSS: специфичность — не каскад](https://css-live.ru/css/nikto-ne-znaet-css-specifichnost-ne-kaskad.html) +1
 - [w3.org - CSS Box Model Module Level 3](https://www.w3.org/TR/css-box-3/) +1
+- [w3.org - CSS Display Module Level 3](https://www.w3.org/TR/css-display-3/) +1
 
 2 лекция 02.12:
 - https://developer.mozilla.org/en-US/docs/Learn/Accessibility/What_is_accessibility
