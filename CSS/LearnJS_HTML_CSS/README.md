@@ -40,6 +40,7 @@ My step by step progress:
 - [LearnJS - презентация по флексам](https://lection2-presentation.netlify.app/?full#1)
 - https://doka.guide/
 - [CSS Pseudo-Elements Module Level 4](https://www.w3.org/TR/css-pseudo-4/) +1
+- [MDN - Positioning](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning) +1
 
 - [tproger.ru - Как работает CSS Flexbox](https://tproger.ru/translations/how-css-flexbox-works/)
 - [css-tricks.com - A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
