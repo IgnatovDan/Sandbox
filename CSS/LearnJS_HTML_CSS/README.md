@@ -35,22 +35,34 @@ My origin with step by step progress: https://github.com/IgnatovDan/htmlcss-2021
 - [MDN - CSS Flow Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flow_Layout)
 - [w3.org - CSS Flexible Box Layout Module Level 1](https://www.w3.org/TR/css-flexbox-1/) +1
 - [w3.org - Generated content, automatic numbering, and lists. ::before|::after](https://www.w3.org/TR/CSS2/generate.html) +1
-- презентация по флексам – https://lection2-presentation.netlify.app/?full#1
+- [LearnJS - презентация по флексам](https://lection2-presentation.netlify.app/?full#1)
 - https://doka.guide/
 - [CSS Pseudo-Elements Module Level 4](https://www.w3.org/TR/css-pseudo-4/) +1
 
+- [tproger.ru - Как работает CSS Flexbox](https://tproger.ru/translations/how-css-flexbox-works/)
+- [css-tricks.com - A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+
+Flex Games:
+
+- https://flexboxfroggy.com/#ru
+- http://www.flexboxdefense.com/ 
+
+
 3 лекция 06.12:
-презентация по grid – https://lection3-css-grid-presentation.netlify.app/?full#1
-https://habr.com/ru/post/522880/
+
+- [pagecloud.com - The Easy Way to Add Fonts to Your Website](https://www.pagecloud.com/blog/how-to-add-custom-fonts-to-any-website)
+- [LearnJS - презентация по grid](https://lection3-css-grid-presentation.netlify.app/?full#1)
+- [10 современных раскладок в одну строку CSS-кода](https://habr.com/ru/post/522880/)
 
 4 лекция 09.12:
-https://developer.mozilla.org/ru/docs/Web/CSS/position
-https://developer.mozilla.org/ru/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context
-http://gutdesign.ru/shkola/directory/osobennosti_adaptivnogo_dizayna_sayta_chast_2
-https://timeweb.com/ru/community/articles/metateg-viewport-pochemu-on-vazhen-i-kak-ego-pravilno-ispolzovat
-em vs rem – https://habr.com/ru/post/280125/
-https://elad.medium.com/the-new-responsive-design-evolution-2bfb9b504a4e
-https://betterwebtype.com/articles/2018/10/15/rhythm-in-web-typography/
+
+- [MDN - position](https://developer.mozilla.org/ru/docs/Web/CSS/position)
+- [MDN - The stacking context](https://developer.mozilla.org/ru/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context)
+- [gutdesign.ru - Особенности адаптивного дизайна сайта. Часть 2](http://gutdesign.ru/shkola/directory/osobennosti_adaptivnogo_dizayna_sayta_chast_2)
+- [timeweb.com - Метатег viewport: почему он важен и как его правильно использовать](https://timeweb.com/ru/community/articles/metateg-viewport-pochemu-on-vazhen-i-kak-ego-pravilno-ispolzovat)
+- [Habr - REM vs EM – Великий спор](https://habr.com/ru/post/280125/)
+- [The New Responsive Design Evolution](https://elad.medium.com/the-new-responsive-design-evolution-2bfb9b504a4e)
+- [RHYTHM IN WEB TYPOGRAPHY](https://betterwebtype.com/articles/2018/10/15/rhythm-in-web-typography/)
 
 5 лекция 13.12:
 https://timeweb.com/ru/community/articles/format-izobrazheniy-webp
