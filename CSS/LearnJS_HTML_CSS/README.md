@@ -2,7 +2,7 @@ Course description: https://learn.javascript.ru/courses/htmlcss
 
 My upstream with final results: https://github.com/js-tasks-ru/htmlcss-20211125_dan-ignatov
 
-My origin with step by step progress:
+My step by step progress:
 
 - https://github.com/js-tasks-ru/htmlcss-20211125_dan-ignatov/pulls?q=is%3Apr - take a look at each PR
 
