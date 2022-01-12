@@ -53,9 +53,14 @@ Flex Games:
 
 3 лекция 06.12:
 
-- [pagecloud.com - The Easy Way to Add Fonts to Your Website](https://www.pagecloud.com/blog/how-to-add-custom-fonts-to-any-website)
 - [LearnJS - презентация по grid](https://lection3-css-grid-presentation.netlify.app/?full#1)
+- [СSS-Tricks - A Complete Guide to Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
+- [pagecloud.com - The Easy Way to Add Fonts to Your Website](https://www.pagecloud.com/blog/how-to-add-custom-fonts-to-any-website)
 - [10 современных раскладок в одну строку CSS-кода](https://habr.com/ru/post/522880/)
+
+Games:
+
+- http://cssgridgarden.com/#ru
 
 4 лекция 09.12:
 
