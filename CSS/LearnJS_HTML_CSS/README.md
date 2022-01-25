@@ -79,7 +79,7 @@ Games:
 - [Habr - Все об SVG анимации](https://habr.com/ru/post/450924/)
 - [webformyself.com - Почему необходимо использовать тег picture вместо тега img](https://webformyself.com/pochemu-neobxodimo-ispolzovat-teg-picture-vmesto-tega-img/)
 - [hcdev.ru - CSS appearance attribute](https://hcdev.ru/css/appearance/)
-- [MDN - CSS resize attribute]https://developer.mozilla.org/en-US/docs/Web/CSS/resize
+- [MDN - CSS resize attribute](https://developer.mozilla.org/en-US/docs/Web/CSS/resize
 - [MDN - CSS pixel](https://developer.mozilla.org/en-US/docs/Glossary/CSS_pixel)
 - [web.dev - Use density descriptors](https://web.dev/codelab-density-descriptors/)
 
