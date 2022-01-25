@@ -73,12 +73,15 @@ Games:
 - [RHYTHM IN WEB TYPOGRAPHY](https://betterwebtype.com/articles/2018/10/15/rhythm-in-web-typography/)
 
 5 лекция 13.12:
-https://timeweb.com/ru/community/articles/format-izobrazheniy-webp
-https://jakearchibald.github.io/svgomg/
-https://habr.com/ru/post/450924/
-https://webformyself.com/pochemu-neobxodimo-ispolzovat-teg-picture-vmesto-tega-img/
-https://hcdev.ru/css/appearance/
-https://developer.mozilla.org/en-US/docs/Web/CSS/resize
+
+- [timeweb.com - Формат изображений WebP: что это такое и зачем он нужен](https://timeweb.com/ru/community/articles/format-izobrazheniy-webp)
+- [Github - SVGOMG is SVGO's Missing GUI, aiming to expose the majority, if not all the configuration options of SVGO](https://jakearchibald.github.io/svgomg/)
+- [Habr - Все об SVG анимации](https://habr.com/ru/post/450924/)
+- [webformyself.com - Почему необходимо использовать тег picture вместо тега img](https://webformyself.com/pochemu-neobxodimo-ispolzovat-teg-picture-vmesto-tega-img/)
+- [hcdev.ru - CSS appearance attribute](https://hcdev.ru/css/appearance/)
+- [MDN - CSS resize attribute]https://developer.mozilla.org/en-US/docs/Web/CSS/resize
+- [MDN - CSS pixel](https://developer.mozilla.org/en-US/docs/Glossary/CSS_pixel)
+- [web.dev - Use density descriptors](https://web.dev/codelab-density-descriptors/)
 
 6 лекция 16.12:
 https://habr.com/ru/post/565726/
