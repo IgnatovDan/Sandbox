@@ -86,6 +86,8 @@ Games:
 6 лекция 16.12:
 
 - Diffrent native inputs: https://codepen.io/Dmitryks/pen/WNobmVg
+- https://engageinteractive.co.uk/blog/top-10-scss-mixins
+- 
 https://habr.com/ru/post/565726/
 https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#inappropriate-for-the-control
 https://uxdesign.cc/form-best-practices-8e560e9f8bd0?gi=b3bbf9cf86e3
