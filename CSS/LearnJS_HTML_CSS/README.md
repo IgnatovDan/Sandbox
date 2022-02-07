@@ -57,6 +57,8 @@ Flex Games:
 - [СSS-Tricks - A Complete Guide to Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
 - [pagecloud.com - The Easy Way to Add Fonts to Your Website](https://www.pagecloud.com/blog/how-to-add-custom-fonts-to-any-website)
 - [10 современных раскладок в одну строку CSS-кода](https://habr.com/ru/post/522880/)
+- [Realizing common layouts using CSS Grid Layout](https://developer.mozilla.org/ru/docs/Web/CSS/CSS_Grid_Layout/Realizing_common_layouts_using_CSS_Grid_Layout)
+- [Верстка для самых маленьких. Верстаем страницу по БЭМу](https://habr.com/ru/post/203440/)
 
 Games:
 
