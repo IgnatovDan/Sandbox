@@ -1,0 +1,8 @@
+{
+  "aggregateName": "ShoppingList",
+  "type": "createShoppingList",
+  "aggregateId": "shopping-list-1",
+  "payload": {
+    "name": "Item 1"
+  }
+}
