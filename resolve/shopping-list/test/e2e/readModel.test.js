@@ -38,7 +38,7 @@ test('read model query should work correctly', async () => {
     });
     // .then((result) => { console.log('response 1 result'); }, (error) => { console.log('response 1 error'); });
 
-    const event = await response.json();
+    const event = await response1.json();
 
     const response2 = await fetch(`${MAIN_PAGE}/api/query/ShoppingLists/all`, {
       headers: {
