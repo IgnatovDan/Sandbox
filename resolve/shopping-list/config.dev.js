@@ -12,13 +12,13 @@ const devConfig = {
   staticPath: 'static',
   staticDir: 'static',
   distDir: 'dist',
-  // readModelConnectors: {
-  //   default: {
-  //     module: '@resolve-js/readmodel-lite',
-  //     options: {
-  //       databaseFile: 'data/read-models.db',
-  //     },
-  //   },
+  readModelConnectors: {
+    default: {
+      module: '@resolve-js/readmodel-lite',
+      options: {
+        databaseFile: 'data/read-models.db',
+      },
+    },
   //   /*default: {
   //         module: '@resolve-js/readmodel-mysql',
   //         options: {
@@ -29,7 +29,7 @@ const devConfig = {
   //           database: 'customDatabaseName'
   //         }
   //       }*/
-  // },
+  },
   eventstoreAdapter: {
     module: '@resolve-js/eventstore-lite',
     options: {
