@@ -14,6 +14,12 @@ const appConfig = {
       connectorName: 'default'
     }
   ],
+  viewModels: [
+    {
+      name: 'shoppingList',
+      projection: 'common/view-models/shopping_list.projection.js'
+    }
+  ],
 };
 
 export default appConfig;

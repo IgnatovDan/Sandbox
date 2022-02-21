@@ -24,10 +24,13 @@
     "@resolve-js/readmodel-postgresql": "0.33.14",
     "@resolve-js/runtime-aws-serverless": "0.33.14",
     "@resolve-js/runtime-single-process": "0.33.14",
-    "react": "17.0.2",
-    "react-bootstrap": "1.6.0",
-    "react-dom": "17.0.2",
-    "react-helmet": "6.1.0",
+    "react": "^17.0.2",
+    "react-bootstrap": "^2.1.2",
+    "react-dom": "^17.0.2",
+    "react-helmet": "^6.1.0",
+    "react-router": "^6.2.1",
+    "react-router-config": "^5.1.1",
+    "react-router-dom": "^6.2.1",
     "uuid": "8.3.2"
   },
   "devDependencies": {

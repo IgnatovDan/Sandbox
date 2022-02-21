@@ -1,0 +1,1 @@
+curl http://localhost:3000/api/query/shoppingList/shopping-list-1 -v -H "Content-Type: application/json"
