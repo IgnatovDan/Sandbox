@@ -1,8 +1,8 @@
 {
   "aggregateName": "ShoppingList",
   "type": "createShoppingList",
-  "aggregateId": "shopping-list-2",
+  "aggregateId": "shopping-list-2022_-3_02_1",
   "payload": {
-    "name": "List 2"
+    "name": "List 2022_-3_02_1"
   }
 }

@@ -1,8 +1,8 @@
 import { SHOPPING_ITEM_CREATED, SHOPPING_LIST_CREATED } from '../eventTypes';
 
 export default {
-    createShoppingList: (state, { payload: { name } }) => {
-        console.log('> createShoppingList');
+    createShoppingList: (state, { payload: { name }, aggregateId }) => {
+        console.log('> createShoppingList, ' + aggregateId);
         if (!name) throw new Error('The "name" field is required');
         if (state && state.createdAt) throw new Error('Shopping list already exists');
 

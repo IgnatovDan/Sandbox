@@ -1,8 +1,9 @@
 {
   "aggregateName": "ShoppingList",
   "type": "createShoppingItem",
-  "aggregateId": "shopping-list-item-1",
+  "aggregateId": "shopping-list-2022_-2_22_3",
   "payload": {
-    "name": "Item 1"
+    "id": "shopping-list-2022_-2_22_3 + Item 3_1",
+    "text": "Item 3_1"
   }
 }
