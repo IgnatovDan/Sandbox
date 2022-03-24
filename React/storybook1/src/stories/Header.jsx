@@ -42,9 +42,9 @@ export const Header = ({ user, onLogin, onLogout, onCreateAccount }) => (
 
 Header.propTypes = {
   user: PropTypes.shape({}),
-  onLogin: PropTypes.func.isRequired,
-  onLogout: PropTypes.func.isRequired,
-  onCreateAccount: PropTypes.func.isRequired,
+  onLogin: PropTypes.func, // .isRequired, - Warning: Failed prop type: The prop `onLogin` is marked as required in `Header`, but its value is `undefined`.
+  onLogout: PropTypes.func, // .isRequired, - Warning: Failed prop type: The prop `onLogout` is marked as required in `Header`, but its value is `undefined`.
+  onCreateAccount: PropTypes.func, // .isRequired, - Warning: Failed prop type: The prop `onCreateAccount` is marked as required in `Header`, but its value is `undefined`.
 };
 
 Header.defaultProps = {
