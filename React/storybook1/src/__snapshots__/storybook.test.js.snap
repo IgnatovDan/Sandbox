@@ -607,7 +607,7 @@ exports[`Storyshots InboxScreen Default 1`] = `
 </div>
 `;
 
-exports[`Storyshots InboxScreen Load From Remote 1`] = `
+exports[`Storyshots InboxScreen Long Loading 1`] = `
 <div
   className="page lists-show"
 >
@@ -624,24 +624,73 @@ exports[`Storyshots InboxScreen Load From Remote 1`] = `
   </nav>
   <div
     className="list-items"
-    data-testingid="empty"
+    data-testingid="loading"
   >
     <div
-      className="wrapper-message"
+      className="loading-item"
     >
       <span
-        className="icon-check"
+        className="glow-checkbox"
       />
-      <div
-        className="title-message"
+      <span
+        className="glow-text"
       >
-        You have no tasks
-      </div>
-      <div
-        className="subtitle-message"
+        <span>
+          Loading
+        </span>
+         
+        <span>
+          cool
+        </span>
+         
+        <span>
+          state
+        </span>
+      </span>
+    </div>
+    <div
+      className="loading-item"
+    >
+      <span
+        className="glow-checkbox"
+      />
+      <span
+        className="glow-text"
       >
-        Sit back and relax
-      </div>
+        <span>
+          Loading
+        </span>
+         
+        <span>
+          cool
+        </span>
+         
+        <span>
+          state
+        </span>
+      </span>
+    </div>
+    <div
+      className="loading-item"
+    >
+      <span
+        className="glow-checkbox"
+      />
+      <span
+        className="glow-text"
+      >
+        <span>
+          Loading
+        </span>
+         
+        <span>
+          cool
+        </span>
+         
+        <span>
+          state
+        </span>
+      </span>
     </div>
   </div>
 </div>
