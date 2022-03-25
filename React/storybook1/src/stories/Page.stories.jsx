@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 
 import { Page } from './Page';
 import * as HeaderStories from './Header.stories';
@@ -19,3 +19,4 @@ export const LoggedOut = Template.bind({});
 LoggedOut.args = {
   ...HeaderStories.LoggedOut.args,
 };
+*/

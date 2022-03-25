@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 
 import { Button } from './Button';
 
@@ -34,3 +34,4 @@ Small.args = {
   size: 'small',
   label: 'Button',
 };
+*/
