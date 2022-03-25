@@ -3,13 +3,13 @@ import { manualUpdateTaskState, TaskStates } from '../lib/store';
 import { TaskList } from './taskList';
 
 export default function InboxScreen({ error, tasksProvider }) {
-    const [tasks, setTasks] = useState(tasksProvider.tasks);
+    const [tasks, setTasks] = useState(tasksProvider?.tasks);
 
     useEffect(() => {
         const onTasksChanged = (newTasks) => setTasks(newTasks);
-        tasksProvider.addTasksChangedListener?.(onTasksChanged);
+        tasksProvider?.addTasksChangedListener?.(onTasksChanged);
         return () => {
-            tasksProvider.removeTasksChangedListener?.(onTasksChanged);
+            tasksProvider?.removeTasksChangedListener?.(onTasksChanged);
         }
     });
 
