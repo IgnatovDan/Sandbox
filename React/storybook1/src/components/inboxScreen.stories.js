@@ -1,5 +1,5 @@
 import React from 'react';
-import { TaskStates } from '../lib/store';
+import { TasksProvider, TaskStates } from '../lib/store';
 import InboxScreen from './inboxScreen';
 
 const tasks = [
@@ -19,49 +19,31 @@ const Template = (args) => <InboxScreen { ...args } />;
 export const Default = Template.bind({});
 Default.args = {
     error: null,
-    tasksProvider: { tasks }
+    tasksProvider: new TasksProvider(tasks)
 };
 
-const fetchFromRemoteTaskProvider = {
-    tasks: undefined,
-    tasksChanged: [],
-    raiseTasksChanged() {
-        this.tasksChanged.forEach(callback => callback(this.tasks));
+const tasksProvider = new TasksProvider();
+setTimeout(
+    () => {
+        fetch('https://jsonplaceholder.typicode.com/todos?userId=1')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error, status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(json => {
+                tasksProvider.tasks = json;
+                tasksProvider.raiseTasksChanged();
+            })
+            .catch(error => {
+                console.log(`Exception occurs: ${error.message}`);
+            });
     },
-    addTasksChangedListener(listener) {
-        this.tasksChanged.push(listener);
-    },
-    removeTasksChangedListener(listener) {
-        var index = this.tasksChanged.indexOf(listener);
-        if (index >= 0) {
-            this.tasksChanged.splice(index, 1);
-        }
-    },
-    changeTaskState(taskId, newTaskState) {
-        debugger;
-        const taskIndex = this.tasks.findIndex(task => task.id === taskId);
-        if (taskIndex >= 0) {
-            this.tasks = [...this.tasks];
-            this.tasks[taskIndex] = { ...this.tasks[taskIndex], state: newTaskState };
-            this.raiseTasksChanged();
-        }
-    }
-};
-
-setTimeout(() => {
-    fetch('https://jsonplaceholder.typicode.com/todos?userId=1')
-        .then(response => {
-            if (!response.ok) throw new Error(`HTTP error, status: ${response.status}`);
-            return response.json();
-        })
-        .then(json => {
-            fetchFromRemoteTaskProvider.tasks = json;
-            fetchFromRemoteTaskProvider.raiseTasksChanged();
-        })
-        .catch(error => console.log(`Exception occurs: ${error.message}`))
-}, 1000);
+    1000
+);
 
 export const LoadFromRemote = Template.bind({});
 LoadFromRemote.args = {
-    tasksProvider: fetchFromRemoteTaskProvider,
+    tasksProvider: tasksProvider,
 };

@@ -39,5 +39,32 @@ const store = configureStore({
     },
 });
 
+export class TasksProvider {
+    constructor(tasks) {
+        this.tasks = tasks;
+        this.tasksChanged = [];
+    }
+    raiseTasksChanged() {
+        this.tasksChanged.forEach(callback => callback(this.tasks));
+    }
+    addTasksChangedListener(listener) {
+        this.tasksChanged.push(listener);
+    }
+    removeTasksChangedListener(listener) {
+        var index = this.tasksChanged.indexOf(listener);
+        if (index >= 0) {
+            this.tasksChanged.splice(index, 1);
+        }
+    }
+    changeTaskState(taskId, newTaskState) {
+        const taskIndex = this.tasks.findIndex(task => task.id === taskId);
+        if (taskIndex >= 0) {
+            this.tasks = [...this.tasks];
+            this.tasks[taskIndex] = { ...this.tasks[taskIndex], state: newTaskState };
+            this.raiseTasksChanged();
+        }
+    }
+};
+
 export default store;
 export const { updateTaskState } = TaskSlice.actions;
