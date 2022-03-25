@@ -410,7 +410,7 @@ exports[`Storyshots Example/Page Logged Out 1`] = `
 
 exports[`Storyshots Task Archived 1`] = `
 <div
-  className="list-item {$state}"
+  className="list-item TASK_ARCHIVED"
 >
   <label
     className="checkbox"
@@ -457,7 +457,7 @@ exports[`Storyshots Task Archived 1`] = `
 
 exports[`Storyshots Task Default 1`] = `
 <div
-  className="list-item {$state}"
+  className="list-item TASK_INBOX"
 >
   <label
     className="checkbox"
@@ -504,7 +504,7 @@ exports[`Storyshots Task Default 1`] = `
 
 exports[`Storyshots Task Pinned 1`] = `
 <div
-  className="list-item {$state}"
+  className="list-item TASK_PINNED"
 >
   <label
     className="checkbox"
