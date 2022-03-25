@@ -21,3 +21,38 @@ Default.args = {
     error: null,
     tasksProvider: { tasks }
 };
+
+const fetchFromRemoteTaskProvider = {
+    tasks: undefined,
+    tasksChanged: [],
+    raiseTasksChanged() {
+        this.tasksChanged.forEach(callback => callback(this.tasks));
+    },
+    addTasksChangedListener(listener) {
+        this.tasksChanged.push(listener);
+    },
+    removeTasksChangedListener(listener) {
+        var index = this.tasksChanged.indexOf(listener);
+        if (index >= 0) {
+            this.tasksChanged.splice(index, 1);
+        }
+    }
+};
+
+setTimeout(() => {
+    fetch('https://jsonplaceholder.typicode.com/todos?userId=1')
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP error, status: ${response.status}`);
+            return response.json();
+        })
+        .then(json => {
+            fetchFromRemoteTaskProvider.tasks = json;
+            fetchFromRemoteTaskProvider.raiseTasksChanged();
+        })
+        .catch(error => console.log(`Exception occurs: ${error.message}`))
+}, 1000);
+
+export const LoadFromRemote = Template.bind({});
+LoadFromRemote.args = {
+    tasksProvider: fetchFromRemoteTaskProvider,
+};

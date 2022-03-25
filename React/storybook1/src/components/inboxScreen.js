@@ -7,8 +7,10 @@ export default function InboxScreen({ error, tasksProvider }) {
 
     useEffect(() => {
         const onTasksChanged = (newTasks) => setTasks(newTasks);
-        tasksProvider.tasksChanged += onTasksChanged;
-        return () => tasksProvider.tasksChanged -= onTasksChanged;
+        tasksProvider.addTasksChangedListener?.(onTasksChanged);
+        return () => {
+            tasksProvider.removeTasksChangedListener?.(onTasksChanged);
+        }
     });
 
     if (error) {
