@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { manualUpdateTaskState, TaskStates } from '../lib/store';
 import { TaskList } from './taskList';
 
-export default function InboxScreen({ error, tasks }) {
+export default function InboxScreen({ error, tasksProvider }) {
+    const [tasks, setTasks] = useState(tasksProvider.tasks);
+
+    useEffect(() => {
+        const onTasksChanged = (newTasks) => setTasks(newTasks);
+        tasksProvider.tasksChanged += onTasksChanged;
+        return () => tasksProvider.tasksChanged -= onTasksChanged;
+    });
+
     if (error) {
         return (
             <div className='page lists-show'>
@@ -21,7 +30,11 @@ export default function InboxScreen({ error, tasks }) {
                     <span className='title-wrapper'>TasksBox</span>
                 </h1>
             </nav>
-            <TaskList />
+            <TaskList
+                tasks={ tasks }
+                pinTask={ (taskId) => setTasks(manualUpdateTaskState(tasks, taskId, TaskStates.pinned)) }
+                archiveTask={ (taskId) => setTasks(manualUpdateTaskState(tasks, taskId, TaskStates.archived)) }
+            />
         </div>
     );
 }
