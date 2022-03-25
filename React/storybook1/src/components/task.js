@@ -8,7 +8,7 @@ export default function Task({ task: { id, title, state }, onArchiveTask, onPinT
             <label className='checkbox'>
                 <input type="checkbox" defaultChecked={ state === 'TASK_ARCHIVED' }
                     disabled={ true } name='checked' />
-                <span classname='checkbox-custom'
+                <span className='checkbox-custom'
                     onClick={ () => onArchiveTask(id) }
                     id={ `archiveTask=${id}` }
                     aria-label={ `archiveTask=${id}` }
