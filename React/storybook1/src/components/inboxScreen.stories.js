@@ -36,6 +36,15 @@ const fetchFromRemoteTaskProvider = {
         if (index >= 0) {
             this.tasksChanged.splice(index, 1);
         }
+    },
+    changeTaskState(taskId, newTaskState) {
+        debugger;
+        const taskIndex = this.tasks.findIndex(task => task.id === taskId);
+        if (taskIndex >= 0) {
+            this.tasks = [...this.tasks];
+            this.tasks[taskIndex] = { ...this.tasks[taskIndex], state: newTaskState };
+            this.raiseTasksChanged();
+        }
     }
 };
 

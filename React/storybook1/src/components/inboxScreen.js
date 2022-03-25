@@ -34,8 +34,8 @@ export default function InboxScreen({ error, tasksProvider }) {
             </nav>
             <TaskList
                 tasks={ tasks }
-                pinTask={ (taskId) => setTasks(manualUpdateTaskState(tasks, taskId, TaskStates.pinned)) }
-                archiveTask={ (taskId) => setTasks(manualUpdateTaskState(tasks, taskId, TaskStates.archived)) }
+                pinTask={ (taskId) => tasksProvider?.changeTaskState(taskId, TaskStates.pinned) }
+                archiveTask={ (taskId) => tasksProvider?.changeTaskState(taskId, TaskStates.archived) }
             />
         </div>
     );

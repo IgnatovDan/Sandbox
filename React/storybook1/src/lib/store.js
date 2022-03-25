@@ -19,17 +19,6 @@ const TaskBoxData = {
     error: null,
 };
 
-export function manualUpdateTaskState(tasks, taskId, newTaskState) {
-    const taskIndex = tasks.findIndex(task => task.id === taskId);
-    if (taskIndex >= 0) {
-        const newTasks = [...tasks];
-        newTasks[taskIndex] = { ...newTasks[taskIndex], state: newTaskState };
-        return newTasks;
-    } else {
-        return tasks;
-    }
-}
-
 const TaskSlice = createSlice({
     name: 'taskbox',
     initialState: TaskBoxData,
