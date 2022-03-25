@@ -30,7 +30,7 @@ export function TaskList({ tasks, taskBoxStatus, pinTask, archiveTask }) {
                 { loadingRow }
             </div>
         );
-    } else if (tasks.length === 0) {
+    } else if (!tasks || tasks.length === 0) {
         return (
             <div className='list-items' key={ 'empty' } data-testingid='empty'>
                 <div className='wrapper-message'>
