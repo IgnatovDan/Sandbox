@@ -1,6 +1,7 @@
 import React from 'react';
 import { TasksProvider, TaskStates } from '../lib/store';
 import InboxScreen from './inboxScreen';
+import { TaskBoxStatuses } from './taskList';
 
 const tasks = [
     { id: 'task1', title: 'title 1', state: TaskStates.inbox },
@@ -22,7 +23,8 @@ Default.args = {
     tasksProvider: new TasksProvider(tasks)
 };
 
-const tasksProvider = new TasksProvider();
+const remoteTasksProvider = new TasksProvider();
+remoteTasksProvider.taskBoxStatus = TaskBoxStatuses.loading;
 setTimeout(
     () => {
         fetch('https://jsonplaceholder.typicode.com/todos?userId=1')
@@ -33,8 +35,9 @@ setTimeout(
                 return response.json();
             })
             .then(json => {
-                tasksProvider.tasks = json;
-                tasksProvider.raiseTasksChanged();
+                remoteTasksProvider.tasks = json;
+                remoteTasksProvider.taskBoxStatus = TaskBoxStatuses.ready;
+                remoteTasksProvider.raiseTasksChanged();
             })
             .catch(error => {
                 console.log(`Exception occurs: ${error.message}`);
@@ -43,7 +46,7 @@ setTimeout(
     1000
 );
 
-export const LoadFromRemote = Template.bind({});
-LoadFromRemote.args = {
-    tasksProvider: tasksProvider,
+export const LongLoading = Template.bind({});
+LongLoading.args = {
+    tasksProvider: remoteTasksProvider,
 };
