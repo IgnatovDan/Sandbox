@@ -1,0 +1,30 @@
+# Workflow name
+name: 'Publish Stories to Chromatic'
+
+# Event for the workflow
+on:
+  push:
+    paths:
+      - ./React/storybook1/**
+
+# List of jobs
+jobs:
+  test:
+    # Operating System
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./React/storybook1/
+
+    # Job Steps
+    steps:
+      - uses: actions/checkout@v1
+      - run: yarn
+
+      # Adds Chromatic as a step in the workflow
+      - uses: chromaui/action@v1
+        # Options required for Chromatic's GitHub Action
+        with:
+          projectTocken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOCKEN }}
