@@ -9,10 +9,14 @@ name: Force workflow after each change in any branch
 
 on: 
   # Force workflow after each change in any branch
-  # (you need to find your result in the list of GA results until you create a PR)
   push:
     # In addition, enable "Require branches to be up to date before merging" for repository to run tests on the latest PR sources
     branches:
+      # - main - run on 'main' only to avoid 'double runs' of workflow for your PR
+      # With this condition, workflow will be run only after you created PR
+      # Keep filter empty to run workflow for each change in your branch
+      # (but you need to find your result in the list of GA results until you create a PR - it can take additional time)
+
   # pull_request: workflow will be started twice after you created a PR: one for your change in your branch (push event) and one for change in your PR (pull_request event)
 
   # Allows you to run this workflow manually from the Actions tab
