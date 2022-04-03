@@ -1,0 +1,37 @@
+name: Run some code when new PR is created or existing PR is modified
+
+# More details: 
+# - https://docs.github.com/en/actions/quickstart
+# - https://crunchingnumbers.live/2020/03/17/ci-with-github-actions-for-ember-apps/
+# - https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule
+# - https://github.community/t/duplicate-checks-on-push-and-pull-request-simultaneous-event/18012
+# - https://stackoverflow.com/questions/66353544/should-i-pseudo-fork-my-own-github-repository-or-use-branches
+
+on: 
+  # Force workflow when a direct commit OR a PR is merged into 'main'
+  push:
+    # Start workflow after each change in any branch
+    # (you need to find your result in the list of GA results if you have a PR)
+    # In addition, enable "Require branches to be up to date before merging" for repository to run tests on the latest PR sources
+    branches:
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        #run: findstr /c:"Hello World" file1.txt >nul || (echo "Hello World" was not found in file1.txt && exit 1)
+        run: |
+          ls
+          cat GitHubActionsWorkflow/file1.txt
+          grep -i 'Hello World' GitHubActionsWorkflow/file1.txt || (echo "Hello World" case insensitive was not found in GitHubActionsWorkflow/file1.txt && exit 1)
+          exit 0
