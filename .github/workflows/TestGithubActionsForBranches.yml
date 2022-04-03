@@ -13,8 +13,7 @@ on:
   push:
     # In addition, enable "Require branches to be up to date before merging" for repository to run tests on the latest PR sources
     branches:
-  pull_request:
-  # - workflow will be started twice if you create a PR: one for your change in your branch and one for change in your PR
+  # pull_request: workflow will be started twice after you created a PR: one for your change in your branch (push event) and one for change in your PR (pull_request event)
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
