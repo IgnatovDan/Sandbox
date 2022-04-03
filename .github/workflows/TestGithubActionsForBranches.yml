@@ -11,7 +11,9 @@ on:
   # Force workflow after each change in any branch
   push:
     # In addition, enable "Require branches to be up to date before merging" for repository to run tests on the latest PR sources
-    branches:
+    # branches: '**'
+      # '*': Matches all branch and tag names that don't contain a slash (/).
+      # '**': Matches all branch and tag names. This is the default behavior when you don't use a branches or tags filter.
       # - main - run on 'main' only to avoid 'double runs' of workflow for your PR
       # With this condition, workflow will be run only after you created PR
       # Keep filter empty to run workflow for each change in your branch
