@@ -32,6 +32,7 @@ jobs:
       - name: Run a one-line script
         #run: findstr /c:"Hello World" file1.txt >nul || (echo "Hello World" was not found in file1.txt && exit 1)
         run: |
-          cat file1.txt
-          grep -q 'Hello World' file1.txt || (echo "Hello World" was not found in file1.txt && exit 1)
+          dir
+          cat /GitHubActionsWorkflow/file1.txt
+          grep -q 'Hello World' /GitHubActionsWorkflow/file1.txt || (echo "Hello World" was not found in /GitHubActionsWorkflow/file1.txt && exit 1)
           exit 0
