@@ -1,12 +1,20 @@
 import React from 'react';
-import { Button, Autocomplete, TextField, ButtonGroup, Checkbox, Box, Stack, Slider } from '@mui/material';
+import { Button, Autocomplete, TextField, ButtonGroup, Checkbox, Box, Stack, Slider, ToggleButtonGroup, ToggleButton } from '@mui/material';
 import VolumeDown from '@mui/icons-material/VolumeDown';
 import VolumeUp from '@mui/icons-material/VolumeUp';
+import { FormatAlignCenter, FormatAlignLeft, FormatAlignRight } from '@mui/icons-material';
+
+// https://mui.com/components/
 
 function App() {
   const [sliderValue, setSliderValue] = React.useState();
   const handleSliderChange = (e, newValue) => {
     setSliderValue(newValue);
+  };
+
+  const [toggleGroupValue, setToggleGroupValue] = React.useState('2');
+  const handleToggleGroupValueChange = (e, newValue) => {
+    setToggleGroupValue(newValue);
   };
 
   return (
@@ -36,6 +44,17 @@ function App() {
           <VolumeUp />
         </Stack>
       </Box>
+
+      <ToggleButtonGroup
+        value={ toggleGroupValue }
+        exclusive
+        onChange={ handleToggleGroupValueChange }
+        aria-label="my toggle group"
+      >
+        <ToggleButton value="1"><FormatAlignLeft /></ToggleButton>
+        <ToggleButton value="2"><FormatAlignCenter /></ToggleButton>
+        <ToggleButton value="3"><FormatAlignRight /></ToggleButton>
+      </ToggleButtonGroup>
     </div>
   );
 }
