@@ -3,6 +3,7 @@ import { Button, Autocomplete, TextField, ButtonGroup, Checkbox, Box, Stack, Sli
 import VolumeDown from '@mui/icons-material/VolumeDown';
 import VolumeUp from '@mui/icons-material/VolumeUp';
 import { FormatAlignCenter, FormatAlignLeft, FormatAlignRight } from '@mui/icons-material';
+import TouchList from './components/TouchList';
 
 // https://mui.com/components/
 
@@ -55,6 +56,10 @@ function App() {
         <ToggleButton value="2"><FormatAlignCenter /></ToggleButton>
         <ToggleButton value="3"><FormatAlignRight /></ToggleButton>
       </ToggleButtonGroup>
+
+      <Box sx={ { maxWidth: 400, width: '100%', border: 'solid 1px black' } }>
+        <TouchList />
+      </Box>
     </div>
   );
 }
