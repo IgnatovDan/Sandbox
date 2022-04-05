@@ -1,0 +1,25 @@
+name: Touch stripe server
+
+on: 
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: |
+          cd ./Stripe/Stripe1
+          # touch .env
+          # echo STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }} >> .env
+          chmod +x ./touchStripe.sh
+          # TODO: check ERROR exit code
+          exit $?
