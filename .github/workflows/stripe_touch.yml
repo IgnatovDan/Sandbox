@@ -1,4 +1,4 @@
-name: create stripe env file
+name: Touch stripe server
 
 on: 
   push:
@@ -17,5 +17,5 @@ jobs:
           cd ./Stripe/Stripe1
           touch .env
           echo STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }} >> .env
-          ./touchStripe.cmd
+          sudo ./touchStripe.cmd
           exit %ERRORLEVEL%
