@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY + 'fasf');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 (async () => {
     try {

@@ -21,4 +21,5 @@ jobs:
           # touch .env
           # echo STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }} >> .env
           chmod +x ./touchStripe.sh
+          # TODO: check ERROR exit code
           exit $?
