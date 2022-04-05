@@ -20,5 +20,5 @@ jobs:
           cd ./Stripe/Stripe1
           # touch .env
           # echo STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }} >> .env
-          ./touchStripe.cmd
+          chmod +x ./touchStripe.sh
           exit %ERRORLEVEL%
