@@ -18,7 +18,7 @@ jobs:
       - name: Run a one-line script
         run: |
           cd ./Stripe/Stripe1
-          rem touch .env
-          rem echo STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }} >> .env
+          # touch .env
+          # echo STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }} >> .env
           ./touchStripe.cmd
           exit %ERRORLEVEL%
