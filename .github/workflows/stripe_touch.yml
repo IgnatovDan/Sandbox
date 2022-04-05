@@ -1,0 +1,21 @@
+name: create stripe env file
+
+on: 
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: |
+          cd ./Stripe/Stripe1
+          touch .env
+          echo STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }} >> .env
+          touchStripe.cmd
+          exit %ERRORLEVEL%
