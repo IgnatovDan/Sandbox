@@ -1,0 +1,5 @@
+name: How to make status checks required before merging
+
+# More details: 
+# - Your repo -> Settings -> branches -> Branch protection rules -> Add rule - "Require status checks to pass before merging"
+# - https://stackoverflow.com/questions/60776412/github-actions-is-there-a-way-to-make-it-mandatory-for-pull-request-to-merge
