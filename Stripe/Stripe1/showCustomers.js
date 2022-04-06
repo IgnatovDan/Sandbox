@@ -6,8 +6,8 @@ console.log('Starting...');
 (async () => {
     console.log('> Get Customers');
 
-    const customers = await stripe.customers.list();
-    console.log(customers); // TODO: why the list is empty? "{ object: 'list', data: [], has_more: false, url: '/v1/customers' }"
+    const customers = await stripe.customers.list({ limit: 3 });
+    console.log(customers); // TODO: Doesn't show customer that was created in web ui, shows customers created via API
     console.log('< Get Customers');
 })();
 
