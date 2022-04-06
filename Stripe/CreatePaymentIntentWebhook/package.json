@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "start": "node server.js",
+    "debug_webhook_docs": "https://dashboard.stripe.com/test/webhooks/create?endpoint_location=local",
+    "debug_webhook": "stripe listen --forward-to localhost:1234/webhook"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "stripe": "^8.215.0"
+  }
+}
