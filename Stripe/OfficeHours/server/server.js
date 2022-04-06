@@ -17,6 +17,26 @@ app.use((req, res, next) => {
   }
 });
 
+// https://github.com/stripe-samples/developer-office-hours/tree/master/starter
+
+app.post('/create-payment-intent', async (req, res) => {
+  const { paymentMethodType, currency } = req.body;
+  console.log(paymentMethodType);
+  console.log(currency);
+
+  try {
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: 1234,
+      currency,
+      payment_method_types: [paymentMethodType],
+    });
+
+    res.json({ clientSecret: paymentIntent.client_secret });
+  } catch (e) {
+    res.status(400).json({ error: { message: e.message } });
+  }
+});
+
 app.get("/", (req, res) => {
   const path = resolve(process.env.STATIC_DIR + "/index.html");
   res.sendFile(path);
