@@ -1,0 +1,4 @@
+**/node_modules/* 
+
+# manually create '.env' and add 'STRIPE_SECRET_KEY=sk_test_xxx'
+.env
