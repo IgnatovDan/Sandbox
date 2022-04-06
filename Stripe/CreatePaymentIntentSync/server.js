@@ -5,6 +5,10 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 app.post('/create-payment-intent', async (req, res) => {
     const { paymentMethodType, currency } = req.body ?? { currency: 'usd' };
 
+    console.log(paymentMethodType);
+    console.log(currency);
+
+
     const paymentIntent = await stripe.paymentIntents.create({
         amount: 1234,
         currency,
