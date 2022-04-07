@@ -1,8 +1,12 @@
 {
   "scripts": {
+    "how to start 1": "download stripe.exe, register on stripe, run 'stripe login', npm i",
+    "how to start 2": "'npm run start' in first console + 'npm run start_webhook' in second + 'createPaymentOKArgs.cmd' in third",
+
     "start": "node server.js",
-    "debug_webhook_docs": "https://dashboard.stripe.com/test/webhooks/create?endpoint_location=local",
-    "debug_webhook": "stripe listen --forward-to localhost:1234/webhook"
+
+    "start_webhook_docs": "see https://dashboard.stripe.com/test/webhooks/create?endpoint_location=local + see '/webhook' in server.js",
+    "start_webhook": "stripe listen --forward-to localhost:1234/webhook"
   },
   "dependencies": {
     "dotenv": "^16.0.0",
