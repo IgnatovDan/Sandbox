@@ -1,0 +1,6 @@
+**/node_modules/* 
+
+stripe.exe
+
+# manually create '.env' and add 'STRIPE_SECRET_KEY=sk_test_xxx'
+.env
