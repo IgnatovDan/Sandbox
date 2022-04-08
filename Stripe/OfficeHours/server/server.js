@@ -37,9 +37,15 @@ app.post('/create-payment-intent', async (req, res) => {
   }
 });
 
-app.get("/", (req, res) => {
-  const path = resolve(process.env.STATIC_DIR + "/index.html");
-  res.sendFile(path);
+// For deployed env
+// In local env run 'npm run start' in './client/'
+// app.get("/", (req, res) => {
+//   const path = resolve(process.env.STATIC_DIR + "/index.html");
+//   res.sendFile(path);
+// });
+
+app.get("/config", (req, res) => {
+  res.json({ publishableKey: process.env.STRIPE_PUBLISHABLE_KEY });
 });
 
 // Stripe requires the raw body to construct the event
