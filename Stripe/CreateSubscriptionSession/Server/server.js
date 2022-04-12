@@ -9,7 +9,14 @@ ensureStripeObjects(stripe);
 
 const app = express();
 
-app.use(express.json());
+// Use JSON parser for all non-webhook routes
+app.use((req, res, next) => {
+    if (req.originalUrl === "/webhook") {
+        next();
+    } else {
+        express.json()(req, res, next);
+    }
+});
 
 //
 // Instead, I used "proxy": "http://localhost:3001", in package.json in React app
@@ -59,8 +66,8 @@ app.post('/create-checkout-session-price-in-query', async (req, res) => {
             line_items,
             payment_method_types: ['card'],
             mode: 'payment',
-            success_url: 'http://localhost:3000/payment_success.html', // use process.env to specify both the production and development values
-            cancel_url: 'http://localhost:3000/payment_cancel.html',
+            success_url: 'http://localhost:3000/payment_success.html?session_id={CHECKOUT_SESSION_ID}', // use process.env to specify both the production and development values
+            cancel_url: 'http://localhost:3000/payment_cancel.html?session_id={CHECKOUT_SESSION_ID}',
         });
         console.log('session.url: ' + session.url);
         res.json({ url: session.url });
@@ -72,6 +79,45 @@ app.post('/create-checkout-session-price-in-query', async (req, res) => {
     }
 
     console.log('< create-checkout-session');
+});
+
+app.post('/webhook', express.raw({ type: 'application/json' }), (req, res) => {
+    console.log(`> webhook`);
+    const sig = req.headers["stripe-signature"];
+
+    // This is your Stripe CLI webhook secret for testing your endpoint locally.
+    const webhookSecret = "whsec_e31c1622d5934708dcc304e13dabe856b1b00a1c1714317f55e2b6c31e78286d";
+
+    let event;
+
+    try {
+        event = stripe.webhooks.constructEvent(req.body, sig, webhookSecret);
+    } catch (err) {
+        // On error, log and return the error message
+        console.log(`❌ Error message: ${err.message}`);
+        return res.status(400).send(`Webhook Error: ${err.message}`);
+    }
+
+    // Successfully constructed event
+    console.log("✅ Success:", event.id);
+    //const paymentIntent = event.data.object;
+    console.log(event.type);
+
+    // Handle the event
+    switch (event.type) {
+        case 'payment_intent.created':
+            //console.log('payment_intent.created');
+            break;
+        case 'payment_intent.succeeded':
+            // Then define and call a function to handle the event payment_intent.succeeded
+            break;
+        // ... handle other event types
+        default:
+        //console.log(`Unhandled event type ${event.type}`);
+    }
+
+    // Return a response to acknowledge receipt of the event
+    res.json({ received: true });
 });
 
 app.listen(3001);

@@ -41,9 +41,8 @@ function App() {
   return (
     <div className="App">
       <p>
-        Edit src/App.js and save to reload.
+        <button onClick={ makeCheckout }>Checkout</button>
       </p>
-      <button onClick={ makeCheckout }>Checkout</button>
     </div>
   );
 }
