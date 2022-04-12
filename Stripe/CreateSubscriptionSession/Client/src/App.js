@@ -15,16 +15,14 @@ function App() {
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          items: [
-            { id: 'product 1', quantity: 3 },
-            { id: 'product 2', quantity: 5 },
-          ]
+          product_1: { quantity: 3 },
+          product_2: { quantity: 5 }
         })
       }
     ).then(res => {
       if (!res.ok) {
-        debugger;
         console.log('response.ok is false');
+        console.log(res);
         return res.json().then(json => Promise.reject(json));
       }
       console.log('response.ok is true');

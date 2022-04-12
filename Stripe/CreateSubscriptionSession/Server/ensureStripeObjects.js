@@ -3,7 +3,7 @@ const customers = {
 };
 const products = {
     product_1: { priceInCents: 20000, name: 'Subscription_1 Product_1' },
-    product_2: { priceInCents: 40000, name: 'Subscription_1 Product_2' },
+    product_2: { priceInCents: 70000, name: 'Subscription_1 Product_2' },
 };
 
 const stripeCustomers = {};
@@ -57,4 +57,9 @@ async function ensureStripeObjects(stripe) {
     console.log('< ensureStripeObjects');
 }
 
-module.exports = ensureStripeObjects;
+module.exports = {
+    ensureStripeObjects,
+    stripeCustomers,
+    stripeProducts,
+    products
+};
