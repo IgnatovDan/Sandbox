@@ -1,12 +1,51 @@
 import './App.css';
 
 function App() {
+
+  const makeCheckout = (e) => {
+    e.preventDefault();
+
+    fetch( // TODO: async method, show 'Waiting...'
+      //'http://localhost:3001/create-checkout-session',
+      '/create-checkout-session', // "proxy": "http://localhost:3001", in package.json
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          items: [
+            { id: 'product 1', quantity: 3 },
+            { id: 'product 2', quantity: 5 },
+          ]
+        })
+      }
+    ).then(res => {
+      if (!res.ok) {
+        debugger;
+        console.log('response.ok is false');
+        return res.json().then(json => Promise.reject(json));
+      }
+      console.log('response.ok is true');
+      return res.json();
+    }).then((json) => {
+      console.log('json');
+      console.log(json);
+      //window.location = json.url;
+    }).catch(e => {
+      // TODO: show in UI
+      console.log('catch(e)');
+      console.log(e);
+    });
+  };
+
   return (
     <div className="App">
       <p>
         Edit src/App.js and save to reload.
       </p>
-      <button>Checkout</button>
+      <button onClick={ makeCheckout }>Checkout</button>
     </div>
   );
 }
