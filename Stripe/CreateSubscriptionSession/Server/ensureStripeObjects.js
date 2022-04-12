@@ -2,7 +2,7 @@ const customers = {
     customer_1: { name: 'Subscription_1 Customer_1' }
 };
 const products = {
-    product_1: { priceInCents: 20000, name: 'Subscription_1 Product_1' },
+    product_1: { priceInCents: 20001, name: 'Subscription_1 Product_1' },
     product_2: { priceInCents: 70000, name: 'Subscription_1 Product_2' },
 };
 
@@ -13,10 +13,12 @@ async function ensureStripeObjects(stripe) {
     console.log('> ensureStripeObjects');
 
     async function searchCustomerByName(name) {
-        // TODO: 'stripe.search' is delayed and doesn't return the created entries immediately
+        // TODO: 'stripe.search' result is delayed and doesn't return the created entries immediately
         // return await stripe.customers.search({
         //     query: `name:"${customerName}"`,
         // });
+        //
+        // use list().data.find instead:
         return (await stripe.customers.list()).data.find(item => item.name === name);
     }
 
@@ -36,8 +38,8 @@ async function ensureStripeObjects(stripe) {
         stripeCustomers[memberName] = stripeCustomer;
     }
 
-    console.log('\r\nstripeCustomers:');
-    console.log(stripeCustomers);
+    console.log('stripeCustomers ensured');
+    //console.log(stripeCustomers);
 
     for (const memberName in products) {
         const name = products[memberName].name;
@@ -51,8 +53,8 @@ async function ensureStripeObjects(stripe) {
         stripeProducts[memberName] = stripeProduct;
     }
 
-    console.log('\r\nstripeProducts:');
-    console.log(stripeProducts);
+    console.log('stripeProducts ensured');
+    //console.log(stripeProducts);
 
     console.log('< ensureStripeObjects');
 }

@@ -7,7 +7,7 @@ function App() {
 
     fetch( // TODO: async method, show 'Waiting...'
       //'http://localhost:3001/create-checkout-session',
-      '/create-checkout-session', // "proxy": "http://localhost:3001", in package.json
+      '/create-checkout-session-price-in-query', // "proxy": "http://localhost:3001", in package.json allows to remove 'http://localhost'
       {
         method: 'POST',
         headers: {
@@ -30,7 +30,7 @@ function App() {
     }).then((json) => {
       console.log('json');
       console.log(json);
-      //window.location = json.url;
+      window.location = json.url;
     }).catch(e => {
       // TODO: show in UI
       console.log('catch(e)');
