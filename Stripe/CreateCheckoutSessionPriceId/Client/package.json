@@ -13,7 +13,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  
   "DISABLE_eslintConfig": {
     "Current bejavior:": "ERROR in Plugin react was conflicted between .eslintrc.json and BaseConfig",
     "Current solution:": "https://github.com/facebook/create-react-app/issues/11825",
@@ -22,9 +21,7 @@
       "react-app/jest"
     ]
   },
-  
   "proxy": "http://localhost:3001",
-
   "browserslist": {
     "production": [
       ">0.2%",

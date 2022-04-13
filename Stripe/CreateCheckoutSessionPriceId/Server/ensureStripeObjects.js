@@ -1,9 +1,10 @@
 const prefix = 'SessionPriceId'
-const customers = {
-    customer_1: {
+const customers = [
+    {
+        id: 'customer_1',
         name: prefix + 'Subscription_1 Customer_1',
     }
-};
+];
 
 const products = {
     product_1: {
@@ -59,16 +60,15 @@ async function ensureStripeObjects(stripe) {
         return (await stripe.products.list()).data.find(item => item.name === name);
     }
 
-    for (const memberName in customers) {
-        const name = customers[memberName].name;
-        let stripeCustomer = await searchCustomerByName(name);
+    for (const customer of customers) {
+        let stripeCustomer = await searchCustomerByName(customer.name);
         if (!stripeCustomer) {
-            console.log('\r\ncreate customer: ' + name);
+            console.log('\r\ncreate customer: ' + customer.name);
             stripeCustomer = await stripe.customers.create({
-                name
+                name: customer.name
             });
         }
-        customers[memberName].stripeId = stripeCustomer.id;
+        customer.stripeId = stripeCustomer.id;
         stripeCustomers.push(stripeCustomer);
     }
 
@@ -101,7 +101,6 @@ async function ensureStripeObjects(stripe) {
             currency: 'usd'
         })).data[0];
 
-        console.log('stripePrice: ' + stripePrice && JSON.stringify(stripePrice));
         if (!stripePrice) {
             stripePrice = await stripe.prices.create({
                 active: price.active,
