@@ -1,0 +1,24 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "how to start 1": "download stripe.exe, register on stripe, run 'stripe login' (https://stripe.com/docs/stripe-cli), npm i",
+    "how to start 2": "'npm run start' in first console + 'npm run start_webhook' in second + 'createPaymentOKArgs.cmd' in third",
+
+    "dev": "node server.js",
+
+    "start_webhook_docs": "see https://dashboard.stripe.com/test/webhooks/create?endpoint_location=local + see '/webhook' in server.js",
+    "start_webhook": "stripe listen --forward-to localhost:3001/webhook"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "stripe": "^8.216.0"
+  }
+}
