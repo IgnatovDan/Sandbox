@@ -1,21 +1,22 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import ButtonSetAsCurrentCustomer from './ButtonSetAsCurrentCustomer';
 
 export default function Customer() {
   const { id } = useParams();
   const [obj, setObj] = useState(null);
 
   useEffect(() => {
-    // TODO: get target data by id
-    fetch('http://localhost:3001/customers')
+    fetch(`http://localhost:3001/customers/${id}`)
       .then((res) => res.json())
-      .then((items) => setObj(items.find((item) => item.id === id)));
+      .then((item) => setObj(item));
   }, []);
 
   return (
     <>
       <div>id: {id}</div>
-      <div>name: {obj ? obj.name : 'Loading...'}</div>
+      <div>JSON: {obj ? JSON.stringify(obj) : 'Loading...'}</div>
+      <ButtonSetAsCurrentCustomer customerId={id} />
     </>
   );
 }

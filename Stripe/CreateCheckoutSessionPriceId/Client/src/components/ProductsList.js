@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AppRoutes from '../routes/AppRoutes';
+import ButtonCheckoutProduct from './ButtonCheckoutProduct';
 
 export default function ProductsList() {
   const [items, setItems] = useState([]);
@@ -17,7 +18,7 @@ export default function ProductsList() {
           <Link key={item.id} to={AppRoutes.getProductPath(item.id)}>
             {JSON.stringify(item)}
           </Link>
-          <button>TODO: checkout product</button>
+          <ButtonCheckoutProduct productId={item.id} />
         </li>
       ))}
     </ul>

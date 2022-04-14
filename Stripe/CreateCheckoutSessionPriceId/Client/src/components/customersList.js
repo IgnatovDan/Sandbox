@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AppRoutes from '../routes/AppRoutes';
+import ButtonSetAsCurrentCustomer from './ButtonSetAsCurrentCustomer';
 
 export default function CustomersList() {
   const [customers, setCustomers] = useState([]);
@@ -20,7 +21,7 @@ export default function CustomersList() {
             <Link key={item.id} to={AppRoutes.getCustomerPath(item.id)}>
               {JSON.stringify(item)}
             </Link>
-            <button>TODO: set as current customer</button>
+            <ButtonSetAsCurrentCustomer customerId={item.id} />
           </li>
         ))}
       </ul>
