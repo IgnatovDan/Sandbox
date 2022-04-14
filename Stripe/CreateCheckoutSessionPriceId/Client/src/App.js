@@ -18,11 +18,11 @@ function App() {
           <Route index element={<HomeRoute />}></Route>
           <Route path={AppRoutes.customersPath} element={<CustomersRoute />}>
             <Route index element={<CustomersList />} />
-            <Route path=":id" element={<Customer />} />
+            <Route path={AppRoutes.idPath} element={<Customer />} />
           </Route>
           <Route path={AppRoutes.productsPath} element={<ProductsRoute />}>
             <Route index element={<ProductsList />} />
-            <Route path=":id" element={<Product />} />
+            <Route path={AppRoutes.idPath} element={<Product />} />
           </Route>
         </Route>
       </Routes>
