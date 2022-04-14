@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import AppRoutes from '../routes/AppRoutes';
 
 export default function ProductsList() {
   const [items, setItems] = useState([]);
@@ -12,7 +14,9 @@ export default function ProductsList() {
     <ul>
       {items.map((item) => (
         <li key={item.id}>
-          {JSON.stringify(item)}
+          <Link key={item.id} to={AppRoutes.getProductPath(item.id)}>
+            {JSON.stringify(item)}
+          </Link>
           <button>TODO: checkout product</button>
         </li>
       ))}
