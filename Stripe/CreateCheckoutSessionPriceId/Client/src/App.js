@@ -1,15 +1,15 @@
 import './App.css';
-import CustomersList from './components/customersList';
+import CustomersList from './components/CustomersList';
+import ProductsList from './components/ProductsList';
 
 function App() {
   return (
     <>
+      Customers:
       <CustomersList />
-      {/* <div>
-        <p>
-          <button >Checkout</button>
-        </p>
-      </div> */}
+      <hr />
+      Products:
+      <ProductsList />
     </>
   );
 }

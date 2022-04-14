@@ -4,7 +4,7 @@ require('dotenv').config();
 const express = require('express');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-const { ensureStripeObjects, customers } = require('./ensureStripeObjects');
+const { ensureStripeObjects, customers, products } = require('./ensureStripeObjects');
 
 ensureStripeObjects(stripe);
 
@@ -22,6 +22,10 @@ app.use((req, res, next) => {
 
 app.get('/customers', async (req, res) => {
     res.json(customers);
+});
+
+app.get('/products', async (req, res) => {
+    res.json(products);
 });
 
 app.listen(3001);

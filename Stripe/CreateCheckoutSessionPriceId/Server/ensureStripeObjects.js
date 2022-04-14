@@ -3,18 +3,21 @@ const customers = [
     {
         id: 'customer_1',
         name: prefix + 'Subscription_1 Customer_1',
+        //stripeId: 'xxx'
     }
 ];
 
-const products = {
-    product_1: {
+const products = [
+    {
+        id: 'product_1',
         name: prefix + 'Subscription_1 Product_1',
         //stripeId: 'xxx'
     },
-    product_2: {
+    {
+        id: 'product_2',
         name: prefix + 'Subscription_1 Product_2'
     },
-};
+];
 
 // See also: lookup_key + transfer_lookup_key - https://stripe.com/docs/api/prices/create#create_price-lookup_key
 const prices = [
@@ -75,16 +78,15 @@ async function ensureStripeObjects(stripe) {
     console.log('stripeCustomers ensured');
     //console.log(stripeCustomers);
 
-    for (const memberName in products) {
-        const name = products[memberName].name;
-        let stripeProduct = await searchProductByName(name);
+    for (const product of products) {
+        let stripeProduct = await searchProductByName(product.name);
         if (!stripeProduct) {
-            console.log('create product: ' + name);
+            console.log('create product: ' + product.name);
             stripeProduct = await stripe.products.create({
-                name
+                name: product.name
             });
         }
-        products[memberName].stripeId = stripeProduct.id;
+        product.stripeId = stripeProduct.id;
         stripeProducts.push(stripeProduct);
     }
 
@@ -92,7 +94,7 @@ async function ensureStripeObjects(stripe) {
 
     // Can produce the 'Too many Requests' error if there are many items
     await Promise.all(prices.map(async price => {
-        const product = products[price.productId];
+        const product = products.find(item => item.id === price.productId);
 
         let stripePrice = (await stripe.prices.list({
             product: product.stripeId,
