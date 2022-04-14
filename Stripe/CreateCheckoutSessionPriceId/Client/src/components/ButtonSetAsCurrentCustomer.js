@@ -1,12 +1,12 @@
 import { useContext } from 'react';
-import CurrentCustomerContext from '../contexts/CurrentCustomerContext';
+import CurrentCustomerIdContext from '../contexts/CurrentCustomerIdContext';
 
 export default function ButtonSetAsCurrentCustomer(props) {
-  const { setCustomer } = useContext(CurrentCustomerContext);
+  const { setCustomerId } = useContext(CurrentCustomerIdContext);
   const changeCurrentCustomer = (e) => {
     e.preventDefault();
-    setCustomer(props.customerId);
+    setCustomerId(props.customerId);
   };
 
-  return <button onClick={changeCurrentCustomer}>TODO: set {props.customerId} as current customer</button>;
+  return <button onClick={ changeCurrentCustomer }>Set { props.customerId } as current customer</button>;
 }

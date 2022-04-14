@@ -9,16 +9,17 @@ import ProductsList from './components/ProductsList';
 import CustomersList from './components/CustomersList';
 import Customer from './components/Customer';
 import React, { useState } from 'react';
-import CurrentCustomerContext from './contexts/CurrentCustomerContext';
+import CurrentCustomerIdContext from './contexts/CurrentCustomerIdContext';
 
 function App() {
-  const [customer, setCustomer] = useState();
+  const [customerId, setCustomerId] = useState();
   return (
-    <CurrentCustomerContext.Provider value={{ customer, setCustomer }}>
-      Current customer: {customer ? JSON.stringify(customer) : 'not selected'}
+    <CurrentCustomerIdContext.Provider value={ { customerId, setCustomerId } }>
+      Current customer: { customerId ? JSON.stringify(customerId) : 'not selected' }
       <BrowserRouter>
         <Navigation />
         <Routes>
+          {/* TODO: review useRoutes */ }
           <Route path="/" element={<Outlet />}>
             <Route index element={<HomeRoute />}></Route>
             <Route path={AppRoutes.customersPath} element={<CustomersRoute />}>
@@ -32,7 +33,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </CurrentCustomerContext.Provider>
+    </CurrentCustomerIdContext.Provider>
   );
 }
 

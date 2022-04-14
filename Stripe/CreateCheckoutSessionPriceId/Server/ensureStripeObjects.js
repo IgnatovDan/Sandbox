@@ -25,13 +25,14 @@ const prices = [
         priceInCents: 20001,
         productId: 'product_1',
         active: true,
-        recurring: { interval: 'month' }
+        recurring: { interval: 'month' },
+        isDefault: true,
         //stripeId: 'xxx'
     },
     {
         priceInCents: 20001,
         productId: 'product_1',
-        active: false,
+        active: true,
         recurring: { interval: 'day' }
         //stripeId: 'xxx'
     },
@@ -39,6 +40,7 @@ const prices = [
         priceInCents: 70000,
         productId: 'product_2',
         active: true,
+        isDefault: true,
     }
 ];
 
@@ -83,7 +85,8 @@ async function ensureStripeObjects(stripe) {
         if (!stripeProduct) {
             console.log('create product: ' + product.name);
             stripeProduct = await stripe.products.create({
-                name: product.name
+                name: product.name,
+
             });
         }
         product.stripeId = stripeProduct.id;
@@ -104,12 +107,16 @@ async function ensureStripeObjects(stripe) {
         })).data[0];
 
         if (!stripePrice) {
+            console.log('create price: ' + JSON.stringify(price));
             stripePrice = await stripe.prices.create({
                 active: price.active,
                 product: product.stripeId,
                 unit_amount: price.priceInCents,
                 currency: 'usd',
                 recurring: price.recurring,
+                metadata: {
+                    default: price.isDefault,
+                }
             });
         }
         price.stripeId = stripePrice.id;
