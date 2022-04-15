@@ -1,22 +1,23 @@
 const prefix = 'SessionPriceId'
 const customers = [
-    {
-        id: 'customer_1',
-        name: prefix + 'Subscription_1 Customer_1',
-        //stripeId: 'xxx'
-    }
+  {
+    id: 'customer_1',
+    name: prefix + ' Customer_1',
+    email: 'customer_1@test.com',
+    //stripeId: 'xxx'
+  },
 ];
 
 const products = [
-    {
-        id: 'product_1',
-        name: prefix + 'Subscription_1 Product_1',
-        //stripeId: 'xxx'
-    },
-    {
-        id: 'product_2',
-        name: prefix + 'Subscription_1 Product_2'
-    },
+  {
+    id: 'product_1',
+    name: prefix + ' Product_1',
+    //stripeId: 'xxx'
+  },
+  {
+    id: 'product_2',
+    name: prefix + ' Product_2',
+  },
 ];
 
 // See also: lookup_key + transfer_lookup_key - https://stripe.com/docs/api/prices/create#create_price-lookup_key
@@ -30,7 +31,7 @@ const prices = [
     //stripeId: 'xxx'
   },
   {
-    priceInCents: 20001,
+    priceInCents: 30003,
     productId: 'product_1',
     active: true,
     //recurring: { interval: 'day' }
@@ -117,7 +118,7 @@ async function ensureStripeObjects(stripe) {
           currency: 'usd',
           recurring: price.recurring,
           metadata: {
-            default: price.isDefault,
+            default: price.isDefault, // stripe doesn't create 'metadata' property if Boolean(false) is passed
           },
         });
       }

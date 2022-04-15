@@ -67,7 +67,7 @@ async function startCheckoutThroughStripeUrl(customerId, productId) {
         if (!res.ok) {
           console.log('response.ok is false');
           console.log(res);
-          throw { error: e.statusText };
+          throw { error: res.statusText };
           //return res.json().then((json) => Promise.reject(json));
         }
         console.log('response.ok is true');
