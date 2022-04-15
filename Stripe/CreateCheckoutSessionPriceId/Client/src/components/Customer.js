@@ -17,6 +17,7 @@ export default function Customer() {
       <div>id: {id}</div>
       <div>JSON: {obj ? JSON.stringify(obj) : 'Loading...'}</div>
       <ButtonSetAsCurrentCustomer customerId={id} />
+      Payments: TODO load from my server (stripe database is the source of truth, no replications, no copies)
     </>
   );
 }
