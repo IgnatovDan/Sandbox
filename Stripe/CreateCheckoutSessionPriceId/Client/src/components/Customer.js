@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import getCheckoutSessions from '../remoteQueries/getCheckoutSessions';
-import getCustomer from '../remoteQueries/getCustomer';
-import getCustomerPaymentIntents from '../remoteQueries/getCustomerPaymentIntents';
+import { fetchCheckoutSessions } from '../remoteQueries/fetchCheckoutSessions';
+import { fetchCustomer } from '../remoteQueries/fetchCustomer';
+import { fetchCustomerPaymentIntents } from '../remoteQueries/fetchCustomerPaymentIntents';
 import ButtonSetAsCurrentCustomer from './ButtonSetAsCurrentCustomer';
 
 export default function Customer() {
@@ -16,15 +16,15 @@ export default function Customer() {
   }
 
   useEffect(() => {
-    getCustomer(id).then((customer) => setObj(customer));
+    fetchCustomer(id).then((customer) => setObj(customer));
   }, []);
 
   useEffect(() => {
-    getCustomerPaymentIntents(id).then((items) => setPaymentIntents(items));
+    fetchCustomerPaymentIntents(id).then((items) => setPaymentIntents(items));
   }, []);
 
   useEffect(() => {
-    getCheckoutSessions({ customerId: id }).then((items) => setCheckoutSessions(items));
+    fetchCheckoutSessions({ customerId: id }).then((items) => setCheckoutSessions(items));
   }, []);
 
   return (

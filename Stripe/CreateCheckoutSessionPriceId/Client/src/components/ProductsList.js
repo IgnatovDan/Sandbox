@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import getProducts from '../remoteQueries/getProducts';
+import { fetchProducts } from '../remoteQueries/fetchProducts';
 import AppRoutes from '../routes/AppRoutes';
 import ButtonCheckoutProduct from './ButtonCheckoutProduct';
 
 export default function ProductsList() {
   const [items, setItems] = useState([]);
   useEffect(() => {
-    getProducts().then((items) => setItems(items));
+    fetchProducts().then((items) => setItems(items));
   }, []);
 
   return (

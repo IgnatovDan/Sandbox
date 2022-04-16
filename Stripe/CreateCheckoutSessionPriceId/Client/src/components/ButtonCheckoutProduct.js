@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import CurrentCustomerIdContext from "../contexts/CurrentCustomerIdContext";
-import getProductDefaultPrice from '../remoteQueries/getProductDefaultPrice';
+import { fetchProductDefaultPrice } from '../remoteQueries/fetchProductDefaultPrice';
 import startCheckoutThroughStripeUrl from '../remoteQueries/startCheckoutThroughStripeUrl';
 
 export default function ButtonCheckoutProduct({ productId }) {
@@ -10,7 +10,7 @@ export default function ButtonCheckoutProduct({ productId }) {
   const [checkoutInProgress, setCheckoutInProgress] = useState(false);
 
   useEffect(() => {
-    getProductDefaultPrice(productId).then(({ error, price }) => {
+    fetchProductDefaultPrice(productId).then(({ error, price }) => {
       setError(error);
       setPrice(price);
     });

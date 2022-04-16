@@ -1,4 +1,4 @@
-export default async function getProductDefaultPrice(productId) {
+export async function fetchProductDefaultPrice(productId) {
   try {
     const result = await fetch(`http://localhost:3001/productDefaultPrice/${productId}`, {
       method: 'GET',
