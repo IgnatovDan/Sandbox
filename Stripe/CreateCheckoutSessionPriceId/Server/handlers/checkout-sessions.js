@@ -24,6 +24,9 @@ module.exports = function (app, stripe) {
         //
         // It is a time/memory/traffic/CPU consiming operations if there is a lot of entries
         // Use stripe API to filter there records on the stripe servers
+        //
+        // It's possible to select paymentIntents by customerId, then select checkoutSessions by paymentIntentId
+        //
         const customer = customers.find((item) => (item.id = req.query.customerId));
 
         if (!customer) throw new Error(`${req.query.customerId} is not found`);

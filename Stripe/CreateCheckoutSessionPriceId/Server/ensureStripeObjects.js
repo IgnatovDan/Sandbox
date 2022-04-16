@@ -21,6 +21,7 @@ const products = [
 ];
 
 // See also: lookup_key + transfer_lookup_key - https://stripe.com/docs/api/prices/create#create_price-lookup_key
+// But in my tests, lookup_key was managed in stripe as a 'global' mark, one for all prices
 const prices = [
   {
     priceInCents: 20001,
@@ -45,9 +46,16 @@ const prices = [
   },
 ];
 
-const stripeCustomers = [];
-const stripeProducts = [];
-const stripePrices = [];
+const purchases = [
+  //
+  // This list can be filled using webhooks: creat a new entry in the 'paid' event handler for checkout session/payment intent
+  // I fill it on the server start because I don't want to introduce DB into the project
+  //
+  // {
+  //   productId: xxx,
+  //   customerId: xxx,
+  // },
+];
 
 async function ensureStripeObjects(stripe) {
   console.log('> ensureStripeObjects');
@@ -75,11 +83,9 @@ async function ensureStripeObjects(stripe) {
       });
     }
     customer.stripeId = stripeCustomer.id;
-    stripeCustomers.push(stripeCustomer);
   }
 
   console.log('stripeCustomers ensured');
-  //console.log(stripeCustomers);
 
   for (const product of products) {
     let stripeProduct = await searchProductByName(product.name);
@@ -90,10 +96,38 @@ async function ensureStripeObjects(stripe) {
       });
     }
     product.stripeId = stripeProduct.id;
-    stripeProducts.push(stripeProduct);
   }
 
-  console.log('stripeProducts ensured');
+  console.log('> reading purchases from stripe');
+  await Promise.all(
+    (
+      await stripe.checkout.sessions.list()
+    ).data.map(async (item) => {
+      return await stripe.checkout.sessions
+        .retrieve(item.id, {
+          expand: ['line_items'],
+        })
+        .then((session) => {
+          if (session.payment_status === 'paid') {
+            const result = session.line_items.data.map((lineItem) => {
+              const customer = customers.find((item) => item.stripeId === session.customer);
+              const product = products.find((product) => product.stripeId === lineItem.price.product);
+              if (customer && product) {
+                return {
+                  customerId: customer.id,
+                  productId: product.id,
+                };
+              } else {
+                return null;
+              }
+            });
+            purchases.push(...result.filter((item) => item));
+          }
+          return Promise.resolve(true);
+        });
+    })
+  );
+  console.log(`> ${purchases.length} purchases were read from stripe`);
 
   // Can produce the 'Too many Requests' error if there are many items
   await Promise.all(
@@ -123,7 +157,6 @@ async function ensureStripeObjects(stripe) {
         });
       }
       price.stripeId = stripePrice.id;
-      stripePrices.push(stripePrice);
     })
   );
   console.log('stripePrices ensured');
@@ -133,9 +166,8 @@ async function ensureStripeObjects(stripe) {
 
 module.exports = {
   ensureStripeObjects,
-  //stripeCustomers,
-  //stripeProducts,
   products,
   customers,
   prices,
+  purchases,
 };
