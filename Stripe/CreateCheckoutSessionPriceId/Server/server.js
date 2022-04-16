@@ -23,6 +23,8 @@ app.use((req, res, next) => {
 require('./handlers/customers')(app, stripe);
 require('./handlers/products')(app);
 require('./handlers/product-default-price')(app, stripe);
+require('./handlers/checkout-sessions')(app, stripe);
+
 require('./handlers/create-checkout-session-price-id')(app, stripe);
 // TODO: require('./handlers/get-payment-intents-by-customer-id')(app, stripe);
 
