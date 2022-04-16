@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import getCustomer from '../remoteQueries/getCustomer';
 import ButtonSetAsCurrentCustomer from './ButtonSetAsCurrentCustomer';
 
 export default function Customer() {
@@ -7,9 +8,7 @@ export default function Customer() {
   const [obj, setObj] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/customers/${id}`)
-      .then((res) => res.json())
-      .then((item) => setObj(item));
+    getCustomer(id).then((customer) => setObj(customer));
   }, []);
 
   return (

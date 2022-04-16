@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import getProduct from '../remoteQueries/getProduct';
 import ButtonCheckoutProduct from './ButtonCheckoutProduct';
 
 export default function Product() {
@@ -7,9 +8,7 @@ export default function Product() {
   const [obj, setObj] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/products/${id}`)
-      .then((res) => res.json())
-      .then((item) => setObj(item));
+    getProduct(id).then((item) => setObj(item));
   }, []);
 
   return (

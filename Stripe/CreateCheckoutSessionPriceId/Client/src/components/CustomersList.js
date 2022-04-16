@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import getCustomers from '../remoteQueries/getCustomers';
 import AppRoutes from '../routes/AppRoutes';
 import ButtonSetAsCurrentCustomer from './ButtonSetAsCurrentCustomer';
 
@@ -8,9 +9,7 @@ export default function CustomersList() {
   // TODO: const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:3001/customers')
-      .then((res) => res.json())
-      .then((items) => setCustomers(items));
+    getCustomers().then((items) => setCustomers(items));
   }, []);
 
   return (

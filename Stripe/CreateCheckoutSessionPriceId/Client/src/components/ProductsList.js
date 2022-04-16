@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import getProducts from '../remoteQueries/getProducts';
 import AppRoutes from '../routes/AppRoutes';
 import ButtonCheckoutProduct from './ButtonCheckoutProduct';
 
 export default function ProductsList() {
   const [items, setItems] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:3001/products')
-      .then((res) => res.json())
-      .then((items) => setItems(items));
+    getProducts().then((items) => setItems(items));
   }, []);
 
   return (
