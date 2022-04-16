@@ -16,18 +16,6 @@ module.exports = function (app, stripe) {
       const customer = customers.find((item) => item.id === customerId);
       if (!customer) throw new Error('customer is not found');
 
-      console.log({
-        customer: customer.stripeId,
-        line_items: {
-          price: defaultPrice.stripeId,
-          quantity: 1,
-        },
-        payment_method_types: ['card'],
-        mode: 'payment',
-        success_url: successUrl && `http://localhost:3000/${successUrl}?session_id={CHECKOUT_SESSION_ID}`, // use process.env to specify both the production and development values
-        cancel_url: cancelUrl && `http://localhost:3000/${cancelUrl}?session_id={CHECKOUT_SESSION_ID}`,
-      });
-
       const session = await stripe.checkout.sessions.create({
         customer: customer.stripeId,
         line_items: [{ price: defaultPrice.stripeId, quantity: 1 }],
