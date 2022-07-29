@@ -9,6 +9,7 @@ namespace Main {
 
   //
   // https://stackoverflow.com/questions/42000362/creating-a-proxy-to-another-web-api-with-asp-net-core
+  // https://github.com/aspnet/Proxy/blob/148a5ea41393ef9e1ac319eef61dc3593a370c92/src/Microsoft.AspNetCore.Proxy/ProxyAdvancedExtensions.cs
   //
   public class TransparentProxyReturnStreamBody {
     public async static Task<IResult> ProcessRequest(HttpContext context) {
