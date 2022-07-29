@@ -3,20 +3,20 @@ using System.Net.Http.Headers;
 using System.Net.Mime;
 using System.Text;
 
-namespace Main {
+namespace TransparentProxyReturnParsedString {
 
   //
   // Transparent proxy to https://www.cbr-xml-daily.ru/daily.xml
   // Returns full string, but encoding is changed: "utf-8" is used and differs from XML data "<?xml version="1.0" encoding="windows-1251"?>"
   //
-  public class TransparentProxyReturnParsedString {
+  public class Main {
     public async static Task<string> ProcessRequest(HttpContext context) {
       using (HttpClient client = new HttpClient()) {
         client.DefaultRequestHeaders.Clear();
         // foreach (var requestHeader in context.Request.Headers) {
         //   client.DefaultRequestHeaders.Add(requestHeader.Key, requestHeader.Value.ToString());
         // }
-        using (var response = await client.GetAsync(Config.CBR_XML_daily_url)) {
+        using (var response = await client.GetAsync(Config.Main.CBR_XML_daily_url)) {
           if (response.IsSuccessStatusCode) {
             var bytes = await response.Content.ReadAsByteArrayAsync();
 

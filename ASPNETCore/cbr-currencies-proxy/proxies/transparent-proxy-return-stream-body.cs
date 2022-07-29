@@ -5,7 +5,7 @@ using System.Text;
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace Main {
+namespace TransparentProxyReturnStreamBody {
 
   //
   // Transparent proxy to https://www.cbr-xml-daily.ru/daily.xml
@@ -14,14 +14,14 @@ namespace Main {
   // https://github.com/aspnet/Proxy/blob/148a5ea41393ef9e1ac319eef61dc3593a370c92/src/Microsoft.AspNetCore.Proxy/ProxyAdvancedExtensions.cs
   // Returning XML from minimal APIs in .NET 6, https://andrewlock.net/returning-xml-from-minimal-apis-in-dotnet-6/
   //
-  public class TransparentProxyReturnStreamBody {
+  public class Main {
     public async static Task ProcessRequest(HttpContext context) {
       using (HttpClient client = new HttpClient()) {
         client.DefaultRequestHeaders.Clear();
 
         var requestMessage = new HttpRequestMessage();
 
-        requestMessage.RequestUri = new Uri(Config.CBR_XML_daily_url);
+        requestMessage.RequestUri = new Uri(Config.Main.CBR_XML_daily_url);
         requestMessage.Method = new HttpMethod(context.Request.Method);
 
         using (var responseMessage = await client.SendAsync(requestMessage, HttpCompletionOption.ResponseHeadersRead, context.RequestAborted)) {

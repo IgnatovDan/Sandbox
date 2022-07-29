@@ -2,9 +2,6 @@ using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Mime;
 using System.Text;
-
-using Main;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -23,15 +20,16 @@ if (app.Environment.IsDevelopment()) {
 app.UseHttpsRedirection();
 
 app.MapGet("/TransparentProxyReturnParsedString", async (HttpContext context) => {
-  return await TransparentProxyReturnParsedString.ProcessRequest(context);
+  return await TransparentProxyReturnParsedString.Main.ProcessRequest(context);
 });
 
 app.MapGet("/TransparentProxyReturnResultsStream", async (HttpContext context) => {
-  return await TransparentProxyReturnResultsStream.ProcessRequest(context);
+  return await TransparentProxyReturnResultsStream.Main.ProcessRequest(context);
 });
 
+// swagger doesn't show this api, access it directly
 app.MapGet("/TransparentProxyReturnStreamBody", async (HttpContext context) => {
-  await TransparentProxyReturnStreamBody.ProcessRequest(context);
+  await TransparentProxyReturnStreamBody.Main.ProcessRequest(context);
 });
 
 app.Run();
