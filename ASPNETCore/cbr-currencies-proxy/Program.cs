@@ -31,7 +31,7 @@ app.MapGet("/TransparentProxyReturnResultsStream", async (HttpContext context) =
 });
 
 app.MapGet("/TransparentProxyReturnStreamBody", async (HttpContext context) => {
-  return await TransparentProxyReturnStreamBody.ProcessRequest(context);
+  await TransparentProxyReturnStreamBody.ProcessRequest(context);
 });
 
 app.Run();

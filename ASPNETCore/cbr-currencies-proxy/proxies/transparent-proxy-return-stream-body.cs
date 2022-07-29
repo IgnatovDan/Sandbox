@@ -8,20 +8,18 @@ using Microsoft.AspNetCore.Mvc;
 namespace Main {
 
   //
+  // Transparent proxy to https://www.cbr-xml-daily.ru/daily.xml
+  // Returns full string, in the correct encoding
   // https://stackoverflow.com/questions/42000362/creating-a-proxy-to-another-web-api-with-asp-net-core
   // https://github.com/aspnet/Proxy/blob/148a5ea41393ef9e1ac319eef61dc3593a370c92/src/Microsoft.AspNetCore.Proxy/ProxyAdvancedExtensions.cs
+  // Returning XML from minimal APIs in .NET 6, https://andrewlock.net/returning-xml-from-minimal-apis-in-dotnet-6/
   //
   public class TransparentProxyReturnStreamBody {
-    public async static Task<IResult> ProcessRequest(HttpContext context) {
+    public async static Task ProcessRequest(HttpContext context) {
       using (HttpClient client = new HttpClient()) {
         client.DefaultRequestHeaders.Clear();
 
         var requestMessage = new HttpRequestMessage();
-        // foreach (var header in context.Request.Headers) {
-        //   if (!requestMessage.Headers.TryAddWithoutValidation(header.Key, header.Value.ToArray()) && requestMessage.Content != null) {
-        //     requestMessage.Content?.Headers.TryAddWithoutValidation(header.Key, header.Value.ToArray());
-        //   }
-        // }
 
         requestMessage.RequestUri = new Uri(Config.CBR_XML_daily_url);
         requestMessage.Method = new HttpMethod(context.Request.Method);
@@ -42,8 +40,6 @@ namespace Main {
           using (var responseStream = await responseMessage.Content.ReadAsStreamAsync()) {
             await responseStream.CopyToAsync(context.Response.Body, 10000, context.RequestAborted);
           }
-
-          return Results.Ok();
         }
       }
     }
