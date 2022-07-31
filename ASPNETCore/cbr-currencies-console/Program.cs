@@ -9,6 +9,7 @@
 // Console.WriteLine("Press any key to exit");
 // Console.ReadKey(true);
 
+  // Enable UTF8 to show RU chars in console and VSCode terminal
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
 Console.WriteLine("> GetCurrencies_HttpClient_GetStringAsync");

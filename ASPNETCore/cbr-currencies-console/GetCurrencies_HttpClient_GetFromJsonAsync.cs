@@ -23,6 +23,9 @@ namespace GetCurrencies_HttpClient_GetFromJsonAsync {
           else {
             if (res.IsSuccessStatusCode) {
               // TODO: cancellation token?
+              // Server returns data as an 'xml' string and I cannot use 'ReadFromJsonAsync':
+              // There is 'https://www.cbr-xml-daily.ru/#json' that provides JSON string:
+              // var result = await res.Content.ReadFromJsonAsync<IEnumerable<CBRCurrency>>();
               var result = await res.Content.ReadFromJsonAsync<IEnumerable<CBRCurrency>>();
               if (result == null) {
                 return new CBRCurrency[0];

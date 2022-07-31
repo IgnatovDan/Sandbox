@@ -56,12 +56,20 @@ namespace GetCurrencies_HttpClient_XmlSerializer_v3 {
         else {
           if (response.IsSuccessStatusCode) {
             var charset = response.Content.Headers.ContentType?.CharSet;
+            // Or, get 'encoding' from xml internals: <?xml version=""1.0"" encoding=""UTF-8""?>
+            // https://stackoverflow.com/questions/34293196/obtaining-the-xml-encoding-from-an-xml-declaration-fragment-xmldeclaration-is-n
             var encoding = (charset != null) ? Encoding.GetEncoding(charset) : Encoding.UTF8;
 
             var bytes = await response.Content.ReadAsByteArrayAsync();
             var str = encoding.GetString(bytes);
 
             //File.WriteAllText("C:\\Work\\ToDelete\\Hello\\Boo.xml", str, Encoding.UTF8);
+
+            // Aternative approach: work with xml elements directly
+            // https://alekseev74.ru/lessons/show/aspnet-core-mvc/currency-converter-example
+            // using System.Xml.Linq;
+            // var xmlDoc = XDocument.Load(ExchangesServiceUrl);
+            // var valueUSD = Convert.ToDecimal(xmlDoc.Elements("ValCurs").Elements("Valute").FirstOrDefault(x => x.Element("NumCode").Value == "840").Elements("Value").FirstOrDefault().Value);
 
             XmlSerializer serializer = new XmlSerializer(typeof(ExchangeRates));
             using (StringReader reader = new StringReader(str)) {
