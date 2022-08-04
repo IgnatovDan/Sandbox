@@ -1,5 +1,11 @@
 async function CbrAdapterLoadExchangeRates(url) {
   /*
+    Handle fetch errors:
+    1. `response.ok` -  https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+    2. https://usefulangle.com/post/314/javascript-fetch-error-handling
+  */
+  
+  /*
     Access to fetch at 'https://www.cbr.ru/scripts/XML_daily.asp' from origin 'null' has been blocked by CORS policy:
     No 'Access-Control-Allow-Origin' header is present on the requested resource.
     If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
