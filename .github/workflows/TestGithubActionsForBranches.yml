@@ -6,6 +6,8 @@ name: Force workflow after each change in any branch
 # - https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule
 # - https://github.community/t/duplicate-checks-on-push-and-pull-request-simultaneous-event/18012
 # - https://stackoverflow.com/questions/66353544/should-i-pseudo-fork-my-own-github-repository-or-use-branches
+# - https://docs.microsoft.com/en-us/dotnet/devops/dotnet-test-github-action
+# - https://github.com/marketplace/actions/test-reporter
 
 on: 
   # Force workflow after each change in any branch
