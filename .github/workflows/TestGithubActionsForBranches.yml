@@ -9,6 +9,7 @@ name: Force workflow after each change in any branch
 
 # - https://docs.microsoft.com/en-us/dotnet/devops/dotnet-test-github-action
 # - https://devblogs.microsoft.com/dotnet/dotnet-loves-github-actions/
+# - https://dev.to/kurtmkurtm/testing-net-core-apps-with-github-actions-3i76
 # - https://github.com/marketplace/actions/test-reporter
 
 on: 
