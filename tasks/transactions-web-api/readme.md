@@ -26,4 +26,6 @@ dotnet add web-api-test package Microsoft.AspNetCore.Mvc.Testing
 - `dotnet test` - to run tests
 
 ## Links
+- [Unit testing C# in .NET Core](https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-dotnet-test)
 - [How to test ASP.NET Core Minimal APIs](https://www.twilio.com/blog/test-aspnetcore-minimal-apis)
+- [Integration tests in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-6.0)
