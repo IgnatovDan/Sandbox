@@ -13,7 +13,7 @@ public class TransactionsStoreTests {
 
     Assert.Equivalent(transaction1, store.Query(1));
     Assert.Equivalent(transaction2, store.Query(2));
-    Assert.Null(store.Query(1));
+    Assert.Null(store.Query(2));
   }
 
   [Fact]
