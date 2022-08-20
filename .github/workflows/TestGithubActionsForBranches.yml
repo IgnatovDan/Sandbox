@@ -7,6 +7,12 @@ name: Force workflow after each change in any branch
 # - https://github.community/t/duplicate-checks-on-push-and-pull-request-simultaneous-event/18012
 # - https://stackoverflow.com/questions/66353544/should-i-pseudo-fork-my-own-github-repository-or-use-branches
 
+# - https://docs.microsoft.com/en-us/dotnet/devops/dotnet-test-github-action
+# - https://devblogs.microsoft.com/dotnet/dotnet-loves-github-actions/
+# - https://dev.to/kurtmkurtm/testing-net-core-apps-with-github-actions-3i76
+# - https://docs.microsoft.com/en-us/dotnet/devops/dotnet-test-github-action?wt.mc_id=dapine
+# - https://github.com/marketplace/actions/test-reporter
+
 on: 
   # Force workflow after each change in any branch
   push:

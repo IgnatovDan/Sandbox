@@ -1,0 +1,1 @@
+- [Vue.js Component Style Guide](https://github.com/pablohpsilva/vuejs-component-style-guide#vue-component-names)
