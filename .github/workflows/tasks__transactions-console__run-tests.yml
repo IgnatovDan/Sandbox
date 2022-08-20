@@ -5,11 +5,14 @@ name: 'Run ./tasks/transactions-console tests'
 on:
   push:
     paths: 
-    - 'console/**'
-    - 'tasks/transactions-console/**'
+      - 'console/**'
+      - 'tasks/transactions-console/**'
 
   pull_request:
-  
+    paths: 
+      - 'console/**'
+      - 'tasks/transactions-console/**'
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
