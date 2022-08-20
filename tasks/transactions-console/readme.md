@@ -1,4 +1,4 @@
-[![Run tests](https://github.com/IgnatovDan/vacancy-console-transactions/actions/workflows/run-tests.yml/badge.svg?branch=master)](https://github.com/IgnatovDan/vacancy-console-transactions/actions/workflows/run-tests.yml)
+[![Run tests](https://github.com/IgnatovDan/Sandbox/actions/workflows/tasks__transactions-console__run-tests.yml/badge.svg?branch=main)](https://github.com/IgnatovDan/Sandbox/actions/workflows/tasks__transactions-console__run-tests.yml)
 
 # Console Transactions application
 
