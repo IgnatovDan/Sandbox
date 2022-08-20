@@ -2,6 +2,9 @@ name: Touch stripe server
 
 on: 
   push:
+    paths: 
+    - 'Stripe/**'
+
   workflow_dispatch:
 
 jobs:
