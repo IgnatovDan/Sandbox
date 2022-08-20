@@ -19,6 +19,7 @@ dotnet sln add web-api
 dotnet sln add web-api-test
 dotnet add web-api-test package Microsoft.AspNetCore.Mvc.Testing
 ```
+[.NET default templates for dotnet new](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new-sdk-templates#test)
 
 ## Available Scripts:
 
@@ -36,3 +37,4 @@ dotnet add web-api-test package Microsoft.AspNetCore.Mvc.Testing
 - [Integration tests in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-6.0)
 - [Minimal APIs overview](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-6.0)
 - [Минимальные API в .NET 6](https://habr.com/ru/company/otus/blog/666676/)
+- [Tutorial: Create a minimal web API with ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-6.0&tabs=visual-studio-code)
