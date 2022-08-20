@@ -1,5 +1,5 @@
 # Workflow name
-name: 'Run tests'
+name: 'Run ./tasks/transactions-console tests'
 
 # Event for the workflow
 on:
@@ -7,6 +7,7 @@ on:
   push:
     paths:
     - './tasks/transactions-console/**'
+    - './.github/workflows/**'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
