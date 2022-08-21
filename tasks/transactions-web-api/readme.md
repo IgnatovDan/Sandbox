@@ -6,7 +6,7 @@
 ![image](https://user-images.githubusercontent.com/2094015/185815269-6f5abf90-6a63-496a-a9a5-75581d02b1ab.png)
 
 ## Used technologies
-c#, ASP.NET Core 6, UT, xUnit, TDD.
+c#, ASP.NET Core 6, UT, xUnit, TDD, minimal web api, http, xml, json, Github Actions.
 
 This is an ASP.NET Core application, project was bootstrapped with [Create a minimal web API with ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-6.0&tabs=visual-studio).
 
@@ -20,6 +20,11 @@ dotnet sln add web-api-test
 dotnet add web-api-test package Microsoft.AspNetCore.Mvc.Testing
 ```
 [.NET default templates for dotnet new](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new-sdk-templates#test)
+
+## Github actions
+See https://github.com/IgnatovDan/Sandbox/blob/main/.github/workflows/tasks__transactions-console__run-tests.yml
+
+[![Run ./tasks/transactions-web-api tests](https://github.com/IgnatovDan/Sandbox/actions/workflows/tasks__transactions-web-api__run-tests.yml/badge.svg?branch=main)](https://github.com/IgnatovDan/Sandbox/actions/workflows/tasks__transactions-web-api__run-tests.yml)
 
 ## Available Scripts:
 
