@@ -15,8 +15,8 @@ public class RootEndpoint_Scenario_Tests {
   public async Task Test__Post__Get() {
     await using var application = new WebApplicationFactory<Program>();
 
-    var entity1 = new Entity { Id = Guid.NewGuid(), operationDate = "date1", amount = 11.2M };
-    var entity2 = new Entity { Id = Guid.NewGuid(), operationDate = "date2", amount = 22.2M };
+    var entity1 = new Entity { Id = Guid.NewGuid(), OperationDate = "date1", Amount = 11.2M };
+    var entity2 = new Entity { Id = Guid.NewGuid(), OperationDate = "date2", Amount = 22.2M };
 
     using var client = application.CreateClient();
     await client.PostAsync(@"?insert=" + JsonSerializer.Serialize<Entity>(entity1), null);
@@ -28,8 +28,8 @@ public class RootEndpoint_Scenario_Tests {
     void assertEntityEqual(Entity expected, Entity? actual) {
       Assert.NotNull(actual);
       Assert.Equal(expected.Id, actual?.Id);
-      Assert.Equal(expected.operationDate, actual?.operationDate);
-      Assert.Equal(expected.amount, actual?.amount);
+      Assert.Equal(expected.OperationDate, actual?.OperationDate);
+      Assert.Equal(expected.Amount, actual?.Amount);
     };
 
     assertEntityEqual(entity1, actualEntity1);

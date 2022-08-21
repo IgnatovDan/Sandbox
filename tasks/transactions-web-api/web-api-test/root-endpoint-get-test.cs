@@ -47,8 +47,8 @@ public class RootEndpoint_Get_Tests {
     var scopeFactory = application.Server.Services.GetService<IServiceScopeFactory>();
     using var scope = scopeFactory?.CreateScope();
     var store = scope?.ServiceProvider.GetService<IEntityStore>();
-    var entity1 = new Entity { Id = Guid.NewGuid(), operationDate = "date1", amount = 11.2M };
-    var entity2 = new Entity { Id = Guid.NewGuid(), operationDate = "date2", amount = 22.2M };
+    var entity1 = new Entity { Id = Guid.NewGuid(), OperationDate = "date1", Amount = 11.2M };
+    var entity2 = new Entity { Id = Guid.NewGuid(), OperationDate = "date2", Amount = 22.2M };
     store?.TryAdd(entity1);
     store?.TryAdd(entity2);
 
@@ -60,8 +60,8 @@ public class RootEndpoint_Get_Tests {
     void assertEntityEqual(Entity expected, Entity? actual) {
       Assert.NotNull(actual);
       Assert.Equal(expected.Id, actual?.Id);
-      Assert.Equal(expected.operationDate, actual?.operationDate);
-      Assert.Equal(expected.amount, actual?.amount);
+      Assert.Equal(expected.OperationDate, actual?.OperationDate);
+      Assert.Equal(expected.Amount, actual?.Amount);
     };
 
     assertEntityEqual(entity1, actualEntity1);

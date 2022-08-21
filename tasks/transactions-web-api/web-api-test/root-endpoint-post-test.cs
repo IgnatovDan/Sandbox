@@ -76,8 +76,8 @@ public class RootEndpoint_Post_Tests {
     var store = scope?.ServiceProvider.GetService<IEntityStore>();
     var entity = store?.Query(id);
     Assert.NotNull(entity);
-    Assert.Null(entity?.operationDate);
-    Assert.Null(entity?.amount);
+    Assert.Null(entity?.OperationDate);
+    Assert.Null(entity?.Amount);
   }
 
   [Fact]
@@ -97,7 +97,7 @@ public class RootEndpoint_Post_Tests {
     var store = scope?.ServiceProvider.GetService<IEntityStore>();
     var entity = store?.Query(Guid.Parse("cfaa0d3f-7fea-4423-9f69-ebff826e2f89"));
     Assert.NotNull(entity);
-    Assert.Equal("2019-04-02T13:10:20.0263632 03:00", entity?.operationDate);
-    Assert.Equal(23.05M, entity?.amount);
+    Assert.Equal("2019-04-02T13:10:20.0263632 03:00", entity?.OperationDate);
+    Assert.Equal(23.05M, entity?.Amount);
   }
 }
