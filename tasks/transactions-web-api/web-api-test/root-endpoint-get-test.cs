@@ -47,15 +47,15 @@ public class RootEndpoint_Get_Tests {
     var scopeFactory = application.Server.Services.GetService<IServiceScopeFactory>();
     using var scope = scopeFactory?.CreateScope();
     var store = scope?.ServiceProvider.GetService<IEntityStore>();
-    var entity1 = new Entity() { id = "1", operationDate = "date1", amount = 11.2M };
-    var entity2 = new Entity() { id = "2", operationDate = "date2", amount = 22.2M };
+    var entity1 = new Entity() { id = Guid.NewGuid(), operationDate = "date1", amount = 11.2M };
+    var entity2 = new Entity() { id = Guid.NewGuid(), operationDate = "date2", amount = 22.2M };
     store?.TryAdd(entity1);
     store?.TryAdd(entity2);
 
     using var client = application.CreateClient();
 
-    var actualEntity1 = await client.GetFromJsonAsync<Entity>("/?get=1");
-    var actualEntity2 = await client.GetFromJsonAsync<Entity>("/?get=2");
+    var actualEntity1 = await client.GetFromJsonAsync<Entity>("/?get=" + entity1.id);
+    var actualEntity2 = await client.GetFromJsonAsync<Entity>("/?get=" + entity2.id);
 
     void assertEntityEqual(Entity expected, Entity? actual) {
       Assert.NotNull(actual);

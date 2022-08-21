@@ -4,24 +4,21 @@ namespace entity_store;
 
 public interface IEntityStore {
   bool TryAdd(Entity entity);
-  Entity? Query(string entityId);  // TODO: change string to Guid
+  Entity? Query(Guid entityId);  // TODO: change string to Guid
 }
 
 public class EntityStore : IEntityStore {
-  private ConcurrentDictionary<string, Entity> entities = new ConcurrentDictionary<string, Entity>(); // TODO: change string to Guid
+  private ConcurrentDictionary<Guid, Entity> entities = new ConcurrentDictionary<Guid, Entity>(); // TODO: change string to Guid
 
   public bool TryAdd(Entity entity) {
     if (entity == null) {
       throw new ArgumentNullException("entity");
     }
-    if (string.IsNullOrEmpty(entity.id)) {
-      throw new ArgumentOutOfRangeException("entity");
-    }
     return entities.TryAdd(entity.id, new Entity() { id = entity.id, operationDate = entity.operationDate, amount = entity.amount });
   }
-  
-  public Entity? Query(string transactionId) {
-    Entity? storedEntity = entities.GetValueOrDefault(transactionId);
+
+  public Entity? Query(Guid entityId) {
+    Entity? storedEntity = entities.GetValueOrDefault(entityId);
     return (storedEntity == null) ?
       null : new Entity() { id = storedEntity.id, operationDate = storedEntity.operationDate, amount = storedEntity.amount };
   }

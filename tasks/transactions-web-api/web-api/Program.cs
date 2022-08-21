@@ -12,18 +12,13 @@ var app = builder.Build();
 app.MapGet("/hello", () => "Hello");
 
 app.MapGet("/", (
-  [FromQuery(Name = "get")] string entityId,
+  [FromQuery(Name = "get")] Guid entityId,
   IEntityStore entityStore
   ) => {
     //
     // Brief declares all values as query params:
     // http://127.0.0.1:5000?get=cfaa0d3f-7fea-4423-9f69-ebff826e2f89
     //
-    if (string.IsNullOrEmpty(entityId)) {
-      return Results.BadRequest(); // cannot process the request due to something that is perceived to be a client error
-      // Or, throw new BadHttpRequestException(""); - `throw/catch` slower than `return`
-      // Or, return Results.NotFound();
-    }
     var entity = entityStore.Query(entityId);
     if (entity == null) {
       return Results.BadRequest();

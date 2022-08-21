@@ -66,16 +66,17 @@ public class RootEndpoint_Post_Tests {
     await using var application = new WebApplicationFactory<Program>();
     using var client = application.CreateClient();
 
-    var response = await client.PostAsync(@"?insert={""id"":""1"" }", null);
+    var id = Guid.NewGuid();
+    var response = await client.PostAsync($"?insert={{\"id\":\"{id}\" }}", null);
     Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
     // check the created entry in store
     var scopeFactory = application.Server.Services.GetService<IServiceScopeFactory>();
     using var scope = scopeFactory?.CreateScope();
     var store = scope?.ServiceProvider.GetService<IEntityStore>();
-    var entity = store?.Query("1");
+    var entity = store?.Query(id);
     Assert.NotNull(entity);
-    Assert.Null(entity?.operationDate); // TODO: handle '+' in source value
+    Assert.Null(entity?.operationDate);
     Assert.Null(entity?.amount);
   }
 
@@ -94,9 +95,9 @@ public class RootEndpoint_Post_Tests {
     var scopeFactory = application.Server.Services.GetService<IServiceScopeFactory>();
     using var scope = scopeFactory?.CreateScope();
     var store = scope?.ServiceProvider.GetService<IEntityStore>();
-    var entity = store?.Query("cfaa0d3f-7fea-4423-9f69-ebff826e2f89");
+    var entity = store?.Query(Guid.Parse("cfaa0d3f-7fea-4423-9f69-ebff826e2f89"));
     Assert.NotNull(entity);
-    Assert.Equal("2019-04-02T13:10:20.0263632 03:00", entity?.operationDate); // TODO: handle '+' in source value
+    Assert.Equal("2019-04-02T13:10:20.0263632 03:00", entity?.operationDate);
     Assert.Equal(23.05M, entity?.amount);
   }
 }
