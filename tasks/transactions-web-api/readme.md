@@ -28,7 +28,7 @@ dotnet add web-api-test package Microsoft.AspNetCore.Mvc.Testing
 
 ## Examples for 'curl':
 - `curl https://localhost:7167/hello` - gets the 'Hello' string from web-api
-- `curl https://localhost:7167?insert={"id":"cfaa0d3f-7fea-4423-9f69-ebff826e2f89","operationDate":"2019-04-02T13:10:20.0263632+03:00","amount":23.05 }` - adds a new entry to the web-api store
+- `curl https://localhost:7167?insert=%7B%22id%22%3A%22cfaa0d3f-7fea-4423-9f69-ebff826e2f89%22,%22operationDate%22%3A%222019-04-02T13%3A10%3A20.0263632%2B03%3A00%22,%22amount%22%3A23.05%20%7D` - adds a new entry to the web-api store
 - `curl https://localhost:7167?get=cfaa0d3f-7fea-4423-9f69-ebff826e2f89` - gets an entry data from the web-api store by 'id'
 
 ## Links
