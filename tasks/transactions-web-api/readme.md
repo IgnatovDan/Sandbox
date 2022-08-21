@@ -38,3 +38,4 @@ dotnet add web-api-test package Microsoft.AspNetCore.Mvc.Testing
 - [Minimal APIs overview](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-6.0)
 - [Минимальные API в .NET 6](https://habr.com/ru/company/otus/blog/666676/)
 - [Tutorial: Create a minimal web API with ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-6.0&tabs=visual-studio-code)
+- [Dependency injection in .NET](https://docs.microsoft.com/en-us/dotnet/core/extensions/dependency-injection)

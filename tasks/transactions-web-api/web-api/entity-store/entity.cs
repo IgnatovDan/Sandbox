@@ -11,14 +11,9 @@ namespace entity_store;
 //   }
 // }
 
+// TODO: sync property types with brief
 public class Entity {
-  public string? Id { get; set; }
-  public string? OperationDate { get; set; }
-  public decimal? Amount { get; set; }
+  public string id { get; set; } = Guid.NewGuid().ToString();
+  public string? operationDate { get; set; }
+  public decimal? amount { get; set; }
 }
-
-// public class Transaction {
-//   public int Id { get; set; }
-//   public DateTime TransactionDate { get; set; }
-//   public decimal Amount { get; set; }
-// }
