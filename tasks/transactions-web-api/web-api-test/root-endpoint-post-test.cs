@@ -78,7 +78,7 @@ public class RootEndpoint_Post_Tests {
     var store = scope?.ServiceProvider.GetService<IEntityStore>();
     var entity = store?.Query(id);
     Assert.NotNull(entity);
-    Assert.Null(entity?.OperationDate);
+    Assert.NotNull(entity?.OperationDate);
     Assert.Equal(0, entity?.Amount);
   }
 
@@ -101,7 +101,30 @@ public class RootEndpoint_Post_Tests {
     var store = scope?.ServiceProvider.GetService<IEntityStore>();
     var entity = store?.Query(Guid.Parse("cfaa0d3f-7fea-4423-9f69-ebff826e2f89"));
     Assert.NotNull(entity);
-    Assert.Equal("2019-04-02T10:10:20.0263632Z", entity?.OperationDate?.ToString("o"));
+    Assert.Equal("2019-04-02T10:10:20.0263632Z", entity?.OperationDate.ToString("o"));
+    Assert.Equal(23.05M, entity?.Amount);
+  }
+
+  [Fact]
+  public async Task Test__InsertParam__id_amount() {
+    await using var application = new WebApplicationFactory<Program>();
+    using var client = application.CreateClient();
+
+    // Use `Uri.EscapeDataString` to encode query string parameter values
+    // In this test, there is `+` in query which is a special character for the URI query part
+    var response = await client.PostAsync(
+      @"?insert=" + Uri.EscapeDataString(@"{""id"":""cfaa0d3f-7fea-4423-9f69-ebff826e2f89"",""amount"":23.05 }"),
+      null
+    );
+    Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+    // check the created entry in store
+    var scopeFactory = application.Server.Services.GetService<IServiceScopeFactory>();
+    using var scope = scopeFactory?.CreateScope();
+    var store = scope?.ServiceProvider.GetService<IEntityStore>();
+    var entity = store?.Query(Guid.Parse("cfaa0d3f-7fea-4423-9f69-ebff826e2f89"));
+    Assert.NotNull(entity);
+    Assert.NotNull(entity?.OperationDate);
     Assert.Equal(23.05M, entity?.Amount);
   }
 

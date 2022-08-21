@@ -23,16 +23,16 @@ Values for the `insert` parameter should be encoded: I used `Uri.EscapeDataStrin
 
 */
 
-public class InputEntityDTO {
+public class InsertEntityDTO {
   public Guid Id { get; set; } = Guid.NewGuid();
   public DateTimeOffset? OperationDate { get; set; }
   public decimal Amount { get; set; }
 
   public Entity ConvertToEntity() {
-    return new Entity {
-      Id = this.Id,
-      OperationDate = this.OperationDate?.UtcDateTime,
-      Amount = this.Amount
-    };
+    var result = new Entity { Id = this.Id, Amount = this.Amount };
+    if (this.OperationDate != null) {
+      result.OperationDate = ((DateTimeOffset)this.OperationDate).UtcDateTime;
+    }
+    return result;
   }
 }
