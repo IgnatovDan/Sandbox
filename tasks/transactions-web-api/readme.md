@@ -3,7 +3,7 @@
 ## Application:
 - web-api that allows to add new transaction data (kept in memory) and to view an existing transaction by id
 
-TODO: image
+![image](https://user-images.githubusercontent.com/2094015/185815269-6f5abf90-6a63-496a-a9a5-75581d02b1ab.png)
 
 ## Used technologies
 c#, ASP.NET Core 6, UT, xUnit, TDD.
@@ -28,7 +28,7 @@ dotnet add web-api-test package Microsoft.AspNetCore.Mvc.Testing
 
 ## Examples for 'curl':
 - `curl https://localhost:7167/hello` - gets the 'Hello' string from web-api
-- `curl https://localhost:7167?insert=%7B%22id%22%3A%22cfaa0d3f-7fea-4423-9f69-ebff826e2f89%22,%22operationDate%22%3A%222019-04-02T13%3A10%3A20.0263632%2B03%3A00%22,%22amount%22%3A23.05%20%7D` - adds a new entry to the web-api store
+- `curl https://localhost:7167?insert=%7B%22id%22%3A%22cfaa0d3f-7fea-4423-9f69-ebff826e2f89%22,%22operationDate%22%3A%222019-04-02T13%3A10%3A20.0263632%2B03%3A00%22,%22amount%22%3A23.05%20%7D -X POST` - adds a new entry to the web-api store
 - `curl https://localhost:7167?get=cfaa0d3f-7fea-4423-9f69-ebff826e2f89` - gets an entry data from the web-api store by 'id'
 
 ## Links
