@@ -15,5 +15,5 @@ namespace entity_store;
 public class Entity {
   public Guid Id { get; set; } = Guid.NewGuid();
   public string? OperationDate { get; set; }
-  public decimal? Amount { get; set; }
+  public decimal Amount { get; set; }
 }

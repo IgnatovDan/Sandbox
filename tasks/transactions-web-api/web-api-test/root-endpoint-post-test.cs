@@ -77,7 +77,7 @@ public class RootEndpoint_Post_Tests {
     var entity = store?.Query(id);
     Assert.NotNull(entity);
     Assert.Null(entity?.OperationDate);
-    Assert.Null(entity?.Amount);
+    Assert.Equal(0, entity?.Amount);
   }
 
   [Fact]
