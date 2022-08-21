@@ -14,8 +14,12 @@ public class EntityStore : IEntityStore {
     if (entity == null) {
       throw new ArgumentNullException("entity");
     }
+    if (string.IsNullOrEmpty(entity.id)) {
+      throw new ArgumentOutOfRangeException("entity");
+    }
     return entities.TryAdd(entity.id, new Entity() { id = entity.id, operationDate = entity.operationDate, amount = entity.amount });
   }
+  
   public Entity? Query(string transactionId) {
     Entity? storedEntity = entities.GetValueOrDefault(transactionId);
     return (storedEntity == null) ?

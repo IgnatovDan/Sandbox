@@ -24,7 +24,12 @@ app.MapGet("/", (
       // Or, throw new BadHttpRequestException(""); - `throw/catch` slower than `return`
       // Or, return Results.NotFound();
     }
-    return Results.BadRequest(); // TODO: return entity
+    var entity = entityStore.Query(entityId);
+    if (entity == null) {
+      return Results.BadRequest();
+      // Or, return Results.NotFound();
+    }
+    return Results.Json(entity);
   }
 );
 
@@ -55,7 +60,7 @@ app.MapPost("/", (
     }
 
     if (entity == null || !entityStore.TryAdd(entity)) {
-      return Results.UnprocessableEntity(entity);
+      return Results.UnprocessableEntity();
       // Or, return Results.BadRequest();
       // Or, throw new BadHttpRequestException("");
     }
