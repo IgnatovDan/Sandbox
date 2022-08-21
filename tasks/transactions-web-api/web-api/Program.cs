@@ -44,7 +44,7 @@ app.MapPost("/", (
 
     Entity? entity = null;
     try {
-      entity = JsonSerializer.Deserialize<Entity>(entityJson);
+      entity = JsonSerializer.Deserialize<Entity>(entityJson, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
     }
     catch {
       return Results.BadRequest(); // cannot process the request due to something that is perceived to be a client error

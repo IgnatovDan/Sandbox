@@ -14,12 +14,12 @@ public class EntityStore : IEntityStore {
     if (entity == null) {
       throw new ArgumentNullException("entity");
     }
-    return entities.TryAdd(entity.id, new Entity() { id = entity.id, operationDate = entity.operationDate, amount = entity.amount });
+    return entities.TryAdd(entity.Id, new Entity { Id = entity.Id, operationDate = entity.operationDate, amount = entity.amount });
   }
 
   public Entity? Query(Guid entityId) {
     Entity? storedEntity = entities.GetValueOrDefault(entityId);
     return (storedEntity == null) ?
-      null : new Entity() { id = storedEntity.id, operationDate = storedEntity.operationDate, amount = storedEntity.amount };
+      null : new Entity { Id = storedEntity.Id, operationDate = storedEntity.operationDate, amount = storedEntity.amount };
   }
 }
