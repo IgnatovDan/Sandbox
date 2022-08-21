@@ -13,7 +13,12 @@ namespace entity_store;
 
 // TODO: sync property types with brief
 public class Entity {
-  public Guid Id { get; set; } = Guid.NewGuid();
-  public string? OperationDate { get; set; }
+  public Guid Id { get; set; }
+  public DateTime? OperationDate { get; set; }
   public decimal Amount { get; set; }
+  // TODO: sync with brief:
+  // public Entity() {
+  //   this.Id = Guid.NewGuid();
+  //   this.OperationDate = DateTime.Now;
+  // }
 }

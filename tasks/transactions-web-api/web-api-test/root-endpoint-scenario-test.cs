@@ -15,20 +15,28 @@ public class RootEndpoint_Scenario_Tests {
   public async Task Test__Post__Get() {
     await using var application = new WebApplicationFactory<Program>();
 
-    var entity1 = new Entity { Id = Guid.NewGuid(), OperationDate = "date1", Amount = 11.2M };
-    var entity2 = new Entity { Id = Guid.NewGuid(), OperationDate = "date2", Amount = 22.2M };
+    var entity1 = new InputEntityDTO {
+      Id = Guid.NewGuid(),
+      OperationDate = new DateTimeOffset(2011, 1, 28, 15, 30, 00, TimeSpan.FromHours(3)),
+      Amount = 11.2M
+    };
+    var entity2 = new InputEntityDTO {
+      Id = Guid.NewGuid(),
+      OperationDate = new DateTimeOffset(2022, 1, 28, 15, 30, 00, TimeSpan.FromHours(3)),
+      Amount = 22.2M
+    };
 
     using var client = application.CreateClient();
-    await client.PostAsync(@"?insert=" + JsonSerializer.Serialize<Entity>(entity1), null);
-    await client.PostAsync(@"?insert=" + JsonSerializer.Serialize<Entity>(entity2), null);
+    await client.PostAsync(@"?insert=" + Uri.EscapeDataString(JsonSerializer.Serialize(entity1)), null);
+    await client.PostAsync(@"?insert=" + Uri.EscapeDataString(JsonSerializer.Serialize(entity2)), null);
 
-    var actualEntity1 = await client.GetFromJsonAsync<Entity>("/?get=" + entity1.Id);
-    var actualEntity2 = await client.GetFromJsonAsync<Entity>("/?get=" + entity2.Id);
+    var actualEntity1 = await client.GetFromJsonAsync<Entity>("/?get=" + Uri.EscapeDataString(entity1.Id.ToString()));
+    var actualEntity2 = await client.GetFromJsonAsync<Entity>("/?get=" + Uri.EscapeDataString(entity2.Id.ToString()));
 
-    void assertEntityEqual(Entity expected, Entity? actual) {
+    void assertEntityEqual(InputEntityDTO expected, Entity? actual) {
       Assert.NotNull(actual);
       Assert.Equal(expected.Id, actual?.Id);
-      Assert.Equal(expected.OperationDate, actual?.OperationDate);
+      Assert.Equal(expected.OperationDate?.UtcDateTime, actual?.OperationDate);
       Assert.Equal(expected.Amount, actual?.Amount);
     };
 

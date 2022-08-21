@@ -42,16 +42,24 @@ app.MapPost("/", (
       // Or, throw new BadHttpRequestException(""); as `'insert' query param` handler does
     }
 
-    Entity? entity = null;
+    InputEntityDTO? inputEntityDTO = null;
     try {
-      entity = JsonSerializer.Deserialize<Entity>(entityJson, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+      inputEntityDTO = JsonSerializer.Deserialize<InputEntityDTO>(
+        entityJson,
+        new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
+      );
     }
-    catch {
+    catch(Exception e) {
       return Results.BadRequest(); // cannot process the request due to something that is perceived to be a client error
-      // Or, throw new BadHttpRequestException("");
+      // Or, throw new BadHttpRequestException("", e);
       // Or, remove 'try/catch', exceptions are handled and InternalServerError is returned by default
     }
 
+    if (inputEntityDTO == null) {
+      return Results.StatusCode(StatusCodes.Status500InternalServerError);
+    }
+
+    Entity entity = inputEntityDTO.ConvertToEntity();
     if (entity == null || !entityStore.TryAdd(entity)) {
       return Results.StatusCode(StatusCodes.Status500InternalServerError);
       // Or, return Results.BadRequest();
