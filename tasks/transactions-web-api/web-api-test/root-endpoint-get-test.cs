@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 
 using entity_store;
+using Microsoft.AspNetCore.Http;
 
 namespace web_api_test;
 
@@ -42,6 +43,13 @@ public class RootEndpoint_Get_Tests {
 
   [Fact]
   public async Task Test__GetParam__ById() {
+    void assertEntityEqual(Entity expected, Entity? actual) {
+      Assert.NotNull(actual);
+      Assert.Equal(expected.Id, actual?.Id);
+      Assert.Equal(expected.OperationDate, actual?.OperationDate);
+      Assert.Equal(expected.Amount, actual?.Amount);
+    };
+
     await using var application = new WebApplicationFactory<Program>();
 
     var scopeFactory = application.Server.Services.GetService<IServiceScopeFactory>();
@@ -62,15 +70,8 @@ public class RootEndpoint_Get_Tests {
 
     using var client = application.CreateClient();
 
-    var actualEntity1 = await client.GetFromJsonAsync<Entity>("/?get=" + Uri.EscapeDataString(entity1.Id.ToString()));
-    var actualEntity2 = await client.GetFromJsonAsync<Entity>("/?get=" + Uri.EscapeDataString(entity2.Id.ToString()));
-
-    void assertEntityEqual(Entity expected, Entity? actual) {
-      Assert.NotNull(actual);
-      Assert.Equal(expected.Id, actual?.Id);
-      Assert.Equal(expected.OperationDate, actual?.OperationDate);
-      Assert.Equal(expected.Amount, actual?.Amount);
-    };
+    var actualEntity1 = await client.GetFromJsonAsync<Entity>(QueryString.Create("get", entity1.Id.ToString()).Value);
+    var actualEntity2 = await client.GetFromJsonAsync<Entity>(QueryString.Create("get", entity2.Id.ToString()).Value);
 
     assertEntityEqual(entity1, actualEntity1);
     assertEntityEqual(entity2, actualEntity2);
