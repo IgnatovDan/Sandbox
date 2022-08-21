@@ -36,6 +36,7 @@ public class RootEndpoint_Post_Tests {
     // // Or: var req = new HttpRequestMessage(HttpMethod.Post, QueryHelpers.AddQueryString("", queryParams));
     // var response = await client.SendAsync(req);
 
+    // TODO: use QueryString.Create(queryParams).Value to build URL
     var response = await client.PostAsync("/?insert=", null);
 
     Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
@@ -85,19 +86,6 @@ public class RootEndpoint_Post_Tests {
   public async Task Test__InsertParam__id_operationDate_amount() {
     await using var application = new WebApplicationFactory<Program>();
     using var client = application.CreateClient();
-
-    // TODO: delete
-    E2 e2 = new E2 {
-      WithOffset = new DateTimeOffset(2021, 01, 28, 15, 0, 0, 0, new TimeSpan(3, 0, 0)),
-      WithUTC = new DateTime(2021, 01, 28, 15, 0, 0, 0, DateTimeKind.Utc),
-      WithLocal = new DateTime(2021, 01, 28, 15, 0, 0, 0, DateTimeKind.Local),
-      WithDefault = new DateTime(2021, 01, 28, 15, 0, 0, 0, DateTimeKind.Unspecified),
-      WithUTCNow = DateTime.UtcNow,
-      WithLocalNow = DateTime.Now,
-    };
-    var e2_string = JsonSerializer.Serialize(e2);
-    E2? e2_ = JsonSerializer.Deserialize<E2>(e2_string);
-    //E2_? e2_ = JsonSerializer.Deserialize<E2_>(e2_string);
 
     // Use `Uri.EscapeDataString` to encode query string parameter values
     // In this test, there is `+` in query which is a special character for the URI query part

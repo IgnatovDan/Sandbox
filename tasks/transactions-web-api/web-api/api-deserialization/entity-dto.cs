@@ -36,18 +36,3 @@ public class InputEntityDTO {
     };
   }
 }
-
-
-// TODO: delete:
-public class E2 {
-  public DateTimeOffset WithOffset { get; set; }
-  public DateTime? WithUTC { get; set; }
-  public DateTime? WithLocal { get; set; }
-  public DateTime? WithDefault { get; set; }
-  public DateTime? WithUTCNow { get; set; }
-  public DateTime? WithLocalNow { get; set; }
-}
-
-public class E2_ {
-  public DateTime OD { get; set; }
-}
