@@ -4,11 +4,11 @@ namespace entity_store;
 
 public interface IEntityStore {
   bool TryAdd(Entity entity);
-  Entity? Query(Guid entityId);  // TODO: change string to Guid
+  Entity? Query(Guid entityId);
 }
 
 public class EntityStore : IEntityStore {
-  private ConcurrentDictionary<Guid, Entity> entities = new ConcurrentDictionary<Guid, Entity>(); // TODO: change string to Guid
+  private ConcurrentDictionary<Guid, Entity> entities = new ConcurrentDictionary<Guid, Entity>();
 
   public bool TryAdd(Entity entity) {
     if (entity == null) {
