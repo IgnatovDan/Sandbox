@@ -6,7 +6,7 @@ on:
   # push:
   pull_request:
     paths: 
-    - 'react/bem-check/**'
+    - 'React/bem-check/**'
   
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -19,7 +19,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: react/
+        working-directory: React/bem-check
 
     # Job Steps
     steps:
