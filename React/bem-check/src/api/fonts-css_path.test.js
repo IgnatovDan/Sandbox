@@ -91,7 +91,7 @@ describe('Failed fonts check', () => {
     );
   });
 
-  test.only('fail if fonts.css in otherFolder and vendor/fonts', () => {
+  test('fail if fonts.css in otherFolder and vendor/fonts', () => {
     const folderItems = {
       'vendor': {
         'fonts': {

@@ -3,5 +3,5 @@ import App from './App';
 
 test('renders <check sources> button', () => {
   render(<App />);
-  expect(screen.getByRole('button', { name: /check sources/i })).toBeInTheDocument();
+  expect(screen.getByLabelText(/Select ZIP archive with sources/i)).toBeInTheDocument();
 });
