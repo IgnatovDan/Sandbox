@@ -13,6 +13,7 @@ describe('Passed fonts checks', () => {
     };
 
     const results = runFontPathChecks(folderItems);
+    expect(results[0]?.message).toBeUndefined();
     expect(results.length).toBe(0);
   });
 
@@ -26,13 +27,12 @@ describe('Passed fonts checks', () => {
     };
 
     const results = runFontPathChecks(folderItems);
+    expect(results[0]?.message).toBeUndefined();
     expect(results.length).toBe(0);
   });
 });
 
 describe('Failed fonts check', () => {
-  const fontsCssFileWasNotFoundMessage = '`fonts.css` файл должен быть в одном из каталогов: `vendor`,`vendor/fonts`';
-
   test('fail if no fonts.css', () => {
     const folderItems = {
       'emptyFolder': {},
@@ -44,7 +44,9 @@ describe('Failed fonts check', () => {
 
     const results = runFontPathChecks(folderItems);
     expect(results.length).toBe(1);
-    expect(results[0].message).toBe(fontsCssFileWasNotFoundMessage);
+    expect(results[0].message).toBe(
+      'Файл `fonts.css` должен быть в одном из каталогов: `./vendor`,`./vendor/fonts`'
+    );
   });
 
   test('fail if fonts.css in root', () => {
@@ -54,7 +56,9 @@ describe('Failed fonts check', () => {
 
     const results = runFontPathChecks(folderItems);
     expect(results.length).toBe(1);
-    expect(results[0].message).toBe(fontsCssFileWasNotFoundMessage);
+    expect(results[0].message).toBe(
+      'Файл `./fonts.css` должен быть в одном из каталогов: `./vendor`,`./vendor/fonts`'
+    );
   });
 
   test('fail if fonts.css in otherFolder', () => {
@@ -66,7 +70,9 @@ describe('Failed fonts check', () => {
 
     const results = runFontPathChecks(folderItems);
     expect(results.length).toBe(1);
-    expect(results[0].message).toBe(fontsCssFileWasNotFoundMessage);
+    expect(results[0].message).toBe(
+      'Файл `./otherFolder/fonts.css` должен быть в одном из каталогов: `./vendor`,`./vendor/fonts`'
+    );
   });
 
   test('fail if fonts.css in otherFolder/otherFolder2', () => {
@@ -80,23 +86,28 @@ describe('Failed fonts check', () => {
 
     const results = runFontPathChecks(folderItems);
     expect(results.length).toBe(1);
-    expect(results[0].message).toBe(fontsCssFileWasNotFoundMessage);
+    expect(results[0].message).toBe(
+      'Файл `./otherFolder/otherFolder2/fonts.css` должен быть в одном из каталогов: `./vendor`,`./vendor/fonts`'
+    );
   });
 
-  // test('fail if fonts.css in otherFolder and vendor/fonts', () => {
-  //   const folderItems = {
-  //     'vendor': {
-  //       'fonts': {
-  //         'fonts.css': ""
-  //       }
-  //     },
-  //     'otherFolder': {
-  //       'fonts.css': ""
-  //     }
-  //   };
+  test.only('fail if fonts.css in otherFolder and vendor/fonts', () => {
+    const folderItems = {
+      'vendor': {
+        'fonts': {
+          'fonts.css': ""
+        }
+      },
+      'otherFolder': {
+        'fonts.css': ""
+      }
+    };
 
-  //   const results = runFontPathChecks(folderItems);
-  //   expect(results.length).toBe(1);
-  //   expect(results[0].message).toBe('`fonts.css` file is expected in folders `vendor`,`vendor/fonts` but was not found');
-  // });
+    const results = runFontPathChecks(folderItems);
+    expect(results.length).toBe(1);
+    expect(results[0].message).toBe(
+      'Есть несколько `fonts.css` файлов: `./vendor/fonts/fonts.css`,`./otherFolder/fonts.css`. ' +
+      'Файл должен быть один в одном из каталогов: `./vendor`,`./vendor/fonts`'
+    );
+  });
 });

@@ -2,34 +2,59 @@ function isFileContent(itemValue) {
   return typeof itemValue === 'string' || itemValue instanceof String;
 }
 
-function containsFile(folderItems, fileName, expectedFolders) {
-  const containingItem = Object.getOwnPropertyNames(folderItems).find(
-    (itemName) => {
+function findFiles(folderItems, fileName, parentPath) {
+  const result = Object.getOwnPropertyNames(folderItems).reduce(
+    (prevResult, itemName) => {
+      const currentItemResult = [];
       if (isFileContent(folderItems[itemName])) {
-        if (expectedFolders && !expectedFolders.includes('./')) {
-          return false;
-        }
         const equalsExpr = RegExp(fileName, "ig");
-        return itemName.match(equalsExpr);
-      } else {
-        if (expectedFolders && !expectedFolders.includes(itemName)) {
-          return false;
+        if (itemName.match(equalsExpr)) {
+          currentItemResult.push({
+            path: parentPath,
+            name: itemName
+          });
         }
-        return containsFile(folderItems[itemName], fileName);
+      } else {
+        const nestedResult = findFiles(folderItems[itemName], fileName, parentPath + '/' + itemName);
+        currentItemResult.push(...nestedResult);
       }
-    }
+      return prevResult.concat(currentItemResult);
+    },
+    []
   );
-  return (containingItem !== undefined);
+  return result;
 }
 
-function checkFileExistAtLeastOnePath(folderItems, fileName, expectedPaths) {
+function checkSingleFileExistsAtOneOfPaths(folderItems, fileName, expectedPaths) {
   const result = [];
-  if (!containsFile(folderItems, fileName, expectedPaths)) {
+  const foundFiles = findFiles(folderItems, fileName, '.');
+
+  if(foundFiles.length === 0) {
     result.push({
-      message: `\`${fileName}\` файл должен быть в одном из каталогов: ${expectedPaths.map(item => `\`${item}\``)}`
+      message: `Файл \`${fileName}\` должен быть в одном из каталогов: ${expectedPaths.map(item => `\`${item}\``)}`
     });
+  }
+
+  if (foundFiles.length > 1) {
+    result.push({
+      message:
+        `Есть несколько \`${fileName}\` файлов: ${foundFiles.map(item => `\`${item.path + '/' + item.name}\``)}. ` +
+        `Файл должен быть один в одном из каталогов: ${expectedPaths.map(item => `\`${item}\``)}`
+    });
+  }
+
+  if (foundFiles.length === 1) {
+    const foundFile = foundFiles[0];
+    const expectedPathsMessages = [];
+    if (!expectedPaths.includes(foundFile.path)) {
+      expectedPathsMessages.push({
+        message:
+          `Файл \`${foundFile.path + '/' + foundFile.name}\` должен быть в одном из каталогов: ${expectedPaths.map(item => `\`${item}\``)}`
+      });
+    }
+    result.push(...expectedPathsMessages);
   }
   return result;
 }
 
-export { checkFileExistAtLeastOnePath }
+export { checkSingleFileExistsAtOneOfPaths }
