@@ -1,4 +1,4 @@
-import { checkFileExistAtLeastOnePath, checkSingleFileExistsAtOneOfPaths } from './check-fonts-css/check-file-exist-at-paths';
+import { checkSingleFileExistsAtOneOfPaths } from './check-fonts-css/check-file-exist-at-paths';
 
 function checkFontsCss(folderItems, fontCssOptions) {
   const result = [];
