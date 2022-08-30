@@ -13,8 +13,16 @@ function App() {
         // const zip = new JSZip();
         // zip.folder('vendor').folder('fonts').file('fonts.css', '');
         // zip.folder('otherFolder').file('fonts.css', '');
-        // debugger;
-        // validateBemJsZip(zip, { 'fonts.css': { path: true } });
+    
+        // function validateZipTestHelper(zip) {
+        //   return validateBemJsZip(
+        //     zip,
+        //     [(folder) => validateFileExists('fonts.css', ['./vendor', './vendor/fonts'], 'test')]
+        //   );
+        //   // return validateBemJsZip(zip, []);
+        //   //return validateFontsCss(createFolderFromJSZip(zip), 'fonts.css', ['./vendor', './vendor/fonts']);
+        // }
+        // const results = validateZipTestHelper(zip);
 
         const messages = validateBemJsZip(zipContent);
         setMessages(messages);
