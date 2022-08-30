@@ -5,8 +5,8 @@ function runChecks(folder, options) {
   return checkFontsCss(folder, options['fonts.css']);
 }
 
-function runChecksFromJsZip(jsZip, options) {
+function runChecksForJsZip(jsZip, options) {
   return runChecks(convertFromJSZip(jsZip), options);
 }
 
-export { runChecksFromJsZip }
+export { runChecksForJsZip }

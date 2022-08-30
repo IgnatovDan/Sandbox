@@ -1,16 +1,23 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import JSZip from 'jszip';
+import { runChecksForJsZip } from './api/bem-checker';
+
 import './App.css';
-import { convertFromJSZipContent } from './api/bem-checker/utils/convert-from-jszip-files';
-// import { runChecks } from './api/bem-checker';
 
 function App() {
+  const [messages, setMessages] = useState([]);
+
   const handleFileChange = useCallback((e) => {
     JSZip.loadAsync(e.target.files[0])
       .then(function(zipContent) {
-        convertFromJSZipContent(zipContent);
-        //const files = convertFromJSZipContent(zipContent);
-        // TODO: runChecks();
+        // const zip = new JSZip();
+        // zip.folder('vendor').folder('fonts').file('fonts.css', '');
+        // debugger;
+        // runChecksForJsZip(zip, { 'fonts.css': { path: true } });
+
+        const messages = runChecksForJsZip(zipContent, { 'fonts.css': { path: true } });
+        debugger;
+        setMessages(messages);
       });
   }, []);
 
@@ -24,7 +31,17 @@ function App() {
           </label>
           {/* <button className="check-sources" type="submit">Check sources</button> */ }
         </form>
-        <p className="check-results"></p>
+        <p className="check-results">
+          {
+            messages.map(message => {
+              return (
+                <p>
+                  { message.text }
+                </p>
+              );
+            })
+          }
+        </p>
       </main>
     </div>
   );

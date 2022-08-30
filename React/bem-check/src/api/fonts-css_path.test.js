@@ -1,9 +1,9 @@
-import { runChecksFromJsZip } from './bem-checker';
+import { runChecksForJsZip } from './bem-checker';
 import JSZip from 'jszip';
 import { errorCodes } from './bem-checker/error-codes';
 
 function runFontPathChecks(zip) {
-  return runChecksFromJsZip(zip, { 'fonts.css': { path: true } });
+  return runChecksForJsZip(zip, { 'fonts.css': { path: true } });
 }
 
 describe('Passed fonts checks', () => {
@@ -32,7 +32,7 @@ describe('Failed fonts check', () => {
     expect(results.length).toBe(1);
     expect(results[0]).toEqual({
       code: errorCodes.FontsCssFile_NotFound,
-      message: 'Нет файла `fonts.css`, он должен быть в одном из каталогов: `./vendor`,`./vendor/fonts`'
+      text: 'Нет файла `fonts.css`, он должен быть в одном из каталогов: `./vendor`,`./vendor/fonts`'
     });
   });
 
@@ -46,7 +46,7 @@ describe('Failed fonts check', () => {
     expect(results.length).toBe(1);
     expect(results[0]).toEqual({
       code: errorCodes.FontsCssFile_NotFound,
-      message: 'Нет файла `fonts.css`, он должен быть в одном из каталогов: `./vendor`,`./vendor/fonts`'
+      text: 'Нет файла `fonts.css`, он должен быть в одном из каталогов: `./vendor`,`./vendor/fonts`'
     });
   });
 
@@ -58,7 +58,7 @@ describe('Failed fonts check', () => {
 
     expect(results).toEqual([{
       code: errorCodes.FontsCssFile_IncorrectPath,
-      message: 'Файл `fonts.css` должен быть в одном из каталогов: `./vendor`,`./vendor/fonts`'
+      text: 'Файл `fonts.css` должен быть в одном из каталогов: `./vendor`,`./vendor/fonts`'
     }]);
   });
 
@@ -69,7 +69,7 @@ describe('Failed fonts check', () => {
     const results = runFontPathChecks(zip);
     expect(results).toEqual([{
       code: errorCodes.FontsCssFile_IncorrectPath,
-      message: 'Файл `otherFolder/fonts.css` должен быть в одном из каталогов: `./vendor`,`./vendor/fonts`'
+      text: 'Файл `otherFolder/fonts.css` должен быть в одном из каталогов: `./vendor`,`./vendor/fonts`'
     }]);
   });
 
@@ -80,7 +80,7 @@ describe('Failed fonts check', () => {
     const results = runFontPathChecks(zip);
     expect(results).toEqual([{
       code: errorCodes.FontsCssFile_IncorrectPath,
-      message: 'Файл `otherFolder/otherFolder2/fonts.css` должен быть в одном из каталогов: `./vendor`,`./vendor/fonts`'
+      text: 'Файл `otherFolder/otherFolder2/fonts.css` должен быть в одном из каталогов: `./vendor`,`./vendor/fonts`'
     }]);
   });
 
@@ -92,7 +92,7 @@ describe('Failed fonts check', () => {
     const results = runFontPathChecks(zip);
     expect(results).toEqual([{
       code: errorCodes.FontsCssFile_SeveralFiles,
-      message: 'Есть несколько `fonts.css` файлов: `vendor/fonts/fonts.css`,`otherFolder/fonts.css`. Файл `fonts.css` должен быть один в одном из каталогов: `./vendor`,`./vendor/fonts`'
+      text: 'Есть несколько `fonts.css` файлов: `vendor/fonts/fonts.css`,`otherFolder/fonts.css`. Файл `fonts.css` должен быть один в одном из каталогов: `./vendor`,`./vendor/fonts`'
     }]);
   });
 });
