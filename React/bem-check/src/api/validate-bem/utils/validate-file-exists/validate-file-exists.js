@@ -1,4 +1,4 @@
-import { ValidationItem } from "../../validation-item";
+import { ValidationResultItem } from "../../validation-item";
 import { comparePaths } from "../utils";
 
 class ValidationResults {
@@ -25,7 +25,7 @@ class ValidationResults {
       :
       `Нет файла \`${fileName}\`, он должен быть в одном из каталогов: ${allowedPaths.map(item => `\`${item}\``)}`;
 
-    return new ValidationItem(this.#notFound, message);
+    return new ValidationResultItem(this.#notFound, message);
   }
 
   createSeveralFiles(fileName, foundFiles, allowedPaths) {
@@ -41,7 +41,7 @@ class ValidationResults {
           `Файл \`${fileName}\` должен быть один в одном из каталогов: ${allowedPaths.map(item => `\`${item}\``)}`
       );
 
-    return new ValidationItem(this.#severalFiles, message);
+    return new ValidationResultItem(this.#severalFiles, message);
   }
 
   createIncorrectPath(fileFullName, allowedPaths) {
@@ -53,7 +53,7 @@ class ValidationResults {
       :
       `Файл \`${fileFullName}\` должен быть в одном из каталогов: ${allowedPaths.map(item => `\`${item}\``)}`;
 
-    return new ValidationItem(this.#incorrectPath, message);
+    return new ValidationResultItem(this.#incorrectPath, message);
   }
 
   createIncorrectCaseInFileName(fileFullName, targetFileName) {
@@ -62,7 +62,7 @@ class ValidationResults {
 
     const message = `Файл \`${fileFullName}\` должен иметь название \`${targetFileName}\``;
 
-    return new ValidationItem(this.#incorrectCaseInFileName, message);
+    return new ValidationResultItem(this.#incorrectCaseInFileName, message);
   }
 }
 
@@ -72,7 +72,8 @@ function findFilesInFolder(folder, fileName) {
 
   const result = [];
   const propertyName = Object.getOwnPropertyNames(folder.files).find(
-    propertyName => propertyName.toUpperCase() === fileName.toUpperCase());
+    propertyName => propertyName.toUpperCase() === fileName.toUpperCase()
+  );
   if (propertyName) {
     result.push(folder.files[propertyName]);
   }
@@ -81,10 +82,9 @@ function findFilesInFolder(folder, fileName) {
 
 function findFilesRecursive(folder, fileName) {
   if (!folder) { throw new Error('folder is null'); }
-  if (!fileName || (fileName === "")) { throw new Error('fileName is null or empty'); }
+  if (!fileName || (fileName === '')) { throw new Error('fileName is null or empty'); }
 
   const childFiles = findFilesInFolder(folder, fileName);
-  //const childFiles = folder.files[fileName] ? [folder.files[fileName]] : [];
 
   const childFoldersResult = Object.values(folder.folders).reduce(
     (aggregator, folder) => {
@@ -96,10 +96,8 @@ function findFilesRecursive(folder, fileName) {
   return [...childFiles, ...childFoldersResult];
 }
 
-
-
 function validateFileExists(folder, fileName, allowedPaths, errorCodePrefix, allowUpperCase) {
-  if (!fileName || (fileName === "")) { throw new Error('fileName is null/undefined/empty string'); }
+  if (!fileName || (fileName === '')) { throw new Error('fileName is null/undefined/empty string'); }
   if (!allowedPaths) { throw new Error('expectedPaths is null/undefined'); }
 
   const result = [];

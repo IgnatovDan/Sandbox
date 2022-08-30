@@ -1,7 +1,9 @@
 import { Folder } from "../folder-object";
 
 function createFolderFromJSZip(zipContent) {
-  const root = new Folder('.');
+  if (!zipContent) { throw new Error('zipContent is null/undefined'); }
+  
+  const root = new Folder('.', []);
 
   Object.getOwnPropertyNames(zipContent.files).forEach(
     (itemFullName) => {

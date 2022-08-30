@@ -1,4 +1,4 @@
-import { ValidationItem } from "../../validation-item";
+import { ValidationResultItem } from "../../validation-item";
 import { comparePaths } from "../utils";
 
 class ValidationResults {
@@ -18,7 +18,7 @@ class ValidationResults {
     if (!folderName) { throw new Error('folderName is null/undefined'); }
     if (!allowedPaths) { throw new Error('allowedPaths is null/undefined'); }
 
-    return new ValidationItem(
+    return new ValidationResultItem(
       this.#notFound,
       `Нет каталога \`${folderName}\`, он должен быть в каталоге ${allowedPaths.map(item => `\`${item}\``)}`
     )
@@ -29,7 +29,7 @@ class ValidationResults {
     if (!allowedPaths) { throw new Error('allowedPaths is null/undefined'); }
     if (!parentFolderFullName) { throw new Error('parentFolderFullName is null/undefined'); }
 
-    return new ValidationItem(
+    return new ValidationResultItem(
       this.#incorrectPath,
       `Каталог \`${folderName}\` расположен в \`${parentFolderFullName}\`, а должен быть в каталоге ${allowedPaths.map(item => `\`${item}\``)}`
     )
@@ -39,7 +39,7 @@ class ValidationResults {
     if (!folderFullName) { throw new Error('folderName is null/undefined'); }
     if (!targetFolderName) { throw new Error('targetFolderName is null/undefined'); }
 
-    return new ValidationItem(
+    return new ValidationResultItem(
       this.#incorrectCaseInFileName,
       `Каталог \`${folderFullName}\` должен иметь название \`${targetFolderName}\``
     );
@@ -52,7 +52,8 @@ function findFoldersInFolder(folder, folderName) {
 
   const result = [];
   const propertyName = Object.getOwnPropertyNames(folder.folders).find(
-    propertyName => propertyName.toUpperCase() === folderName.toUpperCase());
+    propertyName => propertyName.toUpperCase() === folderName.toUpperCase()
+  );
   if (propertyName) {
     result.push(folder.folders[propertyName]);
   }
@@ -61,7 +62,7 @@ function findFoldersInFolder(folder, folderName) {
 
 function findFoldersRecursive(folder, folderName) {
   if (!folder) { throw new Error('folder is null'); }
-  if (!folderName || (folderName === "")) { throw new Error('folderName is null or empty'); }
+  if (!folderName || (folderName === '')) { throw new Error('folderName is null or empty'); }
 
   const childFolders = findFoldersInFolder(folder, folderName);
 
@@ -76,7 +77,7 @@ function findFoldersRecursive(folder, folderName) {
 }
 
 function validateFolderExists(folder, folderName, allowedPaths, errorCodePrefix) {
-  if (!folderName || (folderName === "")) { throw new Error('folderName is null/undefined'); }
+  if (!folderName || (folderName === '')) { throw new Error('folderName is null/undefined'); }
   if (!allowedPaths) { throw new Error('allowedPaths is null'); }
 
   const result = [];
