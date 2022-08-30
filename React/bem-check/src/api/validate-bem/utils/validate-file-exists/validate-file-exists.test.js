@@ -1,5 +1,5 @@
 import JSZip from 'jszip';
-import { validateBemJsZip } from '../validate-bem';
+import { validateBemJsZip } from '../../validate-bem';
 import { validateFileExists } from './validate-file-exists';
 
 function validateZipTestHelper(zip) {

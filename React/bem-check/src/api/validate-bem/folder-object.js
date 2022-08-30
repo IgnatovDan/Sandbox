@@ -2,15 +2,15 @@ class Folder {
   files = {};
   folders = {};
   name = '';
-  fullNameAsArray = [];
+  #fullNameAsArray = [];
   constructor(name, fullNameAsArray) {
     if (!name || name === '') {
       throw new Error('name is null or empty');
     }
     this.name = name || '';
-    this.fullNameAsArray = fullNameAsArray || [];
+    this.#fullNameAsArray = fullNameAsArray || [];
   }
-  AddFile(fileName, fullNameAsArray) {
+  AddFile(fileName, /* TODO: calculate from #fullNameAsArray */fullNameAsArray) {
     if (!fileName) {
       throw new Error('fileName is null');
     }
@@ -23,6 +23,8 @@ class Folder {
     this.folders[folderName] = result;
     return result;
   }
+  getParentFolderFullName() { return this.#fullNameAsArray.slice(0, -1).join('/'); }
+
   //get files() { return this.#files; } - properties are not supported in jest.toEqual({ code: 1 }) and 'node' console.log
 }
 

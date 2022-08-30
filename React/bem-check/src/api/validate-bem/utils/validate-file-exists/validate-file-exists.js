@@ -1,4 +1,5 @@
-import { ValidationItem } from "../validation-item";
+import { ValidationItem } from "../../validation-item";
+import { comparePaths } from "../utils";
 
 class ErrorsCodes {
   constructor(errorPrefix) {
@@ -11,13 +12,6 @@ class ErrorsCodes {
   }
 }
 
-function comparePaths(path1, path2) {
-  // remove leading './' and trailing '/'
-  const path1_ = path1.replace(/(^\s*.\/)|(\/\s*$)/g, '');
-  const path2_ = path2.replace(/(^\s*.\/)|(\/\s*$)/g, '');
-  return (path1_ === path2_);
-}
-
 function findFiles(folder, fileName) {
   if (!folder) {
     throw new Error('folder is null');
@@ -26,16 +20,16 @@ function findFiles(folder, fileName) {
     throw new Error('fileName is null or empty');
   }
 
-  const currentFolderFiles = folder.files[fileName] ? [folder.files[fileName]] : [];
+  const childFiles = folder.files[fileName] ? [folder.files[fileName]] : [];
 
-  const folderFoldersResult = Object.values(folder.folders).reduce(
+  const childFoldersResult = Object.values(folder.folders).reduce(
     (aggregator, folder) => {
       return aggregator.concat(findFiles(folder, fileName));
     },
     []
   );
 
-  return [...currentFolderFiles, ...folderFoldersResult];
+  return [...childFiles, ...childFoldersResult];
 }
 
 function getNotFoundMessage(fileName, allowedPaths) {
