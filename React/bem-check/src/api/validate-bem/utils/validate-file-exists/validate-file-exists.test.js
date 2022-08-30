@@ -3,8 +3,7 @@ import { validateBemJsZip } from '../../validate-bem';
 import { validateFileExists } from './validate-file-exists';
 
 function validateZipTestHelper(zip) {
-  return validateBemJsZip(
-    zip,
+  return validateBemJsZip(zip,
     [(folder) => validateFileExists(folder, 'fonts.css', ['./vendor', './vendor/fonts'], 'test')]
   );
   // return validateBemJsZip(zip, []);
@@ -40,6 +39,17 @@ describe('Passed file checks', () => {
 
     expect(results).toEqual([]);
   });
+
+  test('check README.md expected in ./', () => {
+    const zip = new JSZip();
+    zip.file('README.md', '');
+
+    const results = validateBemJsZip(zip,
+      [(folder) => validateFileExists(folder, 'readme.md', ['./'], 'validator1', true)]
+    );
+
+    expect(results).toEqual([]);
+  });
 });
 
 describe('Failed file checks', () => {
@@ -55,23 +65,6 @@ describe('Failed file checks', () => {
       text: 'Нет файла `file1.css`, он должен быть в каталоге `./`'
     }]);
   });
-
-  //
-  // TODO:
-  //
-  // test('check file1.css expected in ./ but there is ./FiLe1.cSs', () => {
-  //   const zip = new JSZip();
-  //   zip.file('FiLe1.cSs', '');
-
-  //   const results = validateBemJsZip(zip,
-  //     [(folder) => validateFileExists(folder, 'file1.css', ['./'], 'validator1')]
-  //   );
-
-  //   expect(results).toEqual([{
-  //     code: 'validator1-IncorrectCase',
-  //     text: 'Файл `FiLe1.cSs`, должен называться `./file1.css`'
-  //   }]);
-  // });
 
   test('check file1.css expected in ./ but file in folder', () => {
     const zip = new JSZip();
@@ -167,6 +160,20 @@ describe('Failed file checks', () => {
     }]);
   });
 
+  test('fail if FoNtS.cSs exists but fonts.css expected', () => {
+    const zip = new JSZip();
+    zip.folder('folder1').file('FoNtS.cSs', '');
+
+    const results = validateBemJsZip(zip,
+      [(folder) => validateFileExists(folder, 'fonts.css', ['folder1'], 'validator1')]
+    );
+
+    expect(results).toEqual([{
+      code: 'validator1-IncorrectCaseInFileName',
+      text: 'Файл `folder1/FoNtS.cSs` должен иметь название `fonts.css`'
+    }]);
+  });
+
   test('fail if fonts.css in otherFolder', () => {
     const zip = new JSZip();
     zip.folder('otherFolder').file('fonts.css', '');
@@ -183,7 +190,9 @@ describe('Failed file checks', () => {
     const zip = new JSZip();
     zip.folder('otherFolder').folder('otherFolder2').file('fonts.css', '');
 
-    const results = validateZipTestHelper(zip);
+    const results = validateBemJsZip(zip,
+      [(folder) => validateFileExists(folder, 'fonts.css', ['./vendor', './vendor/fonts'], 'test')]
+    );
 
     expect(results).toEqual([{
       code: "test-IncorrectPath",

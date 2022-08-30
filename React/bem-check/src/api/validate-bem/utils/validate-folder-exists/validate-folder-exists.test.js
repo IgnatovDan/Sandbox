@@ -107,4 +107,19 @@ describe('Failed folder checks', () => {
       text: 'Каталог `fonts` расположен в `folder2`, а должен быть в каталоге `folder1`'
     }]);
   });
+
+  test('fail if FoNtS exists but fonts expected', () => {
+    const zip = new JSZip();
+    zip.folder('folder1').folder('FoNtS');
+
+    const results = validateBemJsZip(zip,
+      [(folder) => validateFolderExists(folder, 'fonts', ['folder1'], 'validator1')]
+    );
+
+    expect(results).toEqual([{
+      code: 'validator1-IncorrectCaseInFileName',
+      text: 'Каталог `folder1/FoNtS` должен иметь название `fonts`',
+    }]);
+  });
+
 });

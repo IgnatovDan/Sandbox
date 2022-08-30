@@ -9,7 +9,7 @@ const validateNormalizeCss = (folder) => {
   return validateFileExists(folder, 'normalize.css', ['./vendor'], 'validateNormalizeCss');
 };
 const validateReadme = (folder) => {
-  return validateFileExists(folder, 'readme.md', ['./'], 'validateReadme');
+  return validateFileExists(folder, 'readme.md', ['./'], 'validateReadme', true);
 };
 
 const validateScriptIndexJs = (folder) => {

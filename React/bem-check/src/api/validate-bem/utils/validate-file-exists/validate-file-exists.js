@@ -1,30 +1,94 @@
 import { ValidationItem } from "../../validation-item";
 import { comparePaths } from "../utils";
 
-class ErrorsCodes {
+class ValidationResults {
+  #notFound = 'notFound';
+  #severalFiles = 'severalFiles';
+  #incorrectPath = 'incorrectPath';
+  #incorrectCaseInFileName = 'incorrectCaseInFileName';
+
   constructor(errorPrefix) {
-    if (!errorPrefix) {
-      throw new Error('errorPrefix is empty');
-    }
-    this.notFound = errorPrefix + '-NotFound';
-    this.severalFiles = errorPrefix + '-SeveralFiles';
-    this.incorrectPath = errorPrefix + '-IncorrectPath';
+    if (!errorPrefix) { throw new Error('errorPrefix is empty'); }
+
+    this.#notFound = errorPrefix + '-NotFound';
+    this.#severalFiles = errorPrefix + '-SeveralFiles';
+    this.#incorrectPath = errorPrefix + '-IncorrectPath';
+    this.#incorrectCaseInFileName = errorPrefix + '-IncorrectCaseInFileName';
+  }
+
+  createNotFound(fileName, allowedPaths) {
+    if (!fileName) { throw new Error('fileName is null/undefined'); }
+    if (!allowedPaths) { throw new Error('allowedPaths is null/undefined'); }
+
+    const message = allowedPaths.length === 1 ?
+      `Нет файла \`${fileName}\`, он должен быть в каталоге ${allowedPaths.map(item => `\`${item}\``)}`
+      :
+      `Нет файла \`${fileName}\`, он должен быть в одном из каталогов: ${allowedPaths.map(item => `\`${item}\``)}`;
+
+    return new ValidationItem(this.#notFound, message);
+  }
+
+  createSeveralFiles(fileName, foundFiles, allowedPaths) {
+    if (!fileName) { throw new Error('fileName is null/undefined'); }
+    if (!foundFiles) { throw new Error('foundFiles is null/undefined'); }
+    if (!allowedPaths) { throw new Error('allowedPaths is null/undefined'); }
+
+    const message = `Есть несколько \`${fileName}\` файлов: ${foundFiles.map(item => `\`${item.getFullName()}\``)}. ` +
+      (
+        allowedPaths.length === 1 ?
+          `Файл \`${fileName}\` должен быть один в каталоге ${allowedPaths.map(item => `\`${item}\``)}`
+          :
+          `Файл \`${fileName}\` должен быть один в одном из каталогов: ${allowedPaths.map(item => `\`${item}\``)}`
+      );
+
+    return new ValidationItem(this.#severalFiles, message);
+  }
+
+  createIncorrectPath(fileFullName, allowedPaths) {
+    if (!fileFullName) { throw new Error('fileFullName is null/undefined'); }
+    if (!allowedPaths) { throw new Error('allowedPaths is null/undefined'); }
+
+    const message = allowedPaths.length === 1 ?
+      `Файл \`${fileFullName}\` должен быть в каталоге ${allowedPaths.map(item => `\`${item}\``)}`
+      :
+      `Файл \`${fileFullName}\` должен быть в одном из каталогов: ${allowedPaths.map(item => `\`${item}\``)}`;
+
+    return new ValidationItem(this.#incorrectPath, message);
+  }
+
+  createIncorrectCaseInFileName(fileFullName, targetFileName) {
+    if (!fileFullName) { throw new Error('fileFullName is null/undefined'); }
+    if (!targetFileName) { throw new Error('targetFileName is null/undefined'); }
+
+    const message = `Файл \`${fileFullName}\` должен иметь название \`${targetFileName}\``;
+
+    return new ValidationItem(this.#incorrectCaseInFileName, message);
   }
 }
 
-function findFiles(folder, fileName) {
-  if (!folder) {
-    throw new Error('folder is null');
-  }
-  if (!fileName || (fileName === "")) {
-    throw new Error('fileName is null or empty');
-  }
+function findFilesInFolder(folder, fileName) {
+  if (!folder) { throw new Error('folder is null/undefined'); }
+  if (!fileName) { throw new Error('fileName is null/undefined'); }
 
-  const childFiles = folder.files[fileName] ? [folder.files[fileName]] : [];
+  const result = [];
+  const propertyName = Object.getOwnPropertyNames(folder.files).find(
+    propertyName => propertyName.toUpperCase() === fileName.toUpperCase());
+  if (propertyName) {
+    result.push(folder.files[propertyName]);
+  }
+  return result;
+}
+
+function findFilesRecursive(folder, fileName) {
+  if (!folder) { throw new Error('folder is null'); }
+  if (!fileName || (fileName === "")) { throw new Error('fileName is null or empty'); }
+
+  const childFiles = findFilesInFolder(folder, fileName);
+  //const childFiles = folder.files[fileName] ? [folder.files[fileName]] : [];
 
   const childFoldersResult = Object.values(folder.folders).reduce(
     (aggregator, folder) => {
-      return aggregator.concat(findFiles(folder, fileName));
+      return aggregator.concat(findFilesRecursive(folder, fileName));
     },
     []
   );
@@ -32,67 +96,32 @@ function findFiles(folder, fileName) {
   return [...childFiles, ...childFoldersResult];
 }
 
-function getNotFoundMessage(fileName, allowedPaths) {
-  return allowedPaths.length === 1 ?
-    `Нет файла \`${fileName}\`, он должен быть в каталоге ${allowedPaths.map(item => `\`${item}\``)}`
-    :
-    `Нет файла \`${fileName}\`, он должен быть в одном из каталогов: ${allowedPaths.map(item => `\`${item}\``)}`
-    ;
-}
-
-function getSeveralFilesMessage(fileName, foundFiles, allowedPaths) {
-  return `Есть несколько \`${fileName}\` файлов: ${foundFiles.map(item => `\`${item.getFullName()}\``)}. ` +
-    (
-      allowedPaths.length === 1 ?
-        `Файл \`${fileName}\` должен быть один в каталоге ${allowedPaths.map(item => `\`${item}\``)}`
-        :
-        `Файл \`${fileName}\` должен быть один в одном из каталогов: ${allowedPaths.map(item => `\`${item}\``)}`
-    );
-}
-
-function getIncorrectPathMessage(file, allowedPaths) {
-  return allowedPaths.length === 1 ?
-    `Файл \`${file.getFullName()}\` должен быть в каталоге ${allowedPaths.map(item => `\`${item}\``)}`
-    :
-    `Файл \`${file.getFullName()}\` должен быть в одном из каталогов: ${allowedPaths.map(item => `\`${item}\``)}`
-    ;
-}
 
 
-function validateFileExists(folder, fileName, allowedPaths, errorCodePrefix) {
-  if (!fileName || (fileName === "")) {
-    throw new Error('fileName is null or empty');
-  }
-  if (!allowedPaths) {
-    throw new Error('expectedPaths is null');
-  }
+function validateFileExists(folder, fileName, allowedPaths, errorCodePrefix, allowUpperCase) {
+  if (!fileName || (fileName === "")) { throw new Error('fileName is null/undefined/empty string'); }
+  if (!allowedPaths) { throw new Error('expectedPaths is null/undefined'); }
 
   const result = [];
-  const foundFiles = findFiles(folder, fileName);
+  const foundFiles = findFilesRecursive(folder, fileName);
 
-  const errorCodes = new ErrorsCodes(errorCodePrefix);
+  const validationResults = new ValidationResults(errorCodePrefix);
 
   if (foundFiles.length === 0) {
-    result.push(new ValidationItem(
-      errorCodes.notFound,
-      getNotFoundMessage(fileName, allowedPaths)
-    ));
+    result.push(validationResults.createNotFound(fileName, allowedPaths));
   }
 
   if (foundFiles.length > 1) {
-    result.push(new ValidationItem(
-      errorCodes.severalFiles,
-      getSeveralFilesMessage(fileName, foundFiles, allowedPaths)
-    ));
+    result.push(validationResults.createSeveralFiles(fileName, foundFiles, allowedPaths));
   }
 
   if (foundFiles.length === 1) {
     const foundFile = foundFiles[0];
+    if (!allowUpperCase && foundFile.name.toUpperCase() === fileName.toUpperCase() && foundFile.name !== fileName) {
+      result.push(validationResults.createIncorrectCaseInFileName(foundFile.getFullName(), fileName));
+    }
     if (!allowedPaths.find(item => comparePaths(foundFile.getParentFolderFullName(), item))) {
-      result.push(new ValidationItem(
-        errorCodes.incorrectPath,
-        getIncorrectPathMessage(foundFile, allowedPaths)
-      ));
+      result.push(validationResults.createIncorrectPath(foundFile.getFullName(), allowedPaths));
     }
   }
   return result;

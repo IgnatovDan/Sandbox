@@ -24,7 +24,7 @@ class Folder {
     return result;
   }
   getParentFolderFullName() { return this.#fullNameAsArray.slice(0, -1).join('/'); }
-
+  getFullName() { return this.#fullNameAsArray.join('/'); }
   //get files() { return this.#files; } - properties are not supported in jest.toEqual({ code: 1 }) and 'node' console.log
 }
 
