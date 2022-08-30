@@ -1,58 +1,67 @@
-function isFileContent(itemValue) {
-  return typeof itemValue === 'string' || itemValue instanceof String;
+import { errorCodes, ErrorMessage } from "../error-codes";
+
+function comparePaths(path1, path2) {
+  // remove leading './' and trailing '/'
+  const path1_ = path1.replace(/(^\s*.\/)|(\/\s*$)/g, '');
+  const path2_ = path2.replace(/(^\s*.\/)|(\/\s*$)/g, '');
+  return (path1_ === path2_);
 }
 
-function findFiles(folderItems, fileName, parentPath) {
-  const result = Object.getOwnPropertyNames(folderItems).reduce(
-    (prevResult, itemName) => {
-      const currentItemResult = [];
-      if (isFileContent(folderItems[itemName])) {
-        const equalsExpr = RegExp(fileName, "ig");
-        if (itemName.match(equalsExpr)) {
-          currentItemResult.push({
-            path: parentPath,
-            name: itemName
-          });
-        }
-      } else {
-        const nestedResult = findFiles(folderItems[itemName], fileName, parentPath + '/' + itemName);
-        currentItemResult.push(...nestedResult);
-      }
-      return prevResult.concat(currentItemResult);
+function findFiles(folder, fileName) {
+  if (!folder) {
+    throw new Error('folder is null');
+  }
+  if (!fileName || (fileName === "")) {
+    throw new Error('fileName is null or empty');
+  }
+
+  const currentFolderFiles = folder.files[fileName] ? [folder.files[fileName]] : [];
+
+  const folderFoldersResult = Object.values(folder.folders).reduce(
+      (aggregator, folder) => {
+        return aggregator.concat(findFiles(folder, fileName));
     },
     []
   );
-  return result;
+
+  return [...currentFolderFiles, ...folderFoldersResult];
 }
 
-function checkSingleFileExistsAtOneOfPaths(folderItems, fileName, expectedPaths) {
-  const result = [];
-  const foundFiles = findFiles(folderItems, fileName, '.');
+function checkSingleFileExistsAtOneOfPaths(folder, fileName, expectedPaths) {
+  if (!fileName || (fileName === "")) {
+    throw new Error('fileName is null or empty');
+  }
+  if (!expectedPaths) {
+    throw new Error('expectedPaths is null');
+  }  
 
+  const result = [];
+  const foundFiles = findFiles(folder, fileName);
+
+  debugger;
   if(foundFiles.length === 0) {
-    result.push({
-      message: `Файл \`${fileName}\` должен быть в одном из каталогов: ${expectedPaths.map(item => `\`${item}\``)}`
-    });
+    result.push(new ErrorMessage(
+      errorCodes.FontsCssFile_NotFound,
+      `Нет файла \`${fileName}\`, он должен быть в одном из каталогов: ${expectedPaths.map(item => `\`${item}\``)}`
+    ));
   }
 
   if (foundFiles.length > 1) {
-    result.push({
-      message:
-        `Есть несколько \`${fileName}\` файлов: ${foundFiles.map(item => `\`${item.path + '/' + item.name}\``)}. ` +
-        `Файл должен быть один в одном из каталогов: ${expectedPaths.map(item => `\`${item}\``)}`
-    });
+    result.push(new ErrorMessage(
+      errorCodes.FontsCssFile_SeveralFiles,
+      `Есть несколько \`${fileName}\` файлов: ${foundFiles.map(item => `\`${item.getFullName()}\``)}. ` +
+      `Файл \`${fileName}\` должен быть один в одном из каталогов: ${expectedPaths.map(item => `\`${item}\``)}`
+    ));
   }
 
   if (foundFiles.length === 1) {
     const foundFile = foundFiles[0];
-    const expectedPathsMessages = [];
-    if (!expectedPaths.includes(foundFile.path)) {
-      expectedPathsMessages.push({
-        message:
-          `Файл \`${foundFile.path + '/' + foundFile.name}\` должен быть в одном из каталогов: ${expectedPaths.map(item => `\`${item}\``)}`
-      });
+    if (!expectedPaths.find(item => comparePaths(foundFile.getParentFolderFullName(), item))) {
+      result.push(new ErrorMessage(
+        errorCodes.FontsCssFile_IncorrectPath,
+        `Файл \`${foundFile.getFullName()}\` должен быть в одном из каталогов: ${expectedPaths.map(item => `\`${item}\``)}`
+      ));
     }
-    result.push(...expectedPathsMessages);
   }
   return result;
 }
