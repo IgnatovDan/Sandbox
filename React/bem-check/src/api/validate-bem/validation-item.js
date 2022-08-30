@@ -1,4 +1,4 @@
-class ErrorMessage {
+class ValidationItem {
   code;
   text;
   constructor(code, text) {
@@ -14,10 +14,4 @@ class ErrorMessage {
   //get Code() { return this.#code;  } - properties are not supported in jest.toEqual({ code: 1 }) and 'node' console.log
 }
 
-const errorCodes = {
-  FontsCssFile_NotFound: 1,
-  FontsCssFile_SeveralFiles: 2,
-  FontsCssFile_IncorrectPath: 3,
-};
-
-export { ErrorMessage, errorCodes }
+export { ValidationItem }

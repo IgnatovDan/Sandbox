@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import JSZip from 'jszip';
-import { runChecksForJsZip } from './api/bem-checker';
+import { validateBemJsZip } from './api/validate-bem/validate-bem';
 
 import './App.css';
 
@@ -12,11 +12,11 @@ function App() {
       .then(function(zipContent) {
         // const zip = new JSZip();
         // zip.folder('vendor').folder('fonts').file('fonts.css', '');
+        // zip.folder('otherFolder').file('fonts.css', '');
         // debugger;
-        // runChecksForJsZip(zip, { 'fonts.css': { path: true } });
+        // validateBemJsZip(zip, { 'fonts.css': { path: true } });
 
-        const messages = runChecksForJsZip(zipContent, { 'fonts.css': { path: true } });
-        debugger;
+        const messages = validateBemJsZip(zipContent);
         setMessages(messages);
       });
   }, []);
@@ -31,17 +31,17 @@ function App() {
           </label>
           {/* <button className="check-sources" type="submit">Check sources</button> */ }
         </form>
-        <p className="check-results">
+        <div className="check-results">
           {
             messages.map(message => {
               return (
-                <p>
+                <p key={ message.code }>
                   { message.text }
                 </p>
               );
             })
           }
-        </p>
+        </div>
       </main>
     </div>
   );

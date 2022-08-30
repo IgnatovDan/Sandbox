@@ -1,4 +1,4 @@
-import { errorCodes, ErrorMessage } from "../error-codes";
+import { ValidationItem } from "../validation-item";
 
 function comparePaths(path1, path2) {
   // remove leading './' and trailing '/'
@@ -27,7 +27,7 @@ function findFiles(folder, fileName) {
   return [...currentFolderFiles, ...folderFoldersResult];
 }
 
-function checkSingleFileExistsAtOneOfPaths(folder, fileName, expectedPaths) {
+function validateFontsCss(folder, fileName, expectedPaths) {
   if (!fileName || (fileName === "")) {
     throw new Error('fileName is null or empty');
   }
@@ -38,17 +38,16 @@ function checkSingleFileExistsAtOneOfPaths(folder, fileName, expectedPaths) {
   const result = [];
   const foundFiles = findFiles(folder, fileName);
 
-  debugger;
   if(foundFiles.length === 0) {
-    result.push(new ErrorMessage(
-      errorCodes.FontsCssFile_NotFound,
+    result.push(new ValidationItem(
+      validateFontsCss.NotFound,
       `Нет файла \`${fileName}\`, он должен быть в одном из каталогов: ${expectedPaths.map(item => `\`${item}\``)}`
     ));
   }
 
   if (foundFiles.length > 1) {
-    result.push(new ErrorMessage(
-      errorCodes.FontsCssFile_SeveralFiles,
+    result.push(new ValidationItem(
+      validateFontsCss.SeveralFiles,
       `Есть несколько \`${fileName}\` файлов: ${foundFiles.map(item => `\`${item.getFullName()}\``)}. ` +
       `Файл \`${fileName}\` должен быть один в одном из каталогов: ${expectedPaths.map(item => `\`${item}\``)}`
     ));
@@ -57,8 +56,8 @@ function checkSingleFileExistsAtOneOfPaths(folder, fileName, expectedPaths) {
   if (foundFiles.length === 1) {
     const foundFile = foundFiles[0];
     if (!expectedPaths.find(item => comparePaths(foundFile.getParentFolderFullName(), item))) {
-      result.push(new ErrorMessage(
-        errorCodes.FontsCssFile_IncorrectPath,
+      result.push(new ValidationItem(
+        validateFontsCss.IncorrectPath,
         `Файл \`${foundFile.getFullName()}\` должен быть в одном из каталогов: ${expectedPaths.map(item => `\`${item}\``)}`
       ));
     }
@@ -66,4 +65,11 @@ function checkSingleFileExistsAtOneOfPaths(folder, fileName, expectedPaths) {
   return result;
 }
 
-export { checkSingleFileExistsAtOneOfPaths }
+validateFontsCss.default = (folder) => {
+  return validateFontsCss(folder, 'fonts.css', ['./vendor', './vendor/fonts']);
+};
+validateFontsCss.NotFound = 1;
+validateFontsCss.SeveralFiles = 2;
+validateFontsCss.IncorrectPath = 3;
+
+export { validateFontsCss }
