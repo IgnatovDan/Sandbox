@@ -45,9 +45,9 @@ function validateBem(folder, validators) {
   );
 }
 
-function validateBemJsZip(jsZip, validators, isRootFolder) {
+function validateBemJsZip(jsZip, validators, isRootFolderCallback) {
   const targetFolder = createFolderFromJSZip(jsZip);
-  const targetRootFolder = (targetFolder.findChildFolderByCallback(isRootFolder) || targetFolder).cloneRecursive();
+  const targetRootFolder = (targetFolder.findChildFolderByCallback(isRootFolderCallback) || targetFolder).cloneRecursive();
   return validateBem(targetRootFolder, validators);
 }
 
