@@ -90,7 +90,7 @@ describe('Failed folder checks', () => {
 
     expect(results).toEqual([{
       code: 'validator1-IncorrectPath',
-      text: 'Каталог `fonts` расположен в `folder1`, а должен быть в каталоге `./`'
+      text: 'Каталог `fonts` расположен в `./folder1`, а должен быть в каталоге `./`'
     }]);
   });
 
@@ -99,12 +99,12 @@ describe('Failed folder checks', () => {
     zip.folder('folder2').folder('fonts');
 
     const results = validateBemJsZip(zip,
-      [(folder) => validateFolderExists(folder, 'fonts', ['folder1'], 'validator1')]
+      [(folder) => validateFolderExists(folder, 'fonts', ['./folder1'], 'validator1')]
     );
 
     expect(results).toEqual([{
       code: 'validator1-IncorrectPath',
-      text: 'Каталог `fonts` расположен в `folder2`, а должен быть в каталоге `folder1`'
+      text: 'Каталог `fonts` расположен в `./folder2`, а должен быть в каталоге `./folder1`'
     }]);
   });
 
@@ -113,12 +113,12 @@ describe('Failed folder checks', () => {
     zip.folder('folder1').folder('FoNtS');
 
     const results = validateBemJsZip(zip,
-      [(folder) => validateFolderExists(folder, 'fonts', ['folder1'], 'validator1')]
+      [(folder) => validateFolderExists(folder, 'fonts', ['./folder1'], 'validator1')]
     );
 
     expect(results).toEqual([{
       code: 'validator1-IncorrectCaseInFileName',
-      text: 'Каталог `folder1/FoNtS` должен иметь название `fonts`',
+      text: 'Каталог `./folder1/FoNtS` должен иметь название `fonts`',
     }]);
   });
 

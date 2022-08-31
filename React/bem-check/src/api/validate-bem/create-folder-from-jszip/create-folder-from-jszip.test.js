@@ -5,7 +5,13 @@ describe('convertFromJSZip tests', () => {
   test('convert empty', () => {
     const zip = new JSZip();
 
-    const actual = createFolderFromJSZip({ files: zip.files });
+    const actual = createFolderFromJSZip(zip);
+
+    // TODO: change 'Object.keys' to full object declaration
+    // expect(actual).toEqual({
+    //   files: {},
+    //   folders: {}
+    // });
 
     expect(Object.keys(actual.files)).toEqual([]);
     expect(Object.keys(actual.folders)).toEqual([]);
@@ -15,7 +21,7 @@ describe('convertFromJSZip tests', () => {
     const zip = new JSZip();
     zip.file('file1.txt', '');
 
-    const actual = createFolderFromJSZip({ files: zip.files });
+    const actual = createFolderFromJSZip(zip);
 
     expect(Object.keys(actual.files)).toEqual(['file1.txt']);
     expect(actual.files['file1.txt'].name).toBe('file1.txt');
@@ -27,8 +33,8 @@ describe('convertFromJSZip tests', () => {
     const zip = new JSZip();
     zip.file('file1.txt', '');
     zip.file('file2.txt', '');
-  
-    const actual = createFolderFromJSZip({ files: zip.files });
+
+    const actual = createFolderFromJSZip(zip);
 
     expect(Object.keys(actual.files)).toEqual(['file1.txt', 'file2.txt']);
     expect(actual.files['file1.txt'].name).toBe('file1.txt');
@@ -40,8 +46,8 @@ describe('convertFromJSZip tests', () => {
   test('convert folder1', () => {
     const zip = new JSZip();
     zip.folder('folder1');
-  
-    const actual = createFolderFromJSZip({ files: zip.files });
+
+    const actual = createFolderFromJSZip(zip);
 
     expect(Object.keys(actual.files)).toEqual([]);
 
@@ -52,8 +58,8 @@ describe('convertFromJSZip tests', () => {
   test('convert folder1/file1.txt', () => {
     const zip = new JSZip();
     zip.folder('folder1').file('file1.txt', '');
-  
-    const actual = createFolderFromJSZip({ files: zip.files });
+
+    const actual = createFolderFromJSZip(zip);
 
     expect(Object.keys(actual.files)).toEqual([]);
     expect(Object.keys(actual.folders)).toEqual(['folder1']);
@@ -66,8 +72,8 @@ describe('convertFromJSZip tests', () => {
     const zip = new JSZip();
     zip.folder('folder1').file('file1.txt', '');
     zip.folder('folder1').file('file2.txt', '');
-  
-    const actual = createFolderFromJSZip({ files: zip.files });
+
+    const actual = createFolderFromJSZip(zip);
 
     expect(Object.keys(actual.files)).toEqual([]);
     expect(Object.keys(actual.folders)).toEqual(['folder1']);

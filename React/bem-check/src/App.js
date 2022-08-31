@@ -3,6 +3,8 @@ import JSZip from 'jszip';
 import { validateBemJsZip } from './api/validate-bem/validate-bem';
 
 import './App.css';
+import { validateFileExists } from './api/validate-bem/utils/validate-file-exists/validate-file-exists';
+import { validateFolderExists } from './api/validate-bem/utils/validate-folder-exists/validate-folder-exists';
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -11,19 +13,17 @@ function App() {
     JSZip.loadAsync(e.target.files[0])
       .then(function(zipContent) {
         // const zip = new JSZip();
-        // zip.folder('vendor').folder('fonts').file('fonts.css', '');
-        // zip.folder('otherFolder').file('fonts.css', '');
+        // zip.folder('folder1').folder('vendor').file('fonts.css', '');
     
-        // function validateZipTestHelper(zip) {
-        //   return validateBemJsZip(
-        //     zip,
-        //     [(folder) => validateFileExists('fonts.css', ['./vendor', './vendor/fonts'], 'test')]
-        //   );
-        //   // return validateBemJsZip(zip, []);
-        //   //return validateFontsCss(createFolderFromJSZip(zip), 'fonts.css', ['./vendor', './vendor/fonts']);
-        // }
-        // const results = validateZipTestHelper(zip);
-
+        // const results = validateBemJsZip(zip,
+        //   [(folder) => validateFileExists(folder, 'fonts.css', ['./vendor', './vendor/fonts'], 'test')],
+        //   (folder) => {
+        //     return folder.containsFolder('vendor');
+        //   }
+        // );
+    
+    
+        
         const messages = validateBemJsZip(zipContent);
         setMessages(messages);
       });

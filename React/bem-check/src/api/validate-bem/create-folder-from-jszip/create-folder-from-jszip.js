@@ -3,7 +3,7 @@ import { Folder } from "../folder-object";
 function createFolderFromJSZip(zipContent) {
   if (!zipContent) { throw new Error('zipContent is null/undefined'); }
   
-  const root = new Folder('.', []);
+  const root = new Folder('.', Folder.NoParent);
 
   Object.getOwnPropertyNames(zipContent.files).forEach(
     (itemFullName) => {
@@ -15,7 +15,7 @@ function createFolderFromJSZip(zipContent) {
         (parentFolder, folderName) => {
           let folder = parentFolder.folders[folderName];
           if (!folder) {
-            folder = parentFolder.AddFolder(folderName);
+            folder = parentFolder.addFolder(folderName);
           }
           return folder;
         },
@@ -23,9 +23,9 @@ function createFolderFromJSZip(zipContent) {
       );
 
       if (zipContent.files[itemFullName].dir) {
-        itemParentFolder.AddFolder(itemName, fullNameAsArray);
+        itemParentFolder.addFolder(itemName);
       } else {
-        itemParentFolder.AddFile(itemName, fullNameAsArray);
+        itemParentFolder.addFile(itemName);
       }
     }
   );

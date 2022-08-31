@@ -36,6 +36,7 @@ function validateBem(folder, validators) {
       validateFontsCss, validateNormalizeCss, validateReadme, validateBlocksFolderExists, validateScriptIndexJs,
       validatePagesIndexCss, validateImagesFolderExists
     ];
+
   return activeValidators.reduce(
     (accumulator, validator) => {
       return accumulator.concat(validator(folder));
@@ -44,8 +45,10 @@ function validateBem(folder, validators) {
   );
 }
 
-function validateBemJsZip(jsZip, validators) {
-  return validateBem(createFolderFromJSZip(jsZip), validators);
+function validateBemJsZip(jsZip, validators, isRootFolder) {
+  const targetFolder = createFolderFromJSZip(jsZip);
+  const targetRootFolder = (targetFolder.findChildFolderByCallback(isRootFolder) || targetFolder).cloneRecursive();
+  return validateBem(targetRootFolder, validators);
 }
 
 export { validateBemJsZip }
