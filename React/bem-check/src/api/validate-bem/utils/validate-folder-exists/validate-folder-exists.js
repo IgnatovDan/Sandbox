@@ -1,5 +1,5 @@
 import { ValidationResultItem } from "../../validation-item";
-import { comparePaths, findFoldersRecursive } from "../utils";
+import { comparePaths } from "../utils";
 
 class ValidationResults {
   #notFound = 'NotFound';
@@ -51,7 +51,7 @@ function validateFolderExists(folder, folderName, allowedPaths, errorCodePrefix)
   if (!allowedPaths) { throw new Error('allowedPaths is null'); }
 
   const result = [];
-  const foundFolders = findFoldersRecursive(folder, folderName);
+  const foundFolders = folder.findFoldersRecursive(folderName);
 
   const validationResults = new ValidationResults(errorCodePrefix);
 

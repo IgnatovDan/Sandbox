@@ -1,5 +1,5 @@
 import { ValidationResultItem } from "../../validation-item";
-import { comparePaths, findFilesRecursive } from "../utils";
+import { comparePaths } from "../utils";
 
 class ValidationResults {
   #notFound = 'notFound';
@@ -71,7 +71,7 @@ function validateFileExists(folder, fileName, allowedPaths, errorCodePrefix, all
   if (!allowedPaths) { throw new Error('expectedPaths is null/undefined'); }
 
   const result = [];
-  const foundFiles = findFilesRecursive(folder, fileName);
+  const foundFiles = folder.findFilesRecursive(fileName);
 
   const validationResults = new ValidationResults(errorCodePrefix);
 

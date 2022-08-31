@@ -94,6 +94,62 @@ class Folder {
 
     return findRecursiveMaxDeep(this, callback, 2);
   }
+
+  findFolders(folderName) {
+    if (!folderName) { throw new Error('folderName is null/undefined'); }
+  
+    const result = [];
+    const propertyName = Object.getOwnPropertyNames(this.folders).find(
+      propertyName => propertyName.toUpperCase() === folderName.toUpperCase()
+    );
+    if (propertyName) {
+      result.push(this.folders[propertyName]);
+    }
+    return result;
+  }
+  
+  findFoldersRecursive(folderName) {
+    if (!folderName || (folderName === '')) { throw new Error('folderName is null or empty'); }
+  
+    const childFolders = this.findFolders(folderName);
+  
+    const childFoldersResult = Object.values(this.folders).reduce(
+      (aggregator, folder) => {
+        return aggregator.concat(folder.findFoldersRecursive(folderName));
+      },
+      []
+    );
+  
+    return [...childFolders, ...childFoldersResult];
+  }
+  
+  findFiles(fileName) {
+    if (!fileName) { throw new Error('fileName is null/undefined'); }
+  
+    const result = [];
+    const propertyName = Object.getOwnPropertyNames(this.files).find(
+      propertyName => propertyName.toUpperCase() === fileName.toUpperCase()
+    );
+    if (propertyName) {
+      result.push(this.files[propertyName]);
+    }
+    return result;
+  }
+  
+  findFilesRecursive(fileName) {
+    if (!fileName || (fileName === '')) { throw new Error('fileName is null or empty'); }
+  
+    const childFiles = this.findFiles(fileName);
+  
+    const childFoldersResult = Object.values(this.folders).reduce(
+      (aggregator, folder) => {
+        return aggregator.concat(folder.findFilesRecursive(fileName));
+      },
+      []
+    );
+  
+    return [...childFiles, ...childFoldersResult];
+  }
   //get files() { return this.#files; } - properties are not supported in node (jest.toEqual({ code: 1 }) and console.log)
 }
 
