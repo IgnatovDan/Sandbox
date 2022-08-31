@@ -1,5 +1,5 @@
 import { ValidationResultItem } from "../../validation-item";
-import { comparePaths } from "../utils";
+import { comparePaths, findFilesRecursive } from "../utils";
 
 class ValidationResults {
   #notFound = 'notFound';
@@ -64,36 +64,6 @@ class ValidationResults {
 
     return new ValidationResultItem(this.#incorrectCaseInFileName, message);
   }
-}
-
-function findFilesInFolder(folder, fileName) {
-  if (!folder) { throw new Error('folder is null/undefined'); }
-  if (!fileName) { throw new Error('fileName is null/undefined'); }
-
-  const result = [];
-  const propertyName = Object.getOwnPropertyNames(folder.files).find(
-    propertyName => propertyName.toUpperCase() === fileName.toUpperCase()
-  );
-  if (propertyName) {
-    result.push(folder.files[propertyName]);
-  }
-  return result;
-}
-
-function findFilesRecursive(folder, fileName) {
-  if (!folder) { throw new Error('folder is null'); }
-  if (!fileName || (fileName === '')) { throw new Error('fileName is null or empty'); }
-
-  const childFiles = findFilesInFolder(folder, fileName);
-
-  const childFoldersResult = Object.values(folder.folders).reduce(
-    (aggregator, folder) => {
-      return aggregator.concat(findFilesRecursive(folder, fileName));
-    },
-    []
-  );
-
-  return [...childFiles, ...childFoldersResult];
 }
 
 function validateFileExists(folder, fileName, allowedPaths, errorCodePrefix, allowUpperCase) {

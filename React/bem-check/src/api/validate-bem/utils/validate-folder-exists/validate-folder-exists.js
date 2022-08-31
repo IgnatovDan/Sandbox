@@ -1,5 +1,5 @@
 import { ValidationResultItem } from "../../validation-item";
-import { comparePaths } from "../utils";
+import { comparePaths, findFoldersRecursive } from "../utils";
 
 class ValidationResults {
   #notFound = 'NotFound';
@@ -44,36 +44,6 @@ class ValidationResults {
       `Каталог \`${folderFullName}\` должен иметь название \`${targetFolderName}\``
     );
   }
-}
-
-function findFoldersInFolder(folder, folderName) {
-  if (!folder) { throw new Error('folder is null/undefined'); }
-  if (!folderName) { throw new Error('folderName is null/undefined'); }
-
-  const result = [];
-  const propertyName = Object.getOwnPropertyNames(folder.folders).find(
-    propertyName => propertyName.toUpperCase() === folderName.toUpperCase()
-  );
-  if (propertyName) {
-    result.push(folder.folders[propertyName]);
-  }
-  return result;
-}
-
-function findFoldersRecursive(folder, folderName) {
-  if (!folder) { throw new Error('folder is null'); }
-  if (!folderName || (folderName === '')) { throw new Error('folderName is null or empty'); }
-
-  const childFolders = findFoldersInFolder(folder, folderName);
-
-  const childFoldersResult = Object.values(folder.folders).reduce(
-    (aggregator, folder) => {
-      return aggregator.concat(findFoldersRecursive(folder, folderName));
-    },
-    []
-  );
-
-  return [...childFolders, ...childFoldersResult];
 }
 
 function validateFolderExists(folder, folderName, allowedPaths, errorCodePrefix) {
