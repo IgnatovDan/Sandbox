@@ -31,10 +31,9 @@ const validateBemConfigs = {
   },
   level3: {
     caption: 'Level3 (has `readme/blocks/pages/vendor/js/fonts/images`)',
-    validators: [
-      validateReadme, validateBlocksFolderExists, validatePagesIndexCss, validateVendorFolderExists,
-      validateScriptsFileExists, validateFontsCss, validateImagesFolderExists
-    ]
+    get validators() {
+      return [...validateBemConfigs.level2.validators, validateScriptsFileExists, validateFontsCss];
+    }
   }
 }
 
