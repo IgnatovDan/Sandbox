@@ -4,8 +4,8 @@ import { validateBemJsZip } from './api/validate-bem/validate-bem';
 
 import './App.css';
 import { validateBemConfigs } from './api/validate-bem/validate-bem-configs';
-import { autoGetValidators } from './api/validate-bem/auto-select-validators/auto-select-validators';
-import { createFolderFromJSZip } from './api/validate-bem/create-folder-from-jszip/create-folder-from-jszip';
+// import { autoGetValidators } from './api/validate-bem/auto-select-validators/auto-select-validators';
+// import { createFolderFromJSZip } from './api/validate-bem/create-folder-from-jszip/create-folder-from-jszip';
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -57,7 +57,7 @@ function App() {
         }
       </select>
     );
-  }, []);
+  }, [setCheckLevelHandler]);
 
   return (
     <div className="App">
