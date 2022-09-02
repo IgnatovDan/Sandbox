@@ -88,7 +88,7 @@ function validateFileExists(folder, fileName, allowedPaths, errorCodePrefix, all
     if (!allowUpperCase && foundFile.name.toUpperCase() === fileName.toUpperCase() && foundFile.name !== fileName) {
       result.push(validationResults.createIncorrectCaseInFileName(foundFile.getFullName(), fileName));
     }
-    if (!allowedPaths.find(item => comparePaths(foundFile.getParentFolderFullName(), item))) {
+    if (!allowedPaths.find(allowedPath => comparePaths(foundFile.getParentFolderFullName(), allowedPath))) {
       result.push(validationResults.createIncorrectPath(foundFile.getFullName(), allowedPaths));
     }
   }

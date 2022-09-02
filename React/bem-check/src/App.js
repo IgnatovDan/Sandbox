@@ -1,55 +1,89 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import JSZip from 'jszip';
 import { validateBemJsZip } from './api/validate-bem/validate-bem';
 
 import './App.css';
-import { validateFileExists } from './api/validate-bem/utils/validate-file-exists/validate-file-exists';
-import { validateFolderExists } from './api/validate-bem/utils/validate-folder-exists/validate-folder-exists';
+import { validateBemConfigs } from './api/validate-bem/validate-bem-configs';
+import { autoGetValidators } from './api/validate-bem/auto-select-validators/auto-select-validators';
+import { createFolderFromJSZip } from './api/validate-bem/create-folder-from-jszip/create-folder-from-jszip';
 
 function App() {
   const [messages, setMessages] = useState([]);
+  const [activeValidationConfigName, setActiveValidationConfigName] = useState('autoSelect');
 
   const handleFileChange = useCallback((e) => {
     JSZip.loadAsync(e.target.files[0])
       .then(function(zipContent) {
         // const zip = new JSZip();
         // zip.folder('folder1').folder('vendor').file('fonts.css', '');
-    
+
         // const results = validateBemJsZip(zip,
         //   [(folder) => validateFileExists(folder, 'fonts.css', ['./vendor', './vendor/fonts'], 'test')],
         //   (folder) => {
         //     return folder.containsFolder('vendor');
         //   }
         // );
-    
-    
-        
-        const messages = validateBemJsZip(zipContent);
-        setMessages(messages);
+
+        // const zip = new JSZip();
+        // zip.folder('pages');
+        //     debugger;
+        // autoGetValidators(createFolderFromJSZip(zip));
+
+        const messages = validateBemJsZip(zipContent, validateBemConfigs[activeValidationConfigName].validators);
+        if (messages.length === 0) {
+          setMessages([{ code: 'no validation messages', text: 'There are no validation messages' }]);
+        } else {
+          setMessages(messages);
+        }
       });
+  }, [activeValidationConfigName]);
+
+  const setCheckLevelHandler = useCallback(e => {
+    debugger;
+    setActiveValidationConfigName(e.target.value);
+  }, [setActiveValidationConfigName]);
+
+  const selectCheckLevelMarkup = useMemo(() => {
+    return (
+      <select onChange={ setCheckLevelHandler }>
+        {
+          Object.keys(validateBemConfigs).map(configName => {
+            return (
+              <option key={ configName } value={ configName }>
+                { validateBemConfigs[configName].caption }
+              </option>
+            )
+          })
+        }
+      </select>
+    );
   }, []);
 
   return (
     <div className="App">
       <main className="app-main">
-        <form >
+        <form className="app-main__form">
           <label>
-            Select ZIP archive with sources
+            Select check level: { selectCheckLevelMarkup }
+          </label>
+          <label>
+            Select ZIP archive with sources:
             <input type="file" accept=".zip" onChange={ handleFileChange }></input>
           </label>
-          {/* <button className="check-sources" type="submit">Check sources</button> */ }
+          {/* <button className="check-sources" type="submit">Validate</button> */ }
         </form>
-        <div className="check-results">
+        <p>Active validators config: { validateBemConfigs[activeValidationConfigName].caption }</p>
+        <ul className="check-results">
           {
             messages.map(message => {
               return (
-                <p key={ message.code }>
+                <li key={ message.code }>
                   { message.text }
-                </p>
+                </li>
               );
             })
           }
-        </div>
+        </ul>
       </main>
     </div>
   );

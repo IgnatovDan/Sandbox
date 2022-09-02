@@ -136,6 +136,16 @@ class Folder {
     return result;
   }
   
+  getFileRecursive(fullNameArray) {
+    const targetFolder = fullNameArray.slice(0, -1).reduce(
+      (accumulator, currentPathItem) => {
+        return accumulator?.folders[currentPathItem];
+      },
+      this
+    );
+    return targetFolder?.files[fullNameArray[fullNameArray.length - 1]];
+  }
+
   findFilesRecursive(fileName) {
     if (!fileName || (fileName === '')) { throw new Error('fileName is null or empty'); }
   
