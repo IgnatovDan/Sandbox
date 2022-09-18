@@ -29,6 +29,7 @@ dotnet add figure-area-console reference figure-area-lib
 
 ## Github actions
 See https://github.com/IgnatovDan/Sandbox/blob/main/.github/workflows/tasks__figure-area__run-tests.yml
+
 [![Run ./tasks/figure-area tests](https://github.com/IgnatovDan/Sandbox/actions/workflows/tasks__figure-area__run-tests.yml/badge.svg)](https://github.com/IgnatovDan/Sandbox/actions/workflows/tasks__figure-area__run-tests.yml)
 
 ## Available Scripts:
