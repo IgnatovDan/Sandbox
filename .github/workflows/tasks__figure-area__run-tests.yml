@@ -1,0 +1,50 @@
+# Workflow name
+name: 'Run ./tasks/figure-area tests'
+
+# Event for the workflow
+on:
+  pull_request:
+    paths: 
+      - 'tasks/figure-area/**'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# List of jobs
+jobs:
+  test:
+    # Operating System
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./tasks/figure-area/
+
+    # Job Steps
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '6.0.x'
+          include-prerelease: true
+
+      - name: Display dotnet version
+        run: dotnet --version
+
+      - name: Install dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet test --logger trx --results-directory "TestResults"
+
+      - name: Upload dotnet test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: dotnet-results
+          path: ./tasks/figure-area/TestResults
+        if: ${{ always() }}
