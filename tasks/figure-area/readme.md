@@ -3,7 +3,7 @@
 ## Application:
 - queries values in command line to calculate a figure area by a predefined formula and allows to register new formulas (kept in memory)
 
-TODO:  ![image]()
+![image](https://user-images.githubusercontent.com/2094015/190881448-bc6dcf22-bb17-4b5a-84af-a3a72e9b68f5.png)
 
 ## Used technologies
 c#, console application, .NET Core 6, UT, TDD, Github Actions.
