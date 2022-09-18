@@ -10,7 +10,7 @@ public class CommandsManager {
 
   public void Run() {
     while (true) {
-      string availableCommands = string.Join(", ", commands.Keys);
+      string availableCommands = string.Join(", ", commands.Keys.Select(item => $"`{item}`"));
       Console.WriteLine("");
       Console.WriteLine($"--- Type {availableCommands} or `{Exit}` and press `Enter` ---");
       string? commandName = Console.ReadLine();
