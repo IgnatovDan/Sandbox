@@ -8,7 +8,7 @@ public class CommandsManager {
     commands.Add(commandName, callback);
   }
 
-  public void Run() {
+  public void RunCycle() {
     while (true) {
       string availableCommands = string.Join(", ", commands.Keys.Select(item => $"`{item}`"));
       Console.WriteLine("");

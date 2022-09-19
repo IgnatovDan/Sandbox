@@ -7,6 +7,6 @@ CommandsManager commandsManager = new CommandsManager();
 commandsManager.RegisterCommand("circle", () => { CircleAreaCommand.Invoke(); });
 commandsManager.RegisterCommand("triangle", () => { TriangleAreaCommand.Invoke(); });
 
-commandsManager.Run();
+commandsManager.RunCycle();
 
 Console.WriteLine("Goodbye! Nice to see you!");
