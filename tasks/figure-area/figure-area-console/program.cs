@@ -6,7 +6,7 @@ Console.OutputEncoding = System.Text.Encoding.UTF8; // Enable UTF8 to show RU ch
 Console.WriteLine("Welcome, Dear Customer!");
 Console.WriteLine("This application allows you to calculate areas of different figures.");
 
-IConsole console = new ConsoleWrapper();
+IConsoleService console = new ConsoleService();
 
 ConsoleCommandsManager commandsManager = new ConsoleCommandsManager(console);
 commandsManager.RegisterCommand("circle", () => { CircleAreaCommand.Invoke(console); });

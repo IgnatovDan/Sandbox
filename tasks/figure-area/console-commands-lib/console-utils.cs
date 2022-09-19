@@ -3,7 +3,7 @@ using System.Globalization;
 namespace console_commands_lib;
 
 public static class ConsoleUtils {
-  public static double ReadDoubleFromConsole(IConsole console, string caption) {
+  public static double ReadDoubleFromConsole(IConsoleService console, string caption) {
     double result;
     console.WriteLine($"Введите {caption} (###0,0): ");
     while (true) {

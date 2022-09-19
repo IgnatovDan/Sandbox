@@ -1,11 +1,11 @@
 namespace console_commands_lib;
 
-public interface IConsole {
+public interface IConsoleService {
   void WriteLine(string? str);
   string? ReadLine();
 }
 
-public class ConsoleWrapper : IConsole {
+public class ConsoleService : IConsoleService {
   public void WriteLine(string? str) {
     Console.WriteLine(str);
   }

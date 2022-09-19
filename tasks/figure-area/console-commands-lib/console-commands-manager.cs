@@ -3,9 +3,9 @@ namespace console_commands_lib;
 public class ConsoleCommandsManager {
   private static readonly string Exit = "exit";
   private Dictionary<string, Action> commands = new Dictionary<string, Action>(StringComparer.InvariantCultureIgnoreCase);
-  private IConsole console;
+  private IConsoleService console;
 
-  public ConsoleCommandsManager(IConsole console) {
+  public ConsoleCommandsManager(IConsoleService console) {
     this.console = console;
   }
 
