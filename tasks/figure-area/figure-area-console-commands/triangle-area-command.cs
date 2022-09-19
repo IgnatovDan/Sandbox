@@ -1,4 +1,7 @@
+using console_commands_lib;
 using figure_area_lib;
+
+namespace figure_area_console_commands;
 
 public static class TriangleAreaCommand {
   public static void Invoke() {

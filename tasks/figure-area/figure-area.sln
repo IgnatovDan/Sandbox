@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "figure-area-lib-tests", "fi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "figure-area-console", "figure-area-console\figure-area-console.csproj", "{72B391A1-DE29-4610-9F93-87F2D07B9D22}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "console-commands-lib", "console-commands-lib\console-commands-lib.csproj", "{3F885201-997B-4BEC-90E4-97CD4B1F00F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "figure-area-console-commands", "figure-area-console-commands\figure-area-console-commands.csproj", "{FF274C84-7EEE-4CB1-B691-81B5C7193595}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +34,13 @@ Global
 		{72B391A1-DE29-4610-9F93-87F2D07B9D22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72B391A1-DE29-4610-9F93-87F2D07B9D22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72B391A1-DE29-4610-9F93-87F2D07B9D22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F885201-997B-4BEC-90E4-97CD4B1F00F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F885201-997B-4BEC-90E4-97CD4B1F00F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F885201-997B-4BEC-90E4-97CD4B1F00F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F885201-997B-4BEC-90E4-97CD4B1F00F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF274C84-7EEE-4CB1-B691-81B5C7193595}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF274C84-7EEE-4CB1-B691-81B5C7193595}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF274C84-7EEE-4CB1-B691-81B5C7193595}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF274C84-7EEE-4CB1-B691-81B5C7193595}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,6 @@
-using System.Text;
+namespace console_commands_lib;
 
-public class CommandsManager {
+public class ConsoleCommandsManager {
   private static readonly string Exit = "exit";
   private Dictionary<string, Action> commands = new Dictionary<string, Action>(StringComparer.InvariantCultureIgnoreCase);
 

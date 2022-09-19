@@ -1,5 +1,7 @@
 using System.Globalization;
 
+namespace console_commands_lib;
+
 public static class ConsoleUtils {
   public static double ReadDoubleFromConsole(string caption) {
     double result;
