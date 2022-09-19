@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "figure-area-console", "figu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "console-commands-lib", "console-commands-lib\console-commands-lib.csproj", "{3F885201-997B-4BEC-90E4-97CD4B1F00F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "figure-area-console-commands", "figure-area-console-commands\figure-area-console-commands.csproj", "{FF274C84-7EEE-4CB1-B691-81B5C7193595}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "figure-area-console-commands-lib", "figure-area-console-commands-lib\figure-area-console-commands-lib.csproj", "{FF274C84-7EEE-4CB1-B691-81B5C7193595}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "console-commands-lib-tests", "console-commands-lib-tests\console-commands-lib-tests.csproj", "{2470B931-9829-444D-A1D5-3003911626ED}"
 EndProject

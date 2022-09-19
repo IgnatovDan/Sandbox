@@ -3,13 +3,13 @@ using System.Globalization;
 namespace console_commands_lib;
 
 public static class ConsoleUtils {
-  public static double ReadDoubleFromConsole(string caption) {
+  public static double ReadDoubleFromConsole(IConsole console, string caption) {
     double result;
-    Console.Write($"Введите {caption} (###0,0): ");
+    console.WriteLine($"Введите {caption} (###0,0): ");
     while (true) {
-      string? resultAsString = Console.ReadLine();
+      string? resultAsString = console.ReadLine();
       if (resultAsString == null) {
-        Console.WriteLine($"Введено пустое значение. Повторите ввод {caption} (###0,0).");
+        console.WriteLine($"Введено пустое значение. Повторите ввод {caption} (###0,0).");
       }
       else {
         try {
@@ -19,7 +19,7 @@ public static class ConsoleUtils {
           break;
         }
         catch (Exception e) {
-          Console.WriteLine($"Возникла ошибка при получении числа из введенной строки ({e.Message}). Повторите ввод {caption} (###0,0).");
+          console.WriteLine($"Возникла ошибка при получении числа из введенной строки ({e.Message}). Повторите ввод {caption} (###0,0).");
         }
       }
     }

@@ -3,7 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\figure-area-lib\figure-area-lib.csproj" />
     <ProjectReference Include="..\console-commands-lib\console-commands-lib.csproj" />
-    <ProjectReference Include="..\figure-area-console-commands\figure-area-console-commands.csproj" />
+    <ProjectReference Include="..\figure-area-console-commands-lib\figure-area-console-commands-lib.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

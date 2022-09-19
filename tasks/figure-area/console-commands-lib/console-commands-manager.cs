@@ -3,6 +3,11 @@ namespace console_commands_lib;
 public class ConsoleCommandsManager {
   private static readonly string Exit = "exit";
   private Dictionary<string, Action> commands = new Dictionary<string, Action>(StringComparer.InvariantCultureIgnoreCase);
+  private IConsole console;
+
+  public ConsoleCommandsManager(IConsole console) {
+    this.console = console;
+  }
 
   public void RegisterCommand(string commandName, Action callback) {
     commands.Add(commandName, callback);
@@ -11,9 +16,9 @@ public class ConsoleCommandsManager {
   public void RunCycle() {
     while (true) {
       string availableCommands = string.Join(", ", commands.Keys.Select(item => $"`{item}`"));
-      Console.WriteLine("");
-      Console.WriteLine($"--- Type {availableCommands} or `{Exit}` and press `Enter` ---");
-      string? commandName = Console.ReadLine();
+      console.WriteLine("");
+      console.WriteLine($"--- Type {availableCommands} or `{Exit}` and press `Enter` ---");
+      string? commandName = console.ReadLine();
       if (commandName == Exit) {
         break;
       }
@@ -24,11 +29,11 @@ public class ConsoleCommandsManager {
             callback();
           }
           catch (Exception e) {
-            Console.WriteLine("Error occurred: " + e.Message);
+            console.WriteLine("Error occurred: " + e.Message);
           }
         }
         else {
-          Console.WriteLine("Unknown command.");
+          console.WriteLine("Unknown command.");
         }
       }
     }

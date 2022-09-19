@@ -7,7 +7,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>figure_area_console_commands</RootNamespace>
+    <RootNamespace>figure_area_console_commands_lib</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>

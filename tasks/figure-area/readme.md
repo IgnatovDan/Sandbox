@@ -17,14 +17,35 @@ cd figure-area
 
 dotnet new classlib -o figure-area-lib 
 dotnet sln add figure-area-lib
-
 dotnet new xunit -o figure-area-lib-tests 
 dotnet sln add figure-area-lib-tests
 dotnet add figure-area-lib-tests reference figure-area-lib
 
+dotnet new classlib -o console-commands-lib
+dotnet sln add console-commands-lib
+dotnet new xunit -o console-commands-lib-tests
+dotnet sln add console-commands-lib-tests
+dotnet add console-commands-lib-tests reference console-commands-lib
+cd console-commands-lib-tests
+dotnet add package Moq
+cd ..
+
+dotnet new classlib -o figure-area-console-commands-lib
+dotnet sln add figure-area-console-commands-lib
+dotnet add figure-area-console-commands-lib reference figure-area-lib
+dotnet add figure-area-console-commands-lib reference console-commands-lib
+dotnet add figure-area-console-commands-lib-tests reference figure-area-lib
+dotnet add figure-area-console-commands-lib-tests reference console-commands-lib
+dotnet add figure-area-console-commands-lib-tests reference figure-area-console-commands-lib
+
 dotnet new console -o figure-area-console
 dotnet sln add figure-area-console
 dotnet add figure-area-console reference figure-area-lib
+dotnet add figure-area-console reference console-commands-lib
+dotnet add figure-area-console reference figure-area-console-commands-lib
+
+
+
 ```
 
 ## Github actions
