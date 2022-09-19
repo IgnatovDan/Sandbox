@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "console-commands-lib", "con
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "figure-area-console-commands", "figure-area-console-commands\figure-area-console-commands.csproj", "{FF274C84-7EEE-4CB1-B691-81B5C7193595}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "console-commands-lib-tests", "console-commands-lib-tests\console-commands-lib-tests.csproj", "{2470B931-9829-444D-A1D5-3003911626ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{FF274C84-7EEE-4CB1-B691-81B5C7193595}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF274C84-7EEE-4CB1-B691-81B5C7193595}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF274C84-7EEE-4CB1-B691-81B5C7193595}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2470B931-9829-444D-A1D5-3003911626ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2470B931-9829-444D-A1D5-3003911626ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2470B931-9829-444D-A1D5-3003911626ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2470B931-9829-444D-A1D5-3003911626ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
