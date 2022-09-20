@@ -14,8 +14,8 @@ public class ConsoleCommandsManager {
     commands.Add(commandName, callback);
   }
 
-  public void RunCycle(int maxCycleCount = 100) {
-    for (int i = 0; i < maxCycleCount; i++) {
+  public void RunCycle(int maxInfiniteLoop = 100) {
+    for (int i = 0; i < maxInfiniteLoop; i++) {
       string availableCommands = string.Join(", ", commands.Keys.Select(item => $"`{item}`"));
       console.WriteLine("");
       console.WriteLine($"--- Type {availableCommands} or `{Exit}` and press `Enter` ---");

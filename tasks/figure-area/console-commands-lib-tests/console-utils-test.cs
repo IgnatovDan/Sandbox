@@ -36,4 +36,17 @@ public class ConsoleUtilsTest_ReadDoubleFromConsole {
     double result = ConsoleUtils.ReadDoubleFromConsole(console.Object, "f1");
     Assert.Equal(42, result);
   }
+
+  [Fact]
+  public void MaxInfiniteLoopWithNull() {
+    var console = new Mock<IConsoleService>();
+    Assert.Throws<ArgumentNullException>(() => ConsoleUtils.ReadDoubleFromConsole(console.Object, "f1"));
+  }
+
+  [Fact]
+  public void MaxInfiniteLoopWithNonNumber() {
+    var console = new Mock<IConsoleService>();
+    console.Setup(o => o.ReadLine()).Returns("qwe");
+    Assert.Throws<FormatException>(() => ConsoleUtils.ReadDoubleFromConsole(console.Object, "f1"));
+  }
 }
