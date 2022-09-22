@@ -35,7 +35,8 @@
 ## Application:
 - queries values in command line to calculate a figure area by a predefined formula and allows to register new formulas (kept in memory)
 
-![image](https://user-images.githubusercontent.com/2094015/190881448-bc6dcf22-bb17-4b5a-84af-a3a72e9b68f5.png)
+![image](https://user-images.githubusercontent.com/2094015/191867541-e5b06481-5d8c-4595-8776-e7bdb01d78e4.png)
+
 
 ## Used technologies
 c#, console application, .NET Core 6, UT, TDD, Github Actions.
