@@ -1,2 +1,7 @@
-https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/run-your-first-container
-https://hub.docker.com/_/microsoft-windows?tab=description
+Docker:
+- https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/run-your-first-container
+- https://hub.docker.com/_/microsoft-windows?tab=description
+
+-----------
+Windows Sandbox:
+- https://learn.microsoft.com/en-us/windows/security/threat-protection/windows-sandbox/windows-sandbox-overview
