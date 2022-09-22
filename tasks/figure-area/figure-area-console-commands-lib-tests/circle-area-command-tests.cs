@@ -1,6 +1,7 @@
 using Moq;
 using console_commands_lib;
 using figure_area_console_commands_lib;
+using System.Globalization;
 
 namespace figure_area_console_commands_lib_tests;
 
@@ -14,6 +15,8 @@ public class CircleAreaCommandTests {
 
     CircleAreaCommand.Invoke(console.Object);
 
-    Assert.NotNull(writeLineLog.Find(item => (item != null) && item.Contains("Площадь круга: " + Math.PI.ToString())));
+    NumberFormatInfo formatInfo = new NumberFormatInfo();
+    formatInfo.NumberDecimalSeparator = ",";
+    Assert.NotNull(writeLineLog.Find(item => (item != null) && item.Contains("Площадь круга: " + Math.PI.ToString(formatInfo))));
   }
 }

@@ -10,11 +10,11 @@ public class TriangleAreaCommandTests {
     var console = new Mock<IConsoleService>();
     var writeLineLog = new List<string?>();
     console.Setup(_ => _.WriteLine(It.IsAny<string?>())).Callback((string? s) => writeLineLog.Add(s));
-    console.Setup(_ => _.ReadLine()).Returns("4");
-    console.Setup(_ => _.ReadLine()).Returns("4");
+    console.Setup(_ => _.ReadLine()).Returns("4,5");
+    console.Setup(_ => _.ReadLine()).Returns("4,5");
 
     TriangleAreaCommand.Invoke(console.Object);
 
-    Assert.NotNull(writeLineLog.Find(item => (item != null) && item.Contains("Площадь треугольника: 8")));
+    Assert.NotNull(writeLineLog.Find(item => (item != null) && item.Contains("Площадь треугольника: 10,125")));
   }
 }

@@ -3,6 +3,11 @@ using System.Globalization;
 namespace console_commands_lib;
 
 public static class ConsoleUtils {
+  public static void WriteDoubleToConsole(IConsoleService console, string formatString, double value) {
+    NumberFormatInfo formatInfo = new NumberFormatInfo();
+    formatInfo.NumberDecimalSeparator = ",";
+    console.WriteLine(String.Format(formatString, value.ToString(formatInfo)));
+  }
   public static double ReadDoubleFromConsole(IConsoleService console, string caption) {
     double? result = ReadDoubleFromConsole(console, caption, false);
     return result ?? 0;

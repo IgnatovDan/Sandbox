@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using console_commands_lib;
 using figure_area_lib;
 
@@ -9,6 +11,6 @@ public static class TriangleAreaCommand {
     double bottom = ConsoleUtils.ReadDoubleFromConsole(console, "длина основания треугольника");
     double height = ConsoleUtils.ReadDoubleFromConsole(console, "высота треугольника");
     double result = FigureArea.CalcTriangleAreaByBottomAndHeight(bottom, height);
-    console.WriteLine("Площадь треугольника: " + result.ToString());
+    ConsoleUtils.WriteDoubleToConsole(console, "Площадь треугольника: {0}", result);
   }
 }

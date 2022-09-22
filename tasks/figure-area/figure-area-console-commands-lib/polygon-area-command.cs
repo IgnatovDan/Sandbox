@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using console_commands_lib;
 
 using figure_area_lib;
@@ -36,6 +38,6 @@ public static class PolygonAreaCommand {
       console.WriteLine("Введено максимальное количество вершин. Начинается расчет площади.");
     }
     double result = FigureArea.CalcPolygonArea(points);
-    console.WriteLine("Площадь многоугольника: " + result.ToString());  // TODO: culture independent delimiter
+    ConsoleUtils.WriteDoubleToConsole(console, "Площадь многоугольника: {0}", result);
   }
 }
