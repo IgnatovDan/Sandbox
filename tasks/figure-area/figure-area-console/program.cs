@@ -11,7 +11,8 @@ IConsoleService console = new ConsoleService();
 ConsoleCommandsManager commandsManager = new ConsoleCommandsManager(console);
 
 commandsManager.RegisterCommand("circle", () => { CircleAreaCommand.Invoke(console); });
-commandsManager.RegisterCommand("triangle", () => { TriangleAreaCommand.Invoke(console); });
+commandsManager.RegisterCommand("triangle_height", () => { TriangleAreaBottomHeightCommand.Invoke(console); });
+commandsManager.RegisterCommand("triangle_sides", () => { TriangleAreaSidesCommand.Invoke(console); });
 commandsManager.RegisterCommand("polygon", () => { PolygonAreaCommand.Invoke(console); });
 
 commandsManager.RunCycle();

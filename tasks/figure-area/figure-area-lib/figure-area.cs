@@ -35,11 +35,25 @@ public class FigureArea {
     return result;
   }
 
-  public static double CalcTriangleAreaByBottomAndHeight(double bottom, double height) {
+  public static double CalcTriangleAreaByBottomHeight(double bottom, double height) {
     if (bottom < 0 || height < 0) {
       throw new ArgumentException("bottom and height should be positive");
     }
     double result = bottom * height / 2;
+    if (result == double.PositiveInfinity) {
+      throw new OverflowException("The resulting value is too large and out of possible values range");
+    }
+    return result;
+  }
+
+  public static double CalcTriangleAreaBySides(double a, double b, double c) {
+    // http://ru.solverbook.com/spravochnik/formuly-po-geometrii/formuly-ploshhadi/ploshhad-treugolnika-po-trem-storonam/
+    if (a < 0 || b < 0 || c < 0) {
+      throw new ArgumentException("All sides should be positive");
+    }
+
+    double p = (a + b + c) / 2;
+    double result = Math.Sqrt(p * (p - a) * (p - b) * (p - c));
     if (result == double.PositiveInfinity) {
       throw new OverflowException("The resulting value is too large and out of possible values range");
     }

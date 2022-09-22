@@ -46,6 +46,8 @@ public static class PolygonAreaCommand {
       else {
         console.WriteLine("Фигура является НЕпрямоугольным треугольником");
       }
+    } else {
+      console.WriteLine("Фигура НЕ является треугольником");
     }
   }
 }

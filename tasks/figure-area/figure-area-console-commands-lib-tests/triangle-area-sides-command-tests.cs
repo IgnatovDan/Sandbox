@@ -4,17 +4,17 @@ using figure_area_console_commands_lib;
 
 namespace figure_area_console_commands_lib_tests;
 
-public class TriangleAreaCommandTests {
+public class TriangleAreaSidesCommandTests {
   [Fact]
   public void Common() {
     var console = new Mock<IConsoleService>();
     var writeLineLog = new List<string?>();
     console.Setup(_ => _.WriteLine(It.IsAny<string?>())).Callback((string? s) => writeLineLog.Add(s));
-    console.Setup(_ => _.ReadLine()).Returns("4,5");
-    console.Setup(_ => _.ReadLine()).Returns("4,5");
+    console.SetupSequence(o => o.ReadLine())
+      .Returns("5").Returns("8").Returns("11");
 
-    TriangleAreaCommand.Invoke(console.Object);
+    TriangleAreaSidesCommand.Invoke(console.Object);
 
-    Assert.NotNull(writeLineLog.Find(item => (item != null) && item.Contains("Площадь треугольника: 10,125")));
+    Assert.NotNull(writeLineLog.Find(item => (item != null) && item.Contains("Площадь треугольника: 18,33030277982336")));
   }
 }

@@ -22,7 +22,7 @@ public class TriangleUtils {
     Point p2 = points[2];
 
     // Math.Sqrt нигде не использую, это лишняя операция, потому что все складывать буду после возведения в квадрат
-    // и ещ он дает погрешность: 2.0000000000000004
+    // и еще он дает погрешность: 2.0000000000000004
     List<double> sidesPow2 = new List<double>() {
       CalcLengthPow2(p0, p1),
       CalcLengthPow2(p1, p2),
