@@ -39,5 +39,13 @@ public static class PolygonAreaCommand {
     }
     double result = FigureArea.CalcPolygonArea(points);
     ConsoleUtils.WriteDoubleToConsole(console, "Площадь многоугольника: {0}", result);
+    if (TriangleUtils.IsTriangle(points)) {
+      if (TriangleUtils.IsRightTriangle(points)) {
+        console.WriteLine("Фигура является прямоугольным треугольником");
+      }
+      else {
+        console.WriteLine("Фигура является НЕпрямоугольным треугольником");
+      }
+    }
   }
 }

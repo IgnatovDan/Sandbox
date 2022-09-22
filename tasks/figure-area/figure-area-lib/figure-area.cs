@@ -48,6 +48,7 @@ public class FigureArea {
 
   public static double CalcPolygonArea(IList<Point> points) {
     // https://en.wikipedia.org/wiki/Polygon#Area
+    // https://ru.stackoverflow.com/questions/483586
     if (points == null || points.Count == 0) {
       return 0;
     }
