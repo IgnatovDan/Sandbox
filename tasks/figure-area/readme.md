@@ -29,11 +29,11 @@
 Подробности по решению условий задания:
 1. "Юнит-тесты" - для каждой библиотеки я создал отдельный проекты с тестами в этом же солюшене, в имени проекта с тестами я добавил "tests". Запуск тестов сделан на GA: [![Run ./tasks/figure-area tests](https://github.com/IgnatovDan/Sandbox/actions/workflows/tasks__figure-area__run-tests.yml/badge.svg)](https://github.com/IgnatovDan/Sandbox/actions/workflows/tasks__figure-area__run-tests.yml)
 2. "Легкость добавления других фигур": можно написать новую функцию по аналогии с `CircleAreaCommand` и зарегистрировать ее через `ConsoleCommandsManager.RegisterCommand` - функция станет доступна в интерфейсе командной строки, будет получать данные и выводить результат. Тесты для новой функции можно написать по аналогиии с тестами на `CircleAreaCommand`. Запуск всех тестовых проектов солюшена уже подключен в GA.
-3. "Проверку на то, является ли треугольник прямоугольным" - TODO:
+3. "Проверку на то, является ли треугольник прямоугольным" - я сделал проверку через теорему пифагора, для команды 'polygon' в консоль выводится текст "Фигура является прямоугольным треугольником" для прямоугольных треугольников
 4. "Вычисление площади фигуры без знания типа фигуры в compile-time" - я сделал расчет по последовательности вершин многоугольника в `PolygonAreaCommand`
 
 ## Application:
-- queries values in command line to calculate a figure area by a predefined formula and allows to register new formulas (kept in memory)
+- queries values in command line to calculate a figure area by one of registered formulas
 
 ![image](https://user-images.githubusercontent.com/2094015/191867541-e5b06481-5d8c-4595-8776-e7bdb01d78e4.png)
 
