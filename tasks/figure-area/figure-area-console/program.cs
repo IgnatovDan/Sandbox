@@ -9,8 +9,10 @@ Console.WriteLine("This application allows you to calculate areas of different f
 IConsoleService console = new ConsoleService();
 
 ConsoleCommandsManager commandsManager = new ConsoleCommandsManager(console);
+
 commandsManager.RegisterCommand("circle", () => { CircleAreaCommand.Invoke(console); });
 commandsManager.RegisterCommand("triangle", () => { TriangleAreaCommand.Invoke(console); });
+commandsManager.RegisterCommand("polygon", () => { PolygonAreaCommand.Invoke(console); });
 
 commandsManager.RunCycle();
 

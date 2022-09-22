@@ -3,16 +3,26 @@ using System.Globalization;
 namespace console_commands_lib;
 
 public static class ConsoleUtils {
-  public static double ReadDoubleFromConsole(IConsoleService console, string caption, int maxInfiniteLoop = 10) {
-    double result;
+  public static double ReadDoubleFromConsole(IConsoleService console, string caption) {
+    double? result = ReadDoubleFromConsole(console, caption, false);
+    return result ?? 0;
+  }
+  public static double? ReadDoubleFromConsole(IConsoleService console, string caption, bool returnNullForEmptyString, int maxInfiniteLoop = 10) {
+    double? result;
     int currentCycle = 0;
     console.WriteLine($"Введите {caption} (###0,0): ");
     while (true) {
       string? resultAsString = console.ReadLine();
-      if (resultAsString == null) {
-        console.WriteLine($"Введено пустое значение. Повторите ввод {caption} (###0,0).");
-        if (currentCycle > maxInfiniteLoop) {
-          throw new ArgumentNullException();
+      if (string.IsNullOrWhiteSpace(resultAsString)) {
+        if (returnNullForEmptyString) {
+          result = null;
+          break;
+        }
+        else {
+          console.WriteLine($"Введено пустое значение. Повторите ввод {caption} (###0,0).");
+          if (currentCycle > maxInfiniteLoop) {
+            throw new ArgumentNullException();
+          }
         }
       }
       else {
