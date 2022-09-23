@@ -35,7 +35,7 @@
 ## Application:
 - queries values in command line to calculate a figure area by one of registered formulas
 
-![image](https://user-images.githubusercontent.com/2094015/191867541-e5b06481-5d8c-4595-8776-e7bdb01d78e4.png)
+![image](https://user-images.githubusercontent.com/2094015/191914215-99585292-0ebf-44f3-9bf2-1c3a9cdea33c.png)
 
 
 ## Used technologies
