@@ -15,8 +15,6 @@ public class CircleAreaCommandTests {
 
     CircleAreaCommand.Invoke(console.Object);
 
-    NumberFormatInfo formatInfo = new NumberFormatInfo();
-    formatInfo.NumberDecimalSeparator = ",";
-    Assert.NotNull(writeLineLog.Find(item => (item != null) && item.Contains("Площадь круга: " + Math.PI.ToString(formatInfo))));
+    Assert.Contains("Площадь круга: 3,141592653589793", writeLineLog);
   }
 }

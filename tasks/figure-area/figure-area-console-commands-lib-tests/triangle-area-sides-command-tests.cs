@@ -15,6 +15,6 @@ public class TriangleAreaSidesCommandTests {
 
     TriangleAreaSidesCommand.Invoke(console.Object);
 
-    Assert.NotNull(writeLineLog.Find(item => (item != null) && item.Contains("Площадь треугольника: 18,33030277982336")));
+    Assert.Contains("Площадь треугольника: 18,33030277982336", writeLineLog);
   }
 }

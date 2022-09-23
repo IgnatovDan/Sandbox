@@ -15,7 +15,7 @@ public static class ConsoleUtils {
   public static double? ReadDoubleFromConsole(IConsoleService console, string caption, bool returnNullForEmptyString, int maxInfiniteLoop = 10) {
     double? result;
     int currentCycle = 0;
-    console.WriteLine($"Введите {caption} (###0,0): ");
+    console.Write($"Введите {caption} (###0,0): ");
     while (true) {
       string? resultAsString = console.ReadLine();
       if (string.IsNullOrWhiteSpace(resultAsString)) {

@@ -15,6 +15,6 @@ public class TriangleAreaBottomHeightCommandTests {
 
     TriangleAreaBottomHeightCommand.Invoke(console.Object);
 
-    Assert.NotNull(writeLineLog.Find(item => (item != null) && item.Contains("Площадь треугольника: 10,125")));
+    Assert.Contains("Площадь треугольника: 10,125", writeLineLog);
   }
 }
