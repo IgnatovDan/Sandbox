@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\figure-area-lib\figure-area-lib.csproj" />
+    <ProjectReference Include="..\console-commands-lib\console-commands-lib.csproj" />
+    <ProjectReference Include="..\figure-area-console-commands-lib\figure-area-console-commands-lib.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>figure_area_console</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>
