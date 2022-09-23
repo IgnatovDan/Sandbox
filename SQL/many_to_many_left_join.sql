@@ -99,3 +99,11 @@ SELECT Products.[name] as Product_Name, Categories.[name] as Category_Name from 
 left join ProductCategories on ProductCategories.product = Products.id
 left join Categories on ProductCategories.category = Categories.id
 GO
+
+/*
+Results:
+Product_2	Category_2
+Product_2	Category_1
+Product_1	Category_1
+Product_3	NULL
+*/
