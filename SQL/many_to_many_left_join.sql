@@ -51,24 +51,36 @@ CREATE TABLE [ProductCategories](
 )
 GO
 
-/* Create two Products */
+/* Create 3 Products */
 INSERT INTO Products (name) VALUES ('Product_1');
 INSERT INTO Products (name) VALUES ('Product_2');
+INSERT INTO Products (name) VALUES ('Product_3');
 GO
 
-/* Create two Categories */
+/* Create 3 Categories */
 INSERT INTO Categories (name) VALUES ('Category_1');
 INSERT INTO Categories (name) VALUES ('Category_2');
+INSERT INTO Categories (name) VALUES ('Category_3');
 GO
 
-/* Link Product_1 to Category_1 via ProductCategories table */
 DECLARE @product1 [uniqueidentifier]
 SET @product1 = (SELECT [id] FROM Products WHERE [name] = 'Product_1')
+
+DECLARE @product2 [uniqueidentifier]
+SET @product2 = (SELECT [id] FROM Products WHERE [name] = 'Product_2')
 
 DECLARE @category1 [uniqueidentifier]
 SET @category1 = (SELECT [id] FROM Categories WHERE [name] = 'Category_1')
 
+DECLARE @category2 [uniqueidentifier]
+SET @category2 = (SELECT [id] FROM Categories WHERE [name] = 'Category_2')
+
+/* Link Product_1 to Category_1 */
 INSERT INTO ProductCategories (product, category) VALUES (@product1, @category1);
+
+/* Link Product_2 to Category_1 AND Category_2 */
+INSERT INTO ProductCategories (product, category) VALUES (@product2, @category1);
+INSERT INTO ProductCategories (product, category) VALUES (@product2, @category2);
 GO
 
 /* Show rows from all tables */
