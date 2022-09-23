@@ -33,13 +33,13 @@ GO
 CREATE TABLE [Products](
 	[id] [uniqueidentifier] ROWGUIDCOL DEFAULT NEWID() NOT NULL PRIMARY KEY,
 	[name] [varchar](50) NOT NULL,
-) ON [PRIMARY]
+)
 GO
 
 CREATE TABLE [Categories](
 	[id] [uniqueidentifier] ROWGUIDCOL DEFAULT NEWID() NOT NULL PRIMARY KEY,
 	[name] [varchar](50) NOT NULL,
-) ON [PRIMARY]
+)
 GO
 
 CREATE TABLE [ProductCategories](
@@ -48,7 +48,7 @@ CREATE TABLE [ProductCategories](
 	FOREIGN KEY (product) REFERENCES Products(id),
 	FOREIGN KEY (category) REFERENCES Categories(id),
 	CONSTRAINT PK_Product_Category PRIMARY KEY (product, category)
-) ON [PRIMARY]
+)
 GO
 
 /* Create two Products */
