@@ -18,8 +18,9 @@ Some commands
 - `docker run ubuntu ls /` - creates a new container with 'ubuntu' image, shows the root directory content and closes container
 - `docker run -d ubuntu bash -c "shuf -i 1-10000 -n 1 -o /data.txt && tail -f /dev/null"` - creates a new container with 'ubuntu' image and executes 'bash' command (save random number into a file and waiting for read)
 - `docker run -dp 3000:3000 image-name` - creates a new container (detached) using 'image-name' image and maps 'localhost:3000' port to container
-- `docker run -d --network todo-app --network-alias mysql -v todo-mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=secret -e MYSQL_DATABASE=todos mysql:5.7` - runs detached container, use/create network 'todo-app' with alias mysql, attach volume 'todo-mysql-data' to '/var/lib/mysql' folder, execute 2 commands to set global vars, use 'mysql:5.7' image
+- `docker run -d --network todo-app --network-alias mysql -v todo-mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=secret -e MYSQL_DATABASE=todos mysql:5.7` - runs detached container, uses/creates network 'todo-app' with alias mysql, attaches volume 'todo-mysql-data' to '/var/lib/mysql' folder, sets 2 env vars, uses the 'mysql:5.7' image
 - `docker run -dp 3000:3000 -w /app -v "%cd%:/app" node:12-alpine sh -c "yarn install && yarn run dev"`
+- `docker run -dp 3000:3000 -w /app -v "%cd%:/app" --network todo-app -e MYSQL_HOST=mysql -e MYSQL_USER=root -e MYSQL_PASSWORD=secret -e MYSQL_DB=todos node:12-alpine sh -c "yarn install && yarn run dev"` - runs/creates detached container with mapped port with volume to '/app' folder, uses docker network 'todo-app', sets 4 env vars, uses the 'node:12-alpine' image, uses 'sh' to execute 'yarn' and run application
 
 - `docker exec <container-id> cat /data.txt` - executes a cmd line in a container (by id, use `docker ps` and shows result)
 - `docker login -u USER-NAME` - logins to docker.com
