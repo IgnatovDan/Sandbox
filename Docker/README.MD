@@ -25,4 +25,8 @@ Some commands
 - `docker exec <container-id> cat /data.txt` - executes a cmd line in a container (by id, use `docker ps` and shows result)
 - `docker login -u USER-NAME` - logins to docker.com
 - `docker logs -f <container-id>` - shows logs from the container
+
 - `docker network create todo-app` - creates a 'todo-app' network
+- `docker network ls` - shows a list of networks
+
+- `docker compose logs -f` - shows a logs for compose
