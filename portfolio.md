@@ -12,7 +12,7 @@ https://github.com/IgnatovDan/Sandbox/tree/main/tasks/transactions-web-api - web
 Подробнее в readme.md в этом репозитории
 
 - https://github.com/IgnatovDan/currency-converter - 4 реализации конвертера валют (console app (c#), VanillaJS app, React app, Vue app) и web api с курсами валют (c#)  
-Каждое прилоежение получает данные либо напрямую с https://www.cbr.ru/scripts/XML_daily.asp , либо с локального web.api (которое тоже получает данные с https://www.cbr.ru/scripts/XML_daily.asp)  
+Каждое приложение получает данные либо напрямую с https://www.cbr.ru/scripts/XML_daily.asp , либо с локального web.api (которое тоже получает данные с https://www.cbr.ru/scripts/XML_daily.asp), либо использует внутренний предопределенный список курсов  
 В приложении есть автоматические тесты, в репозитории настроен автоматический запуск тестов при создании нового PR и на каждое изменение в PR.  
 Подробнее в readme.md в этом репозитории
 
