@@ -12,9 +12,10 @@ Some commands
 - `docker ps`/`docker container ls` - shows a list of containers
 - `docker image ls` - shows a list of images
 - `docker rm confident_goldberg` - removes a container
-- `docker build -t IMAGE-NAME .` - builds IMAGE-NAME image with settings from the 'Dockerfile' file in the current directory ('.')
-- `docker tag getting-started YOUR-USER-NAME/getting-started` - rename image
-- 
+- `docker build --tag test-image1 --file ./my-dockerfile ./` - builds 'test-image1' image with settings from the './my-dockerfile' file
+
+- `docker tag getting-started YOUR-USER-NAME/getting-started` - rename 'getting-started' image
+
 - `docker run ubuntu ls /` - creates a new container with 'ubuntu' image, shows the root directory content and closes container
 - `docker run -d ubuntu bash -c "shuf -i 1-10000 -n 1 -o /data.txt && tail -f /dev/null"` - creates a new container with 'ubuntu' image and executes 'bash' command (save random number into a file and waiting for read)
 - `docker run -dp 3000:3000 image-name` - creates a new container (detached) using 'image-name' image and maps 'localhost:3000' port to container
