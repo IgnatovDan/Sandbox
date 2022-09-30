@@ -33,3 +33,8 @@ Some commands
 - `docker compose up -d` - runs containers from the 'docker-compose.yml'
 - `docker compose down --volumes` - turns off a compose
 - `docker compose logs -f` - shows a logs for a compose
+
+Links:
+
+- [Selenium4Grid: Create docker container and setup chrome browser node](https://www.way2automation.com/selenium4grid-create-docker-container-and-setup-chrome-browser-node/)
+- [Launching Google Chrome on Docker container](https://www.way2automation.com/selenium4grid-create-docker-container-and-setup-chrome-browser-node/)
