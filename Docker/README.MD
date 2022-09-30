@@ -30,5 +30,5 @@ Some commands
 - `docker network ls` - shows a list of networks
 
 - `docker compose up -d` - runs containers from the 'docker-compose.yml'
-- `docker compose down` - turns off a compose
+- `docker compose down --volumes` - turns off a compose
 - `docker compose logs -f` - shows a logs for a compose
