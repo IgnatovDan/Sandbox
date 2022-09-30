@@ -29,5 +29,6 @@ Some commands
 - `docker network create todo-app` - creates a 'todo-app' network
 - `docker network ls` - shows a list of networks
 
-- `docker compose up -d` - runs containers from 'docker-compose.yml'
-- `docker compose logs -f` - shows a logs for compose
+- `docker compose up -d` - runs containers from the 'docker-compose.yml'
+- `docker compose down` - turns off a compose
+- `docker compose logs -f` - shows a logs for a compose
