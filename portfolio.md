@@ -24,3 +24,4 @@ https://github.com/IgnatovDan/Sandbox/tree/main/tasks/transactions-web-api - web
 - danignatov@mail.ru
 - ignatovdan@gmail.com
 - https://danignatov.blogspot.com/
+- Резюме "Программист,разработчик": https://hh.ru/resume/6f6ee221ff08d7acae0039ed1f4b42434d6f47
