@@ -7,6 +7,9 @@ SELECT department, avg(age) avg_age FROM employees
 GROUP BY department
 HAVING avg_age> 35;
 
+- Transaction isolation levels: https://habr.com/ru/post/305600/
+Read Uncommitted, Read Committed (+ read_committed_snapshot on/off + NOLOCK), Repeatable Read, Serializable
+
 - Clustered index - https://www.sqlshack.com/what-is-the-difference-between-clustered-and-non-clustered-indexes-in-sql-server/
 CREATE CLUSTERED INDEX IX_tblStudent_Gender_Score
 ON student(gender ASC, total_score DESC)
