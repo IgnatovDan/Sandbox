@@ -8,6 +8,7 @@ GROUP BY department
 HAVING avg_age> 35;
 
 - Transaction isolation levels: https://habr.com/ru/post/305600/
+"Побочные эффекты" в работе транзакций - https://medium.com/pseudo-blog/%D1%83%D1%80%D0%BE%D0%B2%D0%BD%D0%B8-%D0%B8%D0%B7%D0%BE%D0%BB%D1%8F%D1%86%D0%B8%D0%B8-%D1%82%D1%80%D0%B0%D0%BD%D0%B7%D0%B0%D0%BA%D1%86%D0%B8%D0%B9-87cd2b129de1
 Read Uncommitted, Read Committed (+ read_committed_snapshot on/off + NOLOCK), Repeatable Read, Serializable
 
 - Clustered index - https://www.sqlshack.com/what-is-the-difference-between-clustered-and-non-clustered-indexes-in-sql-server/
