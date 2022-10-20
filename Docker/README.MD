@@ -7,6 +7,10 @@ Links
 - https://labs.play-with-docker.com/ \
 `docker run -dp 3000:3000 YOUR-USER-NAME/YOUR-REPOSITORY` - loads an 'hub repository' image into a 'labs' container and allows to communicate with it from everywhere
 
+Docker files:
+- `tutorial\my-dockerfile`, `chrome-in-docker\Dockerfile` - docker configuration files, https://docs.docker.com/get-started/02_our_app/
+- `tutorial\docker-compose.yaml` - docker compose files, https://docs.docker.com/get-started/08_using_compose/
+
 Some commands
 
 - `docker ps`/`docker container ls` - shows a list of containers
