@@ -33,8 +33,6 @@ select * from table1
 
 -- ============= Session 1 ============= 
 
-draft
-
 use [task-5BC3B61B-BCAA-4EBE-90FC-35C0BF657D88]
 
 set transaction isolation level read uncommitted
