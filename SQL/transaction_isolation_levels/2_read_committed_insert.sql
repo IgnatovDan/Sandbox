@@ -1,3 +1,5 @@
+-- ============= Initial DB ============= 
+
 use master
 go
 alter database [task-5BC3B61B-BCAA-4EBE-90FC-35C0BF657D88] set single_user with rollback immediate
@@ -35,6 +37,7 @@ use [task-5BC3B61B-BCAA-4EBE-90FC-35C0BF657D88]
 
 set transaction isolation level read committed
 begin transaction T1
+select transaction_isolation_level from sys.dm_exec_sessions where session_id = @@spid
 select @@TRANCOUNT
 
 insert into table1(name, value) values('inserted-1', '')
@@ -52,6 +55,7 @@ use [task-5BC3B61B-BCAA-4EBE-90FC-35C0BF657D88]
 
 set transaction isolation level read committed
 begin transaction T1 
+select transaction_isolation_level from sys.dm_exec_sessions where session_id = @@spid
 select @@TRANCOUNT
 
 select * from table1
