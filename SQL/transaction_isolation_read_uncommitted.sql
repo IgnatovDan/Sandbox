@@ -39,7 +39,10 @@ use [task-5BC3B61B-BCAA-4EBE-90FC-35C0BF657D88]
 
 set transaction isolation level read uncommitted
 begin transaction T1 
+
+select @@TRANCOUNT
 select transaction_isolation_level from sys.dm_exec_sessions where session_id = @@spid
+
 update table1 set value = value + '10' where id = 1
 
 insert into table1(name, value) values('inserted-1', '')
@@ -58,6 +61,8 @@ use [task-5BC3B61B-BCAA-4EBE-90FC-35C0BF657D88]
 
 set transaction isolation level read uncommitted
 begin transaction T2 
+
+select @@TRANCOUNT
 select transaction_isolation_level from sys.dm_exec_sessions where session_id = @@spid
 
 select * from table1
@@ -118,56 +123,78 @@ select * from table1
 -- 6	inserted-2	
 -- visible uncommitted deletion/update/insert from session1 AND (insert from session2)
 
+select * from table1 where name = 'inserted-1'
+-- 5	inserted-1	
+
 update table1 set value = value + '10' where name = 'to-update-1'
+-- lock, there are uncommitted changes (insert) in table1 in session2
+
+update table1 set value = value + '10' where name = 'inserted-1'
+-- lock, there are uncommitted changes (insert) in table1 in session2
+
+update table1 set value = value + '10' where name = 'inserted-2'
+-- lock, there are uncommitted changes (insert) in table1 in session2
+
+insert into table1(name, value) values('inserted-1-2', '')
 -- success
 
 select * from table1
--- 1	to-update-1	1010
+-- 1	to-update-1	10
 -- 2	to-update-2	
+-- 7	inserted-1-2	
 -- 4	to-delete-2	
 -- 5	inserted-1	
 -- 6	inserted-2	
--- visible uncommitted deletion/update/insert from session1 AND (insert from session2)
-
-update table1 set value = value + '10' where name = 'inserted-1'
--- success
-
-select * from table1
--- 1	to-update-1	1010
--- 2	to-update-2	
--- 4	to-delete-2	
--- 5	inserted-1	10
--- 6	inserted-2	
--- visible uncommitted deletion/update/insert from session1 AND (insert from session2)
-
-update table1 set value = value + '10' where name = 'inserted-2'
--- success
-
-select * from table1
--- 1	to-update-1	1010
--- 2	to-update-2	
--- 4	to-delete-2	
--- 5	inserted-1	10
--- 6	inserted-2	10
--- visible uncommitted deletion/update/insert from session1 AND (insert from session2) AND (insert from session2 updated from session1)
 
 -- ============= Session 2 ============= 
 -- > continue session 2
 
 select * from table1
-1	to-update-1	101
-2	to-update-2	
-4	to-delete-2	1
-5	inserted-1	10
-6	inserted-2	10
--- visible uncommitted deletion/update/insert from session1 AND (insert from session2) AND (insert from session2 updated from session1)
+-- 1	to-update-1	10
+-- 2	to-update-2	
+-- 7	inserted-1-2	
+-- 4	to-delete-2	
+-- 5	inserted-1	
+-- 6	inserted-2	
+-- visible uncommitted deletion/update/insert from session1 AND (insert from session2)
 
 -- ============= Session 1 ============= 
 -- > continue session 1
 
 rollback transaction
-select * from table1
--- 1	updated
--- 2	deleted
+set transaction isolation level read uncommitted
+begin transaction T1 
 
--- <
+select * from table1
+-- 1	to-update-1	
+-- 2	to-update-2	
+-- 3	to-delete-1	
+-- 4	to-delete-2	
+-- 6	inserted-2	
+-- visible uncommitted insert from session2
+
+-- ============= Session 2 ============= 
+-- > continue session 2
+
+select * from table1
+-- 1	to-update-1	
+-- 2	to-update-2	
+-- 3	to-delete-1	
+-- 4	to-delete-2	
+-- 6	inserted-2	
+-- visible uncommitted insert from session2
+
+update table1 set value = value + '20' where name = 'to-update-2'
+-- success
+delete from table1 where name = 'to-delete-1'
+-- success
+
+-- ============= Session 1 ============= 
+-- > continue session 1
+
+select * from table1 
+-- 1	to-update-1	
+-- 2	to-update-2	20
+-- 4	to-delete-2	
+-- 6	inserted-2	
+-- visible uncommitted insert/delete/update from session2
