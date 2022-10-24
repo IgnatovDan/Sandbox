@@ -98,4 +98,42 @@ select * from table1
 -- 5	inserted-2	
 -- visible (uncommitted update from session1) AND (uncommitted insert from session2)
 
-TODO
+-- ============= Continue Session 1 ============= 
+
+select * from table1
+-- 1	to-update-1	10
+-- 2	to-update-2	
+-- 3	to-delete-1	
+-- 4	to-delete-2	
+-- 5	inserted-2	
+-- visible (uncommitted update from session1) AND (uncommitted insert from session2)
+
+update table1 set value = value + '10' where name = 'inserted-1'
+-- dead lock, there is uncommitted insert in table1 from session2
+
+delete from table1 where name = 'to-delete-1'
+-- dead lock, there is uncommitted insert in table1 from session2
+
+insert into table1(name, value) values('inserted-1-2', '')
+-- success
+
+select * from table1
+-- 1	to-update-1	10
+-- 2	to-update-2	
+-- 3	to-delete-1	
+-- 4	to-delete-2	
+-- 5	inserted-2	
+-- 6	inserted-1-2	
+-- visible (uncommitted update + insert from session1) AND (insert from session2)
+
+-- ============= Continue Session 2 ============= 
+
+select * from table1
+
+-- 1	to-update-1	10
+-- 2	to-update-2	
+-- 3	to-delete-1	
+-- 4	to-delete-2	
+-- 5	inserted-2	
+-- 6	inserted-1-2	
+-- visible (uncommitted update + insert from session1) AND (insert from session2)
