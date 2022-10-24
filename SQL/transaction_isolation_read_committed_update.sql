@@ -31,8 +31,7 @@ select * from table1
 -- 3	to-delete-1	
 -- 4	to-delete-2	
 
--- ============= Session 1 ============= 
--- > start session 1
+-- >>>>>>>>>>>>>>> Start Session 1 >>>>>>>>>>>>>>>
 
 use [task-5BC3B61B-BCAA-4EBE-90FC-35C0BF657D88]
 
@@ -48,8 +47,7 @@ select * from table1
 -- 3	to-delete-1	
 -- 4	to-delete-2	
 
--- ============= Session 2 ============= 
--- > start Session 2
+-- >>>>>>>>>>>>>>> Start Session 2 >>>>>>>>>>>>>>>
 
 use [task-5BC3B61B-BCAA-4EBE-90FC-35C0BF657D88]
 
@@ -72,8 +70,7 @@ delete from table1 where name = 'to-delete-2'
 insert into table1(name, value) values('inserted-2', '')
 -- succeess
 
--- ============= Session 1 ============= 
--- > continue in session 1
+-- ============= Continue Session 1 ============= 
 
 select * from table1
 -- dead lock, there is uncommitted 'insert' in session 2
@@ -89,13 +86,7 @@ insert into table1(name, value) values('inserted-1-2', '')
 
 rollback transaction
 
-set transaction isolation level read committed
-select * from table1
--- lock, uncommitted 'insert' in session 2
-rollback transaction
-
--- ============= Session 2 ============= 
---> continue in session 2
+-- ============= Continue Session 2 ============= 
 
 select * from table1
 -- 1	to-update-1	
