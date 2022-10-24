@@ -31,7 +31,7 @@ select * from table1
 -- 3	to-delete-1	
 -- 4	to-delete-2	
 
--- ============= Session 1 ============= 
+-- ============= > Start Session 1 ============= 
 
 use [task-5BC3B61B-BCAA-4EBE-90FC-35C0BF657D88]
 
@@ -52,9 +52,8 @@ select * from table1
 -- 4	to-delete-2	
 -- 5	inserted-1	
 
--- ============= Session 2 ============= 
+-- ============= > Start Session 2 ============= 
 
--- > start Session 2
 use [task-5BC3B61B-BCAA-4EBE-90FC-35C0BF657D88]
 
 set transaction isolation level read uncommitted
@@ -110,8 +109,7 @@ select * from table1
 -- 6	inserted-2	
 -- visible uncommitted deletion/update/insert from session1 AND (insert from session2)
 
--- ============= Session 1 ============= 
--- > continue session 1
+-- ============= Continue Session 1 ============= 
 
 select * from table1
 -- 1	to-update-1	10
@@ -144,8 +142,7 @@ select * from table1
 -- 5	inserted-1	
 -- 6	inserted-2	
 
--- ============= Session 2 ============= 
--- > continue session 2
+-- ============= Continue Session 2 ============= 
 
 select * from table1
 -- 1	to-update-1	10
@@ -156,8 +153,7 @@ select * from table1
 -- 6	inserted-2	
 -- visible uncommitted deletion/update/insert from session1 AND (insert from session2)
 
--- ============= Session 1 ============= 
--- > continue session 1
+-- ============= Continue Session 1 ============= 
 
 rollback transaction
 set transaction isolation level read uncommitted
@@ -171,8 +167,7 @@ select * from table1
 -- 6	inserted-2	
 -- visible uncommitted insert from session2
 
--- ============= Session 2 ============= 
--- > continue session 2
+-- ============= Continue Session 2 ============= 
 
 select * from table1
 -- 1	to-update-1	
@@ -187,8 +182,7 @@ update table1 set value = value + '20' where name = 'to-update-2'
 delete from table1 where name = 'to-delete-1'
 -- success
 
--- ============= Session 1 ============= 
--- > continue session 1
+-- ============= Continue Session 1 ============= 
 
 select * from table1 
 -- 1	to-update-1	
@@ -196,3 +190,5 @@ select * from table1
 -- 4	to-delete-2	
 -- 6	inserted-2	
 -- visible uncommitted insert/delete/update from session2
+
+rollback transaction
