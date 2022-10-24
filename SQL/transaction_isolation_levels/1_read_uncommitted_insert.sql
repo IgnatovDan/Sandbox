@@ -107,10 +107,12 @@ select * from table1
 -- visible (uncommitted insert from session1) AND (uncommitted insert from session2)
 
 update table1 set value = value + '10' where name = 'inserted-1'
--- lock, there is uncommitted insert in table1 from session2, dead lock if session2 started update/delete and waits for commit in session1
+-- lock, there is uncommitted insert in table1 from session2
+-- dead lock if session2 started update/delete and waits for commit in session1
 
 delete from table1 where name = 'to-delete-1'
--- lock, there is uncommitted insert in table1 from session2, dead lock if session2 started update/delete and waits for commit in session1
+-- lock, there is uncommitted insert in table1 from session2
+-- dead lock if session2 started update/delete and waits for commit in session1
 
 insert into table1(name, value) values('inserted-1-2', '')
 -- success
