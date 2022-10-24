@@ -72,13 +72,16 @@ insert into table1(name, value) values('inserted-2', '')
 -- ============= Continue Session 1 ============= 
 
 select * from table1
--- lock, there is uncommitted 'insert' in session 2, dead lock if session2 started read/update/delete and waits for commit in session1
+-- lock, there is uncommitted 'insert' in session2
+-- dead lock if session2 started read/update/delete and waits for commit in session1
 
 update table1 set value = value + ' 10' where name = 'to-update-1'
--- lock, there is uncommitted 'insert' in session 2, dead lock if session2 started read/update/delete and waits for commit in session1
+-- lock, there is uncommitted 'insert' in session2
+-- dead lock if session2 started read/update/delete and waits for commit in session1
 
 delete from table1 where name = 'to-delete-1'
--- lock, there are uncommitted insert in session 2, dead lock if session2 started read/update/delete and waits for commit in session1
+-- lock, there are uncommitted insert in session 2
+-- dead lock if session2 started read/update/delete and waits for commit in session1
 
 insert into table1(name, value) values('inserted-1-2', '')
 -- succeess
