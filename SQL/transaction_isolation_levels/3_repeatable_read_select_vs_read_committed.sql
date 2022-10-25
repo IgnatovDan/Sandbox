@@ -72,14 +72,33 @@ delete from table1 where name = 'to-update-1'
 delete from table1 where name = 'to-delete-2'
 -- success
 
+insert into table1(name, value) values('to-update-1', '')
+-- success, will produce 'phantom read' in session1
+
+insert into table1(name, value) values('to-update-2', '')
+-- success
+
 select * from table1
 -- 1	to-update-1	
 -- 2	to-update-2	 20
 -- 3	to-delete-1	
--- visible: (uncommitted update/delete from session 2)
+-- 5	to-update-1	
+-- 6	to-update-2		
+-- visible: (uncommitted update/delete/insert from session 2)
 
 -- ============= Continue Session 1 ============= 
 
 select * from table1 where name = 'to-update-1'
 -- lock wait occurs, there is uncommitted 'update' in session2 (read committed)
 -- deadlock if session2 started (update where name = 'to-update-1') and waits for transaction end in session1
+
+-- ============= Continue Session 2 ============= 
+
+commit transaction
+
+-- ============= Continue Session 1 ============= 
+
+select * from table1 where name = 'to-update-1'
+-- 1	to-update-1	
+-- 5	to-update-1	
+-- '5' is a 'phantom read'
