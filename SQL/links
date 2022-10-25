@@ -14,3 +14,5 @@ Read Uncommitted, Read Committed (+ read_committed_snapshot on/off + NOLOCK), Re
 - Clustered index - https://www.sqlshack.com/what-is-the-difference-between-clustered-and-non-clustered-indexes-in-sql-server/
 CREATE CLUSTERED INDEX IX_tblStudent_Gender_Score
 ON student(gender ASC, total_score DESC)
+
+- "Lock modes" in SQL Server: https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver16#lock_modes
