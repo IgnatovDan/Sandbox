@@ -56,16 +56,16 @@ begin transaction T1
 select @@TRANCOUNT
 
 select * from table1
--- lock, there are uncommitted update in session 1
+-- lock wait occurs, there are uncommitted update in session 1
 
 select * from table1 where name = 'to-update-2'
--- lock, there are uncommitted update in session 1
+-- lock wait occurs, there are uncommitted update in session 1
 
 update table1 set value = value + '20' where name = 'to-update-2'
--- lock, there are uncommitted update in session 1
+-- lock wait occurs, there are uncommitted update in session 1
 
 delete from table1 where name = 'to-delete-2'
--- lock, there are uncommitted update in session 1
+-- lock wait occurs, there are uncommitted update in session 1
 
 insert into table1(name, value) values('inserted-2', '')
 -- succeess
@@ -73,16 +73,16 @@ insert into table1(name, value) values('inserted-2', '')
 -- ============= Continue Session 1 ============= 
 
 select * from table1
--- lock: there is uncommitted 'insert' in session2
--- dead lock if session2 started read/update/delete and waits for transaction end in session1
+-- lock wait occurs: there is uncommitted 'insert' in session2
+-- deadlock if session2 started read/update/delete and waits for transaction end in session1
 
 update table1 set value = value + ' 10' where name = 'to-update-1'
--- lock: there is uncommitted 'insert' in session2
--- dead lock if session2 started read/update/delete and waits for transaction end in session1
+-- lock wait occurs: there is uncommitted 'insert' in session2
+-- deadlock if session2 started read/update/delete and waits for transaction end in session1
 
 delete from table1 where name = 'to-delete-1'
--- lock: there is uncommitted 'insert' in session2
--- dead lock if session2 started read/update/delete and waits for transaction end in session1
+-- lock wait occurs: there is uncommitted 'insert' in session2
+-- deadlock if session2 started read/update/delete and waits for transaction end in session1
 
 insert into table1(name, value) values('inserted-1-2', '')
 -- succeess
