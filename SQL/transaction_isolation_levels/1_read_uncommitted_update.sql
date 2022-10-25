@@ -73,19 +73,19 @@ select * from table1 where name = 'to-update-1'
 -- visible uncommitted update from session1
 
 update table1 set value = value + ' 2' where name = 'to-update-1'
--- lock, there is uncommitted update in table1 in session1
+-- lock wait occurs, there is uncommitted update in table1 in session1
 
 update table1 set value = value + ' 2' where id = 1
--- lock, there is uncommitted update in table1 in session1
+-- lock wait occurs, there is uncommitted update in table1 in session1
 
 update table1 set value = value + ' 2' where name = 'to-update-2'
--- lock, there is uncommitted update in table1 in session1
+-- lock wait occurs, there is uncommitted update in table1 in session1
 
 update table1 set value = value + ' 2' where id = 2
--- lock, there is uncommitted update in table1 in session1
+-- lock wait occurs, there is uncommitted update in table1 in session1
 
 delete from table1 where name = 'to-delete-2'
--- lock, there is uncommitted update in table1 in session1
+-- lock wait occurs, there is uncommitted update in table1 in session1
 
 insert into table1(name, value) values('inserted-2', '')
 -- success
@@ -109,11 +109,11 @@ select * from table1
 -- visible (uncommitted update from session1) AND (uncommitted insert from session2)
 
 update table1 set value = value + '10' where name = 'inserted-1'
--- lock, there is uncommitted insert in table1 from session2
+-- lock wait occurs, there is uncommitted insert in table1 from session2
 -- dead lock if session2 started update/delete and waits for transaction end in session1
 
 delete from table1 where name = 'to-delete-1'
--- lock, there is uncommitted insert in table1 from session2
+-- lock wait occurs, there is uncommitted insert in table1 from session2
 -- dead lock if session2 started update/delete and waits for transaction end in session1
 
 insert into table1(name, value) values('inserted-1-2', '')
