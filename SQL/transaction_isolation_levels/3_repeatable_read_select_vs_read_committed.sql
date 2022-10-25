@@ -61,13 +61,13 @@ select * from table1
 -- 4	to-delete-2	
 
 update table1 set value = value + ' 20' where name = 'to-update-1'
--- lock, there are 'select' for this row in session 1
+-- lock wait occurs, there are 'select' for this row in session 1
 
 update table1 set value = value + ' 20' where name = 'to-update-2'
 -- success
 
 delete from table1 where name = 'to-update-1'
--- lock, there are 'select' for this row in session 1
+-- lock wait occurs, there are 'select' for this row in session 1
 
 delete from table1 where name = 'to-delete-2'
 -- success
@@ -81,5 +81,5 @@ select * from table1
 -- ============= Continue Session 1 ============= 
 
 select * from table1 where name = 'to-update-1'
--- lock, there is uncommitted 'update' in session2 (read committed)
--- dead lock if session2 started (update where name = 'to-update-1') and waits for transaction end in session1
+-- lock wait occurs, there is uncommitted 'update' in session2 (read committed)
+-- deadlock if session2 started (update where name = 'to-update-1') and waits for transaction end in session1
