@@ -64,12 +64,12 @@ select * from table1
 -- ============= Continue Session 1 ============= 
 
 update table1 set value = value + ' 20' where name = 'to-update-1'
--- lock
+-- lock wait occurs
 
 -- ============= Continue Session 2 ============= 
 
 update table1 set value = value + ' 20' where name = 'to-update-2'
--- Transaction (Process ID 55) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction.
+-- Error is thrown: Transaction (Process ID 55) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction.
 
 -- ============= Continue Session 1 ============= 
 -- 'update' succeeded
