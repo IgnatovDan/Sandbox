@@ -15,6 +15,7 @@
 - [Automate with continuous integration](https://www.chromatic.com/docs/ci)
 - [Viewports for responsive UIs](https://www.chromatic.com/docs/viewports)
 - [Snapshots for a story](https://www.chromatic.com/docs/snapshots)
+- [CI - Automate Chromatic with GitHub Actions](https://www.chromatic.com/docs/github-actions)
 - [UI Component Playbook blog post at chromatic.com/blog](https://www.chromatic.com/blog/ui-component-playbook/)
 
 ### Other links:
