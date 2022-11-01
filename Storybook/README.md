@@ -10,6 +10,7 @@
 - [Test to maintain quality - How to test design system appearance, functionality, and accessibility](https://storybook.js.org/tutorials/design-systems-for-developers/react/en/test/)
 - [Testing - Test runner](https://storybook.js.org/docs/react/writing-tests/test-runner)
 - [Testing - Visual tests](https://storybook.js.org/docs/react/writing-tests/visual-testing)
+- ['Is it possible to dynamically generate stories in CSF' github conversation](https://github.com/storybookjs/storybook/issues/9828)
 
 ### Chromatic links:
 - [Automate with continuous integration](https://www.chromatic.com/docs/ci)
