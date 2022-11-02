@@ -24,7 +24,7 @@ https://github.com/IgnatovDan/Sandbox/tree/main/tasks/transactions-web-api - web
   - сделал локальный запуск тестов testcafe в докере что бы локально получать скриншоты "как на гитхабе" (tests-testcafe\README.md)
   - подробнее в readme.md в этом репозитории
 
-- https://github.com/DevExpress/DevExtreme/pulls?q=is%3Apr+author%3Aignatovdan+-label%3Acherry-pick - мои PR в www.devextreme.js
+- https://github.com/DevExpress/DevExtreme/pulls?q=is%3Apr+author%3Aignatovdan+-label%3Acherry-pick - мои PR для [www.devextreme.js](https://js.devexpress.com/)
 
 ---
 Денис Игнатов  
