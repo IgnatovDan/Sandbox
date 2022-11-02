@@ -18,6 +18,11 @@ https://github.com/IgnatovDan/Sandbox/tree/main/tasks/transactions-web-api - web
 
 - https://github.com/IgnatovDan/yandex-p4-mesto-my - реализация страницы по Figma макету для разрешений 320px + 1280px
 
+- https://github.com/IgnatovDan/yandex-p3-russian-travel-my (in progress) - реализация страницы по Figma макету для разрешений 320/768/1024/1280. В проекте я добавил:
+  - скриншотные тесты на testcafe и на storybook+chromatic
+  - автоматические проверки на изменения в PR
+  - сделал локальный запуск тестов testcafe в докере что бы локально получать скриншоты "как на гитхабе"
+
 ---
 Денис Игнатов  
 - @DanIgnatov в Telegram, https://t.me/DanIgnatov  
