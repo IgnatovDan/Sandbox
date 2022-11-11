@@ -6,3 +6,4 @@
 
 - [Blog posts series: Img+srcset+sizes](https://cloudfour.com/thinks/responsive-images-101-part-5-sizes/)
 - [Stackoverflow - Img+srcset+sizes doesn't work in Chrome emulator](https://stackoverflow.com/questions/72375309/img-srcset-and-sizes-not-working-properly-and-impossible-to-adjust-any-ideas)
+- [Как отличить контентное изображение от декоративного](https://htmlacademy.ru/blog/html/content-or-decor-img)
