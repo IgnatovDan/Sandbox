@@ -1,0 +1,44 @@
+{
+  "extends": "stylelint-config-standard",
+  "ignoreFiles": [
+    "**/normalize.css"
+  ],
+  "rules": {
+    "selector-class-pattern": "^.[a-z]([a-z-]+)?(__([a-z]+-?)+)?(_([a-z]+-?)+){0,2}$",
+    "declaration-no-important": true,
+    "declaration-block-no-duplicate-properties": true,
+    "font-family-no-duplicate-names": true,
+    "no-duplicate-at-import-rules": true,
+    "no-duplicate-selectors": true,
+
+    "block-no-empty": null,
+    "no-empty-source": null,
+    "selector-list-comma-newline-after": null,
+    "comment-empty-line-before": null,
+    "block-closing-brace-empty-line-before": null,
+    "function-url-quotes": null,
+    "declaration-colon-space-after": null,
+    "string-quotes": null,
+    "block-opening-brace-space-before": null,
+    "shorthand-property-no-redundant-values": null,
+    "no-missing-end-of-source-newline": null,
+    "length-zero-no-unit": null,
+    "color-hex-length": null,
+    "declaration-block-no-redundant-longhand-properties": null,
+    "font-family-name-quotes": null,
+    "comment-whitespace-inside": null,
+    "max-empty-lines": null,
+    "number-leading-zero": null,
+    "color-function-notation": null,
+    "indentation": null,
+    "declaration-colon-newline-after": null,
+    "no-eol-whitespace": null,
+    "alpha-value-notation": null,
+    "color-hex-case": null,
+    "rule-empty-line-before": null
+  },
+  "__links__": {
+    "stylelint-config-standard": "https://github.com/stylelint/stylelint-config-standard/blob/main/index.js",
+    "selector-class-pattern for bem": "https://gist.github.com/Potherca/f2a65491e63338659c3a0d2b07eee382: ^.[a-z]([a-z0-9-]+)?(__([a-z0-9]+-?)+)?(_([a-z0-9]+-?)+){0,2}$"
+  }
+}
