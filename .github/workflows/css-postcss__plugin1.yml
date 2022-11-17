@@ -1,13 +1,21 @@
-name: Test
+name: CSS/PostCSS Plugin1 tests
 on:
   push:
+    paths: 
+      - 'CSS/PostCSS/postcss-plugin1/**'
   pull_request:
+    paths: 
+      - 'CSS/PostCSS/postcss-plugin1/**'
+
 env:
   FORCE_COLOR: 2
 jobs:
   full:
     name: Node.js 15 Full
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./CSS/PostCSS/postcss-plugin1/
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2
