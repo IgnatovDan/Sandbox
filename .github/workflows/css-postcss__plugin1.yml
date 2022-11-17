@@ -26,6 +26,8 @@ jobs:
       # - name: Install dependencies
       #   uses: bahmutov/npm-install@v1
       # ---- Error: ENOENT: no such file or directory, open '/home/runner/work/Sandbox/Sandbox/package-lock.json'
+      - name: install dependencies
+        run: yarn
       - name: Run tests
         run: yarn test
   short:
