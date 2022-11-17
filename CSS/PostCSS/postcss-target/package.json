@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "plugin1": "npm run run-plugin1-config-json",
+    "run-plugin1-config-json": "postcss src/style.css --dir artifacts/postcss-plugin1 --config postcss.json",
+    "run-plugin1-config-js": "postcss src/style.css --dir artifacts/postcss-plugin1 --config postcss.config.js",
+    "run-plugin1-config-cmdline": "postcss.cmd src/style.css --dir artifacts/postcss-plugin1 --use postcss-plugin1"
+  },
+  "devDependencies": {
+    "postcss-cli": "^10.0.0",
+    "postcss-value-parser": "^4.2.0",
+    "postcss-import": "^15.0.0"
+  }
+}

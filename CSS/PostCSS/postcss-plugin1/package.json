@@ -1,0 +1,57 @@
+{
+  "name": "postcss-plugin1",
+  "version": "0.0.0",
+  "description": "PostCSS plugin test1",
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "postcss-plugin1"
+  ],
+  "scripts": {
+    "test": "jest --coverage && eslint ."
+  },
+  "author": "Ignatov Dan <ignatovdan@gmail.com>",
+  "license": "MIT",
+  "repository": "no/postcss-plugin1",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "peerDependencies": {
+    "postcss": "^8.3.0"
+  },
+  "devDependencies": {
+    "clean-publish": "^3.4.2",
+    "eslint": "^8.0.1",
+    "eslint-plugin-jest": "^25.2.2",
+    "jest": "^27.3.1",
+    "postcss": "^8.3.11",
+    "postcss-value-parser": "^4.2.0"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 2020
+    },
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:jest/recommended"
+    ],
+    "rules": {
+      "jest/expect-expect": "off"
+    }
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "statements": 100
+      }
+    }
+  },
+  "dependencies": {
+    "postcss-import": "^15.0.0"
+  }
+}
