@@ -20,9 +20,9 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v2
       - name: Install Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: 15
+          node-version: 18
       # - name: Install dependencies
       #   uses: bahmutov/npm-install@v1
       # ---- Error: ENOENT: no such file or directory, open '/home/runner/work/Sandbox/Sandbox/package-lock.json'
