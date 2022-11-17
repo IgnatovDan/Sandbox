@@ -1,3 +1,8 @@
+### Used in these projects/files:
+- Sandbox plugin
+  - https://github.com/IgnatovDan/Sandbox/CSS/PostCSS/postcss-plugin1/README.md
+  - https://github.com/IgnatovDan/Sandbox/CSS/PostCSS/postcss-target/package.json
+
 ### Links
 
 - [Writing a PostCSS Plugin](https://postcss.org/docs/writing-a-postcss-plugin)
