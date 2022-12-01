@@ -2,7 +2,9 @@
   "scripts": {
     "stylelint": "npx stylelint \"**/*.css\"",
     "eslint": "npx eslint \"**/*.html\" --resolve-plugins-relative-to .",
-    "postcss-import": "postcss ./pages/index.css --use postcss-import --output ./styles.css"
+    "postcss-import": "postcss ./pages/index.css --use postcss-import --output ./styles.css",
+    "html-validate": "npm exec html-validate index.html",
+    "html-validator": ".\\node_modules\\.bin\\html-validator --file=index.html --verbose"
   },
   "notes": {
     "ESLint couldn't determine the plugin uniquely": "https://github.com/eslint/eslint/issues/13385 - use '--resolve-plugins-relative-to .' or 'root'"
@@ -11,6 +13,8 @@
     "@html-eslint/eslint-plugin": "^0.15.0",
     "@html-eslint/parser": "^0.15.0",
     "eslint": "^8.28.0",
+    "html-validate": "^7.10.0",
+    "html-validator-cli": "^7.0.1",
     "postcss-cli": "^10.0.0",
     "postcss-import": "^15.0.0",
     "stylelint": "^14.15.0",
@@ -33,14 +37,21 @@
       "@html-eslint/no-restricted-attrs": [
         "error",
         {
-          "tagPatterns": ["iframe"],
-          "attrPatterns": ["width", "height"]
+          "tagPatterns": [
+            "iframe"
+          ],
+          "attrPatterns": [
+            "width",
+            "height"
+          ]
         }
       ]
     },
     "overrides": [
       {
-        "files": ["*.html"],
+        "files": [
+          "*.html"
+        ],
         "parser": "@html-eslint/parser"
       }
     ]
