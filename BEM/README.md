@@ -1,7 +1,12 @@
+### Used in:
+- [validate-bem project template](https://github.com/IgnatovDan/Sandbox/tree/main/BEM/validate-bem)
+
 ### Links
 
 - [linter checks attribute class in final html files for BEM naming conventions](https://github.com/DesTincT/bemlint)
 - [A PostCSS plugin to lint BEM-style CSS](https://github.com/postcss/postcss-bem-linter)
+- [stylelint-config-standard source](https://github.com/stylelint/stylelint-config-standard/blob/main/index.js)
+- [A stylelint plugin that incorporates postcss-bem-linter: stylelint-selector-bem-pattern](https://github.com/simonsmith/stylelint-selector-bem-pattern)
 
 ### Samples
 
