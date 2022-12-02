@@ -1,6 +1,3 @@
-### Used in:
-- [validate-bem project template](https://github.com/IgnatovDan/Sandbox/tree/main/BEM/validate-bem)
-
 ### Links
 
 - [linter checks attribute class in final html files for BEM naming conventions](https://github.com/DesTincT/bemlint)

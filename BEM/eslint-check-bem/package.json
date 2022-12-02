@@ -1,33 +1,20 @@
 {
   "scripts": {
-    "all": "npm run stylelint & npm run eslint & npm run html-validate & npm run html-validator",
-    "postcss-import": "postcss ./pages/index.css --use postcss-import --output ./styles.css",
     "stylelint": "npx stylelint \"**/*.css\"",
     "eslint": "npx eslint \"**/*.html\" --resolve-plugins-relative-to .",
-    "html-validate": "npm exec html-validate index.html",
-    "html-validator": "html-validator --file=index.html --verbose"
+    "postcss-import": "postcss ./pages/index.css --use postcss-import --output ./styles.css"
   },
   "notes": {
-    "html-validate config": ".htmlvalidate.json",
-    "ESLint couldn't determine the plugin uniquely": "https://github.com/eslint/eslint/issues/13385 - use '--resolve-plugins-relative-to .' or 'root'",
-    "WARN config global `--global`, `--local` are deprecated": "https://stackoverflow.com/questions/72401421/message-npm-warn-config-global-global-local-are-deprecated-use-loc"
+    "ESLint couldn't determine the plugin uniquely": "https://github.com/eslint/eslint/issues/13385 - use '--resolve-plugins-relative-to .' or 'root'"
   },
   "devDependencies": {
     "@html-eslint/eslint-plugin": "^0.15.0",
     "@html-eslint/parser": "^0.15.0",
     "eslint": "^8.28.0",
-    "html-validate": "^7.10.0",
-    "html-validator-cli": "^7.0.1",
     "postcss-cli": "^10.0.0",
     "postcss-import": "^15.0.0",
     "stylelint": "^14.15.0",
     "stylelint-config-standard": "^29.0.0"
-  },
-  "htmlvalidateConfig": {
-    "rules": {
-      "some-rules": "severity",
-      "other-rule": ["severity", { "option": true }]
-    }
   },
   "eslintConfig": {
     "plugins": [
@@ -46,21 +33,15 @@
       "@html-eslint/no-restricted-attrs": [
         "error",
         {
-          "tagPatterns": [
-            "iframe"
-          ],
-          "attrPatterns": [
-            "width",
-            "height"
-          ]
+          "tagPatterns": ["^iframe"],
+          "attrPatterns": ["^width$", "height"],
+          "message": "The 'width' attribute is not allowed to be used"
         }
       ]
     },
     "overrides": [
       {
-        "files": [
-          "*.html"
-        ],
+        "files": ["*.html"],
         "parser": "@html-eslint/parser"
       }
     ]
