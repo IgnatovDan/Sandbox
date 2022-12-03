@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "all": "npm run stylelint & npm run eslint & npm run html-validate & npm run html-validator",
+    "all": "npm run stylelint & npm run eslint & npm run html-validate",
     "postcss-import": "postcss ./pages/index.css --use postcss-import --output ./styles.css",
     "stylelint": "npx stylelint \"**/*.css\"",
     "eslint": "npx eslint \"**/*.html\" --resolve-plugins-relative-to .",
@@ -10,7 +10,12 @@
   "notes": {
     "html-validate config": ".htmlvalidate.json",
     "ESLint couldn't determine the plugin uniquely": "https://github.com/eslint/eslint/issues/13385 - use '--resolve-plugins-relative-to .' or 'root'",
-    "WARN config global `--global`, `--local` are deprecated": "https://stackoverflow.com/questions/72401421/message-npm-warn-config-global-global-local-are-deprecated-use-loc"
+    "WARN config global `--global`, `--local` are deprecated": "https://stackoverflow.com/questions/72401421/message-npm-warn-config-global-global-local-are-deprecated-use-loc",
+    "html-validator: is not used": "it shows non-readable messages and doesn't have a config to disable some rules",
+    "html-validate: disable button.type is required": "already checked by eslint",
+    "selector-class-pattern1": "https://gist.github.com/Potherca/f2a65491e63338659c3a0d2b07eee382",
+    "selector-class-pattern2": "https://github.com/simonsmith/stylelint-selector-bem-pattern/issues/23#issuecomment-279216443",
+    "selector-class-pattern3": "https://github.com/bem-sdk-archive/bem-naming/blob/master/lib/create-parse.js",
   },
   "devDependencies": {
     "@html-eslint/eslint-plugin": "^0.15.0",
@@ -22,12 +27,6 @@
     "postcss-import": "^15.0.0",
     "stylelint": "^14.15.0",
     "stylelint-config-standard": "^29.0.0"
-  },
-  "htmlvalidateConfig": {
-    "rules": {
-      "some-rules": "severity",
-      "other-rule": ["severity", { "option": true }]
-    }
   },
   "eslintConfig": {
     "plugins": [
@@ -65,9 +64,6 @@
       }
     ]
   },
-  "TODO: selector-class-pattern1": "https://gist.github.com/Potherca/f2a65491e63338659c3a0d2b07eee382",
-  "TODO: selector-class-pattern2": "https://github.com/simonsmith/stylelint-selector-bem-pattern/issues/23#issuecomment-279216443",
-  "TODO: selector-class-pattern3": "https://github.com/bem-sdk-archive/bem-naming/blob/master/lib/create-parse.js",
   "stylelint": {
     "ignoreFiles": [
       "**/normalize.css"

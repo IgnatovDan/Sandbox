@@ -6,7 +6,10 @@
     "wcag/h30": 0,
     "no-style-tag": 2,
     "no-unknown-elements": 2,
-    "prefer-button": 1
+    "prefer-button": 1,
+    "text-content": 0,
+    "attr-delimiter": 0,
+    "void-style": 0
   },
   "elements": [
     "html5",
@@ -15,6 +18,13 @@
         "attributes": {
           "name": {
             "required": true
+          }
+        }
+      },
+      "button": {
+        "attributes": {
+          "type": {
+            "required": false
           }
         }
       }
