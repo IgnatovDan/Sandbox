@@ -15,7 +15,7 @@
     "html-validate: disable button.type is required": "already checked by eslint",
     "selector-class-pattern1": "https://gist.github.com/Potherca/f2a65491e63338659c3a0d2b07eee382",
     "selector-class-pattern2": "https://github.com/simonsmith/stylelint-selector-bem-pattern/issues/23#issuecomment-279216443",
-    "selector-class-pattern3": "https://github.com/bem-sdk-archive/bem-naming/blob/master/lib/create-parse.js",
+    "selector-class-pattern3": "https://github.com/bem-sdk-archive/bem-naming/blob/master/lib/create-parse.js"
   },
   "devDependencies": {
     "@html-eslint/eslint-plugin": "^0.15.0",
