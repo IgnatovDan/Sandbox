@@ -87,6 +87,10 @@
       "no-invalid-double-slash-comments": true,
       "color-no-invalid-hex": true,
       "no-duplicate-at-import-rules": true,
+      "declaration-property-value-disallowed-list": {
+        "word-wrap": "break-word",
+        "white-space": "pre-line"
+      },
       "selector-class-pattern": "^[a-z]+[a-z\\-]*(__[a-z]+[a-z\\-]*)?(_[a-z]+[a-z\\-]*){0,2}$"
     }
   }

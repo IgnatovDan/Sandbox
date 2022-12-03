@@ -9,7 +9,9 @@
     "prefer-button": 1,
     "text-content": 0,
     "attr-delimiter": 0,
-    "void-style": 0
+    "void-style": 0,
+    "no-trailing-whitespace": 0,
+    "attr-quotes": 1
   },
   "elements": [
     "html5",
