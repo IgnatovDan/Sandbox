@@ -11,7 +11,14 @@
     "attr-delimiter": 0,
     "void-style": 0,
     "no-trailing-whitespace": 0,
-    "attr-quotes": 1
+    "attr-quotes": 1,
+    "heading-level": 2,
+    "class-pattern": [
+      2,
+      {
+        "pattern": "^[a-z]+[a-z\\-]*(__[a-z]+[a-z\\-]*)?(_[a-z]+[a-z\\-]*){0,2}$"
+      }
+    ]
   },
   "elements": [
     "html5",
@@ -26,7 +33,7 @@
       "button": {
         "attributes": {
           "type": {
-            "required": false
+            "required": true
           }
         }
       }
