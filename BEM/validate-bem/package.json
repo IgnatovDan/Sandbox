@@ -17,6 +17,17 @@
     "selector-class-pattern2": "https://github.com/simonsmith/stylelint-selector-bem-pattern/issues/23#issuecomment-279216443",
     "selector-class-pattern3": "https://github.com/bem-sdk-archive/bem-naming/blob/master/lib/create-parse.js"
   },
+  "todo": {
+    "@font-face": "duplicates are not allowed: { src: url(./fonts/Inter-Regular.woff2) format('woff2'); src: url(./fonts/Inter-Regular.woff)  format('woff');",
+    "<br><i><b>...": "not allowed",
+    "BEM modifier": "not allowed to duplicate style of its master BEM element",
+    "@media modifier": "not allowed to explicitly duplicate its master styles",
+    "index.css": "should be placed in the 'pages' folder",
+    "index.css @import paths": "should be in accordance with BEM nesting rules, '../blocks/' only, no grouping, no root folder paths",
+    "css file name": "should be equal to its CSS classes",
+    "normalize.css": "should be in 'vendor' folder",
+    "@import url(some.css)": "allowed in the index.css only"
+  },
   "devDependencies": {
     "@html-eslint/eslint-plugin": "^0.15.0",
     "@html-eslint/parser": "^0.15.0",
