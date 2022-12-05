@@ -23,17 +23,19 @@
   "elements": [
     "html5",
     {
-      "form": {
-        "attributes": {
-          "name": {
-            "required": true
-          }
-        }
+      "br": {
+        "deprecated": true
+      },
+      "i": {
+        "deprecated": true
+      },
+      "b": {
+        "deprecated": true
       },
       "button": {
         "attributes": {
           "type": {
-            "required": true
+            "required": false
           }
         }
       }

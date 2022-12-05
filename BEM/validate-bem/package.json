@@ -17,9 +17,15 @@
     "selector-class-pattern2": "https://github.com/simonsmith/stylelint-selector-bem-pattern/issues/23#issuecomment-279216443",
     "selector-class-pattern3": "https://github.com/bem-sdk-archive/bem-naming/blob/master/lib/create-parse.js"
   },
+  "features" : {
+    "<br><i><b> not allowed": "declared as 'deprecated' in .htmlvalidate.json",
+    "button.type is required": "checked by eslint",
+    "heading-level is required": "heading-level rule in .htmlvalidate.json",
+    "BEM class names": "class-pattern rule in .htmlvalidate.json",
+    "form.name is required": "required in 'html5' metadata in .htmlvalidate.json"
+  },
   "todo": {
     "@font-face": "duplicates are not allowed: { src: url(./fonts/Inter-Regular.woff2) format('woff2'); src: url(./fonts/Inter-Regular.woff)  format('woff');",
-    "<br><i><b>...": "not allowed",
     "BEM modifier": "not allowed to duplicate style of its master BEM element",
     "@media modifier": "not allowed to explicitly duplicate its master styles",
     "index.css": "should be placed in the 'pages' folder",
