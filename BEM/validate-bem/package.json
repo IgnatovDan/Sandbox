@@ -22,7 +22,7 @@
     "button.type is required": "checked by eslint",
     "heading-level is required": "heading-level rule in .htmlvalidate.json",
     "BEM class names": "class-pattern rule in .htmlvalidate.json",
-    "form.name is required": "required in 'html5' metadata in .htmlvalidate.json"
+    "form.name is required": "declared as required in metadata in .htmlvalidate.json, it is not required by default in 'html5' settings"
   },
   "todo": {
     "@font-face": "duplicates are not allowed: { src: url(./fonts/Inter-Regular.woff2) format('woff2'); src: url(./fonts/Inter-Regular.woff)  format('woff');",
@@ -93,6 +93,8 @@
       "declaration-no-important": true,
       "selector-max-universal": 0,
       "selector-max-type": 0,
+      "max-nesting-depth": 0,
+      "selector-max-combinators": 0,
       "at-rule-no-unknown": true,
       "function-no-unknown": true,
       "media-feature-name-no-unknown": true,

@@ -38,6 +38,13 @@
             "required": false
           }
         }
+      },
+      "form": {
+        "attributes": {
+          "name": {
+            "required": true
+          }
+        }
       }
     }
   ]
