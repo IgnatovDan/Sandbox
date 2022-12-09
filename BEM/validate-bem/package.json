@@ -32,7 +32,10 @@
     "index.css @import paths": "should be in accordance with BEM nesting rules, '../blocks/' only, no grouping, no root folder paths",
     "css file name": "should be equal to its CSS classes",
     "normalize.css": "should be in 'vendor' folder",
-    "@import url(some.css)": "allowed in the index.css only"
+    "@import url(some.css)": "allowed in the index.css only",
+    "img.alt": "require RU texts somehow (at least one RU char?)",
+    "head>title": "require RU texts somehow (at least one RU char?)",
+    "html.lang": "allow 'ru' only"
   },
   "devDependencies": {
     "@html-eslint/eslint-plugin": "^0.15.0",
