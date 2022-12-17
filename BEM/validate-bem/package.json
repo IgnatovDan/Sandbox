@@ -46,7 +46,8 @@
     "postcss-cli": "^10.0.0",
     "postcss-import": "^15.0.0",
     "stylelint": "^14.15.0",
-    "stylelint-config-standard": "^29.0.0"
+    "stylelint-config-standard": "^29.0.0",
+    "postcss-value-parser": "^4.2.0"
   },
   "eslintConfig": {
     "plugins": [
@@ -88,7 +89,11 @@
     "ignoreFiles": [
       "**/normalize.css"
     ],
+    "plugins": [
+      "./stylelint-plugins/validate-import-css-path.js"
+    ],
     "rules": {
+      "validate-import-css-path/match-bem-rules": true,
       "no-duplicate-selectors": true,
       "selector-no-qualifying-type": true,
       "selector-max-id": 0,
