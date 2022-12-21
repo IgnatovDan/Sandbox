@@ -23,7 +23,13 @@ const messages = ruleMessages(ruleName, {
 function tryParseUriFromImportRule(importRule) {
     try {
         const paramsNodes = valueParser(importRule.params).nodes;
-        const result = paramsNodes[0]?.nodes[0]?.value;
+        console.log(paramsNodes);
+        let result = null;
+        if (paramsNodes[0].type === 'string') {
+            result = paramsNodes[0].value;
+        } else if (paramsNodes[0].type === 'function') {
+            result = paramsNodes[0]?.nodes[0]?.value;
+        }
         if (!result)
             throw false;
         return result;
@@ -49,8 +55,6 @@ function tryValidateNormalize({ importUri, result, rule, blocksStarted }) {
 }
 
 function tryValidateFont({ importUri, result, rule, blocksStarted }) {
-    console.log("blocksStarted " + blocksStarted);
-    console.log("importUri " + importUri);
     if (importUri.match("font") || importUri.match("inter")) {
         if (blocksStarted) {
             report({ ruleName, result, message: messages.fontsBeforeBlocksFiles(importUri), node: rule, word: importUri });
