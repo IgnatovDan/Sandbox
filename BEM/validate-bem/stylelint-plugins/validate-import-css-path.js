@@ -23,8 +23,7 @@ const messages = ruleMessages(ruleName, {
 function tryParseUriFromImportRule(importRule) {
     try {
         const paramsNodes = valueParser(importRule.params).nodes;
-        const result = (paramsNodes.length === 1) ? 
-            paramsNodes[0]?.value : paramsNodes[0]?.nodes[0]?.value;
+        const result = paramsNodes[0]?.nodes[0]?.value;
         if (!result)
             throw false;
         return result;
