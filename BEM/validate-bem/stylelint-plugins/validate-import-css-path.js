@@ -49,6 +49,8 @@ function tryValidateNormalize({ importUri, result, rule, blocksStarted }) {
 }
 
 function tryValidateFont({ importUri, result, rule, blocksStarted }) {
+    console.log("blocksStarted " + blocksStarted);
+    console.log("importUri " + importUri);
     if (importUri.match("font") || importUri.match("inter")) {
         if (blocksStarted) {
             report({ ruleName, result, message: messages.fontsBeforeBlocksFiles(importUri), node: rule, word: importUri });
@@ -62,7 +64,6 @@ function tryValidateFont({ importUri, result, rule, blocksStarted }) {
 
 const ruleFunction = () => {
     return (root, result) => {
-        let isFontsWalked = false;
         let blocksStarted = false;
         root.walkAtRules('import', (rule) => {
             const importUri = tryParseUriFromImportRule(rule);
@@ -70,7 +71,7 @@ const ruleFunction = () => {
                 report({ ruleName, result, message: messages[importUri.messages[0]](importUri.params), node: rule });
                 return;
             }
-            if (importUri.match("blocks")) {
+            if (importUri.match("blocks") && !importUri.match("font")) {
                 blocksStarted = true;
             }
             if (tryValidateNormalize({ importUri, result, rule, blocksStarted })) {
