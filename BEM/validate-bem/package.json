@@ -58,6 +58,7 @@
     "env": {
       "es6": true
     },
+    "ignorePatterns": ["**/coverage/*"],
     "plugins": [
       "@html-eslint"
     ],
