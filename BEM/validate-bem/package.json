@@ -43,7 +43,7 @@
     "eslint": "^8.28.0",
     "html-validate": "^7.10.0",
     "html-validator-cli": "^7.0.1",
-    "jest": "^27.5.1",
+    "jest": "*",
     "jest-preset-stylelint": "^6.0.0",
     "postcss-cli": "^10.0.0",
     "postcss-import": "^15.0.0",
