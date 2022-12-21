@@ -47,7 +47,10 @@ const ruleFunction = () => {
         let blocksStarted = false;
         root.walkAtRules('import', (rule) => {
             const importUri = parseUriFromImportRule(rule);
-            if (String(importUri).match("blocks")) {
+            if (!importUri) {
+                return;
+            }
+            if (importUri.match("blocks")) {
                 blocksStarted = true;
             }
             if (tryValidateNormalize({ importUri, result, rule, blocksStarted })) {
@@ -56,7 +59,7 @@ const ruleFunction = () => {
             if (tryValidateFont({ importUri, result, rule, blocksStarted })) {
                 return;
             }
-            if (!String(importUri).match("../blocks/")) {
+            if (!importUri.match("../blocks/")) {
 
             }
             else {
