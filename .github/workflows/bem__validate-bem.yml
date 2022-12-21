@@ -1,8 +1,5 @@
 name: BEM/validate-bem tests
 on:
-  push:
-    paths: 
-      - 'BEM/validate-bem/**'
   pull_request:
     paths: 
       - 'BEM/validate-bem/**'
