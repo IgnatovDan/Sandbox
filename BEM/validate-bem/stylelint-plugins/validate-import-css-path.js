@@ -13,25 +13,27 @@ const messageNames = {
 
 const messages = ruleMessages(ruleName, {
     [messageNames.invalidNormalizePath]: (path) => `Expected "${path}" to be "../vendor/normalize.css"`,
-    normalizeBeforeBlocksFiles: (path) => `Expected "${path}" to be included before 'blocks' files`,
-    fontsBeforeBlocksFiles: (path) => `Expected "${path}" to be included before 'blocks' files`,
-    fontsOutOfBlocks: (path) => `Expected fonts to be located out of the 'blocks' folder: "${path}"`,
-    cannotParseUriFromImportRule: (importRule) => `Cannot parse uri from import rule: "${importRule}"`,
+    [messageNames.normalizeBeforeBlocksFiles]: (path) => `Expected "${path}" to be included before 'blocks' files`,
+    [messageNames.fontsBeforeBlocksFiles]: (path) => `Expected "${path}" to be included before 'blocks' files`,
+    [messageNames.fontsOutOfBlocks]: (path) => `Expected fonts to be located out of the 'blocks' folder: "${path}"`,
+    [messageNames.cannotParseUriFromImportRule]: (importRule) => `Cannot parse uri from import rule: "${importRule}"`,
     //invalidNestedBemPath: (path) => `Expected "${path}" to fit BEM nested folder structure rules`,
 });
 
 function tryParseUriFromImportRule(importRule) {
     try {
         const paramsNodes = valueParser(importRule.params).nodes;
-        if (paramsNodes.length === 1) {
-            return paramsNodes[0]?.value;
-        }
-        else {
-            return paramsNodes[0]?.nodes[0]?.value;
-        }
+        const result = (paramsNodes.length === 1) ? 
+            paramsNodes[0]?.value : paramsNodes[0]?.nodes[0]?.value;
+        if (!result)
+            throw false;
+        return result;
     }
     catch {
-        return "";
+        return {
+            error: true,
+            messages: [messageNames.cannotParseUriFromImportRule]
+        };
     }
 }
 
@@ -65,8 +67,8 @@ const ruleFunction = () => {
         let blocksStarted = false;
         root.walkAtRules('import', (rule) => {
             const importUri = tryParseUriFromImportRule(rule);
-            if (!importUri) {
-                report({ ruleName, result, message: messages.cannotParseUriFromImportRule(importUri.params), node: rule });
+            if (importUri.error) {
+                report({ ruleName, result, message: messages[importUri.messages[0]](importUri.params), node: rule });
                 return;
             }
             if (importUri.match("blocks")) {
