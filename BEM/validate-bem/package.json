@@ -5,7 +5,8 @@
     "stylelint": "npx stylelint \"**/*.css\"",
     "eslint": "npx eslint \"**/*.html\" --resolve-plugins-relative-to .",
     "html-validate": "npm exec html-validate index.html",
-    "html-validator": "html-validator --file=index.html --verbose"
+    "html-validator": "html-validator --file=index.html --verbose",
+    "test": "jest --coverage && eslint ."
   },
   "notes": {
     "html-validate config": ".htmlvalidate.json",
@@ -17,7 +18,7 @@
     "selector-class-pattern2": "https://github.com/simonsmith/stylelint-selector-bem-pattern/issues/23#issuecomment-279216443",
     "selector-class-pattern3": "https://github.com/bem-sdk-archive/bem-naming/blob/master/lib/create-parse.js"
   },
-  "features" : {
+  "features": {
     "<br><i><b> not allowed": "declared as 'deprecated' in .htmlvalidate.json",
     "button.type is required": "checked by eslint",
     "heading-level is required": "heading-level rule in .htmlvalidate.json",
@@ -31,7 +32,6 @@
     "index.css": "should be placed in the 'pages' folder",
     "index.css @import paths": "should be in accordance with BEM nesting rules, '../blocks/' only, no grouping, no root folder paths",
     "css file name": "should be equal to its CSS classes",
-    "normalize.css": "should be in 'vendor' folder",
     "@import url(some.css)": "allowed in the index.css only",
     "img.alt": "require RU texts somehow (at least one RU char?)",
     "head>title": "require RU texts somehow (at least one RU char?)",
@@ -43,12 +43,22 @@
     "eslint": "^8.28.0",
     "html-validate": "^7.10.0",
     "html-validator-cli": "^7.0.1",
+    "jest": "*",
+    "jest-preset-stylelint": "^6.0.0",
     "postcss-cli": "^10.0.0",
     "postcss-import": "^15.0.0",
-    "stylelint": "^14.15.0",
+    "postcss-value-parser": "^4.2.0",
+    "stylelint": "^14.16.0",
     "stylelint-config-standard": "^29.0.0"
   },
   "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": "latest"
+    },
+    "env": {
+      "es6": true
+    },
+    "ignorePatterns": ["**/coverage/*"],
     "plugins": [
       "@html-eslint"
     ],
@@ -88,7 +98,11 @@
     "ignoreFiles": [
       "**/normalize.css"
     ],
+    "plugins": [
+      "./stylelint-plugins/validate-import-css-path.js"
+    ],
     "rules": {
+      "validate-import-css-path/match-bem-rules": true,
       "no-duplicate-selectors": true,
       "selector-no-qualifying-type": true,
       "selector-max-id": 0,
@@ -126,6 +140,14 @@
         "white-space": "pre-line"
       },
       "selector-class-pattern": "^[a-z]+[a-z\\-]*(__[a-z]+[a-z\\-]*)?(_[a-z]+[a-z\\-]*){0,2}$"
+    }
+  },
+  "jest": {
+    "preset": "jest-preset-stylelint",
+    "coverageThreshold": {
+      "global": {
+        "statements": 100
+      }
     }
   }
 }
