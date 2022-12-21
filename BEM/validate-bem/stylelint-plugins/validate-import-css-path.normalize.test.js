@@ -9,10 +9,7 @@ testRule({
   config: true,
   skipBasicChecks: true,
   accept: [
-    { code: '@import "../vendor/normalize.css";' },
-    { code: '@import url("../vendor/normalize.css");' },
     { code: '@import url(../vendor/normalize.css);' },
-    { code: '@import url(../vendor/normalize.css)' },
     {
       code: `
         @import url(../vendor/normalize.css);

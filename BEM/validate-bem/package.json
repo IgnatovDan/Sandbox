@@ -52,6 +52,12 @@
     "stylelint-config-standard": "^29.0.0"
   },
   "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": "latest"
+    },
+    "env": {
+      "es6": true
+    },
     "plugins": [
       "@html-eslint"
     ],
