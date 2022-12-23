@@ -18,7 +18,7 @@ const ruleFunction = () => {
             try {
                 const cssFullFilePath = rule.source.input.file;
                 const cssRelativeFilePath = path.relative(currentModuleFolder, cssFullFilePath);
-                if (!cssRelativeFilePath.match('inter') && !cssRelativeFilePath.match('font')) {
+                if (!cssRelativeFilePath.match(/inter/i) && !cssRelativeFilePath.match(/font/i)) {
                     const fileName = path.basename(cssFullFilePath);
                     report({ ruleName, result, message: messages.expectFontFaceDeclarationInFontsFile(fileName), node: rule, word: rule.source?.input?.css });
                 }

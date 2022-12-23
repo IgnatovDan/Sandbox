@@ -38,6 +38,16 @@ testRule({
   ruleName,
   config: true,
   skipBasicChecks: true,
+  codeFilename: 'Inter/Fonts.css',
+  accept: [
+    { code: '@font-face {}' },
+  ],
+});
+
+testRule({
+  ruleName,
+  config: true,
+  skipBasicChecks: true,
   codeFilename: 'any-other.css',
   reject: [
     {
