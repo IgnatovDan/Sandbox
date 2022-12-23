@@ -100,10 +100,12 @@
       "**/normalize.css"
     ],
     "plugins": [
-      "./stylelint-plugins/validate-import-css-path.js"
+      "./stylelint-plugins/validate-import-normalize.js",
+      "./stylelint-plugins/validate-import-fonts.js"
     ],
     "rules": {
-      "validate-import-css-path/match-bem-rules": true,
+      "bem/validate-import-normalize": true,
+      "bem/validate-import-fonts": true,
       "no-duplicate-selectors": true,
       "selector-no-qualifying-type": true,
       "selector-max-id": 0,
