@@ -59,7 +59,9 @@
     "env": {
       "es6": true
     },
-    "ignorePatterns": ["**/coverage/*"],
+    "ignorePatterns": [
+      "**/coverage/*"
+    ],
     "plugins": [
       "@html-eslint"
     ],
@@ -101,11 +103,13 @@
     ],
     "plugins": [
       "./stylelint-plugins/validate-import-normalize.js",
-      "./stylelint-plugins/validate-import-fonts.js"
+      "./stylelint-plugins/validate-import-fonts.js",
+      "./stylelint-plugins/validate-font-face-declaration-in-fonts-file-only"
     ],
     "rules": {
       "bem/validate-import-normalize": true,
       "bem/validate-import-fonts": true,
+      "bem/validate-font-face-declaration-in-fonts-file-only": true,
       "no-duplicate-selectors": true,
       "selector-no-qualifying-type": true,
       "selector-max-id": 0,
