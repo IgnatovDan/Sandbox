@@ -27,6 +27,7 @@
   },
   "todo": {
     "@font-face": "duplicates are not allowed: { src: url(./fonts/Inter-Regular.woff2) format('woff2'); src: url(./fonts/Inter-Regular.woff)  format('woff');",
+    "@font-face2": "not used in blocks/** files",
     "BEM modifier": "not allowed to duplicate style of its master BEM element",
     "@media modifier": "not allowed to explicitly duplicate its master styles",
     "index.css": "should be placed in the 'pages' folder",
