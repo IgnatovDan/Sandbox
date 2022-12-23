@@ -59,16 +59,3 @@ testRule({
     },
   ]
 });
-
-testRule({
-  ruleName,
-  config: true,
-  skipBasicChecks: true,
-  codeFilename: 'blocks\\any-other.css',
-  reject: [
-    {
-      code: '@font-face {}',
-      message: `@font-face declaration is expected in a fonts css file only, but was found in 'any-other.css' (${ruleName})`,
-    },
-  ]
-});
