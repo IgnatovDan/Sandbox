@@ -1,6 +1,6 @@
 const stylelint = require('stylelint');
 
-const { parseUriFromImportRuleParams, unknownErrorOccurredRuleMessage } = require('./parseUriFromImportParams.js');
+const { parseUriFromImportRuleParams, unknownErrorOccurredRuleMessage } = require('./utils/parseUriFromImportParams.js');
 
 const { report, ruleMessages } = stylelint.utils;
 const ruleName = 'bem/validate-import-fonts';
@@ -27,10 +27,8 @@ const ruleFunction = () => {
                             report({ ruleName, result, message: messages.expectFontsToBeInVendorOrFontsFolder(uri), node: rule, word: uri });
                         }
                     }
-                } else {
-                    if (uri.match("blocks")) {
-                        isBlocksStarted = true;
-                    }
+                } else if (uri.match("blocks")) {
+                    isBlocksStarted = true;
                 }
             }
             catch (e) {

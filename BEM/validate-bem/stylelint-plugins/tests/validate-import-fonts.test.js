@@ -2,7 +2,7 @@ const getTestRule = require('jest-preset-stylelint/getTestRule');
 
 global.testRule = getTestRule({ plugins: ['./stylelint-plugins/validate-import-fonts.js'] });
 
-const { ruleName } = require('./validate-import-fonts.js');
+const { ruleName } = require('../validate-import-fonts.js');
 
 testRule({
   ruleName,

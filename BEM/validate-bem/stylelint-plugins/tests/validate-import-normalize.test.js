@@ -2,7 +2,7 @@ const getTestRule = require('jest-preset-stylelint/getTestRule');
 
 global.testRule = getTestRule({ plugins: ['./stylelint-plugins/validate-import-normalize.js'] });
 
-const { ruleName } = require('./validate-import-normalize.js');
+const { ruleName } = require('../validate-import-normalize.js');
 
 testRule({
   ruleName,

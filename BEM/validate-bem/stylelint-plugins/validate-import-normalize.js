@@ -1,6 +1,6 @@
 const stylelint = require('stylelint');
 
-const { parseUriFromImportRuleParams, unknownErrorOccurredRuleMessage } = require('./parseUriFromImportParams.js');
+const { parseUriFromImportRuleParams, unknownErrorOccurredRuleMessage } = require('./utils/parseUriFromImportParams.js');
 
 const { report, ruleMessages } = stylelint.utils;
 const ruleName = 'bem/validate-import-normalize';
@@ -19,9 +19,6 @@ const ruleFunction = () => {
             try {
                 const uri = parseUriFromImportRuleParams(importUriParams);
 
-                if (uri.match("blocks")) {
-                    isBlocksStarted = true;
-                }
                 if (uri.match("normalize.css")) {
                     if (isBlocksStarted) {
                         report({ ruleName, result, message: messages.expectNormalizeBeforeBlocksFiles(uri), node: rule, word: uri });
@@ -29,7 +26,9 @@ const ruleFunction = () => {
                     if (uri !== "../vendor/normalize.css" && uri !== "./../vendor/normalize.css") {
                         report({ ruleName, result, message: messages.invalidNormalizePath(uri), node: rule, word: uri });
                     }
-                    return true;
+                }
+                else if (uri.match("blocks")) {
+                    isBlocksStarted = true;
                 }
             }
             catch (e) {
