@@ -3,11 +3,11 @@ const stylelint = require('stylelint');
 const { parseUriFromImportRuleParams, unknownErrorOccurredRuleMessage } = require('./parseUriFromImportParams.js');
 
 const { report, ruleMessages } = stylelint.utils;
-const ruleName = 'bem/validate-import-normalize';
+const ruleName = 'bem/validate-import-fonts';
 
 const messages = ruleMessages(ruleName, {
-    invalidNormalizePath: (path) => `Expected '${path}' to be '../vendor/normalize.css'`,
-    expectNormalizeBeforeBlocksFiles: (path) => `Expected '${path}' to be included before 'blocks' files`,
+    expectFontsBeforeBlocksFiles: (path) => `Expected '${path}' to be included before 'blocks' files`,
+    expectFontsToBeInVendorOrFontsFolder: (path) => `Expected fonts css file to be in the 'vendor' or 'fonts' root folder, but found '${path}'`,
     unknownErrorOccurred: unknownErrorOccurredRuleMessage
 });
 
@@ -19,17 +19,18 @@ const ruleFunction = () => {
             try {
                 const uri = parseUriFromImportRuleParams(importUriParams);
 
-                if (uri.match("blocks")) {
-                    isBlocksStarted = true;
-                }
-                if (uri.match("normalize.css")) {
+                if (uri.match("font") || uri.match("inter")) {
                     if (isBlocksStarted) {
-                        report({ ruleName, result, message: messages.expectNormalizeBeforeBlocksFiles(uri), node: rule, word: uri });
+                        report({ ruleName, result, message: messages.expectFontsBeforeBlocksFiles(uri), node: rule, word: uri });
+                    } else {
+                        if (uri.match("blocks") || uri.match("styles") || (uri.split('/').length <= 2)) {
+                            report({ ruleName, result, message: messages.expectFontsToBeInVendorOrFontsFolder(uri), node: rule, word: uri });
+                        }
                     }
-                    if (uri !== "../vendor/normalize.css" && uri !== "./../vendor/normalize.css") {
-                        report({ ruleName, result, message: messages.invalidNormalizePath(uri), node: rule, word: uri });
+                } else {
+                    if (uri.match("blocks")) {
+                        isBlocksStarted = true;
                     }
-                    return true;
                 }
             }
             catch (e) {

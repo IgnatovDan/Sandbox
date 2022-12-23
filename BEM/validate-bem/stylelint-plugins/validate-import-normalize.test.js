@@ -20,7 +20,7 @@ testRule({
   reject: [
     {
       code: `@import ../vendor/normalize.css;`,
-      message: `Unknown error occurred while processing @import parameters: '../vendor/normalize.css' (${ruleName})`,      
+      message: `Unknown error occurred while processing @import parameters: '../vendor/normalize.css', 'TypeError: Cannot read properties of undefined (reading '0')' (${ruleName})`,      
     },
     {
       code: `@import url(../normalize.css)`,
