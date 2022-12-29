@@ -1,9 +1,10 @@
 const stylelint = require('stylelint');
 
 const { parseUriFromImportRuleParams, unknownErrorOccurredRuleMessage } = require('./utils/parseUriFromImportParams.js');
+const { pluginNamespace } = require('./utils/plugin-namespace.js');
 
 const { report, ruleMessages } = stylelint.utils;
-const ruleName = 'bem/validate-import-normalize';
+const ruleName = pluginNamespace + '/validate-import-normalize';
 
 const messages = ruleMessages(ruleName, {
     invalidNormalizePath: (path) => `Expected '${path}' to be '../vendor/normalize.css'`,

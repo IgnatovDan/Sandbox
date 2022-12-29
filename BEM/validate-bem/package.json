@@ -102,9 +102,7 @@
       "**/normalize.css"
     ],
     "plugins": [
-      "./stylelint-plugins/validate-import-normalize.js",
-      "./stylelint-plugins/validate-import-fonts.js",
-      "./stylelint-plugins/validate-font-face-declaration-in-fonts-file-only"
+      "./stylelint-plugins/validate-bem.js"
     ],
     "rules": {
       "bem/validate-import-normalize": true,

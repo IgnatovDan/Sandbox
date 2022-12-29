@@ -1,9 +1,10 @@
 const stylelint = require('stylelint');
 
 const { parseUriFromImportRuleParams, unknownErrorOccurredRuleMessage } = require('./utils/parseUriFromImportParams.js');
+const { pluginNamespace } = require('./utils/plugin-namespace.js');
 
 const { report, ruleMessages } = stylelint.utils;
-const ruleName = 'bem/validate-import-fonts';
+const ruleName = pluginNamespace + '/validate-import-fonts';
 
 const messages = ruleMessages(ruleName, {
     expectFontsBeforeBlocksFiles: (path) => `Expected '${path}' to be included before 'blocks' files`,
