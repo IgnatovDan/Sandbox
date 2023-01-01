@@ -1,5 +1,5 @@
-### Used in:
-- [validate-bem project template](https://github.com/IgnatovDan/Sandbox/tree/main/BEM/validate-bem)
+### Used in these projects/files:
+- BEM project template: https://github.com/IgnatovDan/bem-project
 
 ### Links
 
