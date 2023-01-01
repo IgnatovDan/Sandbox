@@ -1,6 +1,6 @@
 ### Used in these projects/files:
+- BEM project template: https://github.com/IgnatovDan/bem-project
 - Sandbox plugin
-  - https://github.com/IgnatovDan/bem-project
   - https://github.com/IgnatovDan/Sandbox/CSS/PostCSS/postcss-plugin1/README.md
   - https://github.com/IgnatovDan/Sandbox/CSS/PostCSS/postcss-target/package.json
 
