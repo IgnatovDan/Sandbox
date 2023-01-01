@@ -1,5 +1,6 @@
 ### Used in these projects/files:
 - Sandbox plugin
+  - https://github.com/IgnatovDan/bem-project
   - https://github.com/IgnatovDan/Sandbox/CSS/PostCSS/postcss-plugin1/README.md
   - https://github.com/IgnatovDan/Sandbox/CSS/PostCSS/postcss-target/package.json
 
@@ -13,3 +14,4 @@
 - [GitHub postcss/postcss-cli](https://github.com/postcss/postcss-cli)
 - [Getting started with PostCSS: A quick guide for Sass users](https://medium.com/heresy-dev/getting-started-with-postcss-a-quick-guide-for-sass-users-90c8b675d5f4)
 - [What happened to --local-plugins?](https://github.com/postcss/postcss-cli/issues/150)
+- [github.com/postcss/postcss-selector-parser/API](https://github.com/postcss/postcss-selector-parser/blob/master/API.md)
