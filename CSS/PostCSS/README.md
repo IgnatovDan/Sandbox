@@ -16,3 +16,4 @@
 - [What happened to --local-plugins?](https://github.com/postcss/postcss-cli/issues/150)
 - [github.com/postcss/postcss-selector-parser/API](https://github.com/postcss/postcss-selector-parser/blob/master/API.md)
 - https://postcss.org/api/  -- AtRule#walkDecls()
+- [IgnatovDan/Sandbox: StyleLint links](https://github.com/IgnatovDan/Sandbox/blob/main/CSS/StyleLint/)
