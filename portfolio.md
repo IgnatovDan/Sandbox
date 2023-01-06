@@ -24,6 +24,10 @@ https://github.com/IgnatovDan/Sandbox/tree/main/tasks/transactions-web-api - web
 
 - https://github.com/IgnatovDan/yandex-p4-mesto-my - реализация страницы по Figma макету для разрешений 320px + 1280px. Подробнее в readme.md в этом репозитории
 
+- https://github.com/IgnatovDan/bem-project - темплейт проекта для разработки страниц по БЭМ для начинающих: содержит много правил, позволяющих писать HTML и CSS в соответствии с правилами БЭМ
+
+- https://www.npmjs.com/package/stylelint-bem-newbie - пакет дополнительных Stylelint правил для https://github.com/IgnatovDan/bem-project , проверяют сценарии не покрытые другими правилами
+
 - https://github.com/DevExpress/DevExtreme/pulls?q=is%3Apr+author%3Aignatovdan+-label%3Acherry-pick - мои PR для [js.devexpress.com](https://js.devexpress.com/) (изменения в различные компоненты и экспорт грида/пивота в xlsx/pdf)
 
 ---
