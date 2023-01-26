@@ -18,6 +18,7 @@ static int findNextMaxValueIndex(int[] prices, int startIndex)
 
 static int calcMaxProfit(int[] prices, int initialBuyIndex, int initialSellIndex)
 {
+  CallCounter.value++;
   if (initialSellIndex >= prices.Length)
   {
     return 0;
@@ -75,18 +76,27 @@ static int MaxProfit(int[] prices)
 
 
 Console.WriteLine("Hello, World!");
-static void runTest(int[] prices, int expected)
+static void runTest(int[] prices, int expected, int expectedCallCount)
 {
+  CallCounter.value = 0;
   int actual = MaxProfit(prices);
-  if (actual != expected) Console.WriteLine("expected " + expected + ", actual " + actual + ", [" + String.Join(",", prices) + "]");
+  if (actual != expected) Console.WriteLine("expected result: " + expected + ", actual " + actual + ", [" + String.Join(",", prices) + "]");
+  if (CallCounter.value != expectedCallCount) Console.WriteLine("expected call count: " + expectedCallCount + ", actual " + CallCounter.value + ", [" + String.Join(",", prices) + "]");  
 }
 
-runTest(new int[] { 1, 2 }, 1);
-runTest(new int[] { 1, 3 }, 2);
-runTest(new int[] { 1, 2, 3 }, 2);
-runTest(new int[] { 1, 2, 3, 4 }, 3);
-runTest(new int[] { 7,6,4,3,1 }, 0);
-runTest(new int[] { 7,1,5,3,6,4 }, 7);
-// Console.WriteLine(MaxProfit(new int[] { 397, 6621, 4997, 7506, 8918, 1662, 9187, 3278, 3890, 514, 18, 9305, 93, 5508, 3031, 2692, 6019, 1134 }));
+runTest(new int[] { 1, 2 }, 1, 2);
+runTest(new int[] { 1, 3 }, 2, 2);
+runTest(new int[] { 1, 2, 3 }, 2, 4);
+runTest(new int[] { 1, 2, 3, 4 }, 3, 8);
+runTest(new int[] { 7,6,4,3,1 }, 0, 1);
+runTest(new int[] { 7,1,5,3,6,4 }, 7, 10);
+runTest(new int[] { 397, 6621, 4997, 7506, 8918, 1662, 9187, 3278, 3890, 514, 18, 9305, 93, 5508, 3031, 2692, 6019, 1134 }, 36311, 8778);
+
 //Console.WriteLine(MaxProfit(new int[] { 397, 6621, 4997, 7506, 8918, 1662, 9187, 3278, 3890, 514, 18, 9305, 93, 5508, 3031, 2692, 6019, 1134, 1691, 4949, 5071, 799, 8953, 7882, 4273, 302, 6753, 4657, 8368, 3942, 1982, 5117, 563, 3332, 2623, 9482, 4994, 8163, 9112, 5236, 5029, 548 }));
 Console.WriteLine("finished");
+
+class CallCounter
+{
+  static public int value;
+}
+
