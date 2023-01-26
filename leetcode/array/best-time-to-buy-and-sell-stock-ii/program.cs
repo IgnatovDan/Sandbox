@@ -8,47 +8,16 @@ static int findNextMaxValueIndex(int[] prices, int startIndex)
   int result = startIndex;
   for (int i = startIndex; i < prices.Length; i++)
   {
-    int currentValue = prices[i];
-    if (currentMaxValue <= currentValue)
+    if (currentMaxValue <= prices[i])
     {
       result = i;
-      currentMaxValue = currentValue;
     }
   }
   return result;
 }
 
-static int findNextMinimalValueIndex(int[] items, int startIndex, int startValue)
+static int calcMaxProfit(int[] prices, int initialBuyIndex, int initialSellIndex)
 {
-  int result = items.Length - 1;
-  int currentMinValue = startValue;
-  for (int i = startIndex + 1; i < items.Length; i++)
-  {
-    int currentValue = items[i];
-    if (currentMinValue >= currentValue)
-    {
-      result = i;
-      currentMinValue = currentValue;
-    }
-  }
-  return result;
-}
-
-static int calcMaxProfit(int[] prices)
-{
-  int nextMinimalValue = -1;
-  int profit = 0;
-  for (int buyIndex = 0; buyIndex <= prices.Length - 2; buyIndex++)
-  {
-    int buyPrice = prices[buyIndex];
-    int nextMinimalValueIndex = findNextMinimalValueIndex(prices, buyIndex, buyPrice);
-    int futureProfit = buyPrice - prices[nextMinimalValueIndex];
-    if (futureProfit > 0)
-    {
-      profit += futureProfit;
-    }
-    buyIndex = nextMinimalValueIndex + 1;
-  }
   if (initialSellIndex >= prices.Length)
   {
     return 0;
@@ -73,6 +42,14 @@ static int calcMaxProfit(int[] prices)
         nextMaxValueIndex = findNextMaxValueIndex(prices, sellIndex);
         sellIndex = nextMaxValueIndex;
         nextMaxValueIndex = -1;
+      }
+      if (nextMaxValueIndex == sellIndex)
+      {
+        nextMaxValueIndex = -1;
+      }
+      if (sellIndex < nextMaxValueIndex)
+      {
+        continue;
       }
       int sellPrice = prices[sellIndex];
       if (sellPrice > buyPrice)
@@ -102,6 +79,4 @@ Console.WriteLine("Hello, World!");
 // Console.WriteLine(MaxProfit(new int[] {1,2,3})); // 2
 // Console.WriteLine(MaxProfit(new int[] {1,2,3,4})); // 3
 // Console.WriteLine(MaxProfit(new int[] {7,6,4,3,1})); // 0
-Console.WriteLine(MaxProfit(new int[] {7,1,5,3,6,4})); // 7
-
-//Console.WriteLine(MaxProfit(new int[] { 397, 6621, 4997, 7506, 8918, 1662, 9187, 3278, 3890, 514, 18, 9305, 93, 5508, 3031, 2692, 6019, 1134, 1691, 4949, 5071, 799, 8953, 7882, 4273, 302, 6753, 4657, 8368, 3942, 1982, 5117, 563, 3332, 2623, 9482, 4994, 8163, 9112, 5236, 5029, 548 }));
+Console.WriteLine(MaxProfit(new int[] { 397, 6621, 4997, 7506, 8918, 1662, 9187, 3278, 3890, 514, 18, 9305, 93, 5508, 3031, 2692, 6019, 1134, 1691, 4949, 5071, 799, 8953, 7882, 4273, 302, 6753, 4657, 8368, 3942, 1982, 5117, 563, 3332, 2623, 9482, 4994, 8163, 9112, 5236, 5029, 548 }));
