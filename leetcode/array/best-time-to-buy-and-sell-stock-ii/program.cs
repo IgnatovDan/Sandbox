@@ -1,17 +1,3 @@
-static int findNextMaxValueIndex(int[] prices, int startIndex) {
-  if (startIndex >= prices.Length) {
-    return startIndex;
-  }
-  int currentMaxValue = prices[startIndex];
-  int result = startIndex;
-  for (int i = startIndex; i < prices.Length; i++) {
-    if (currentMaxValue <= prices[i]) {
-      result = i;
-    }
-  }
-  return result;
-}
-
 static int calcMaxProfit(int[] prices, int initialBuyIndex, int initialSellIndex) {
   CallCounter.value++;
   if (initialSellIndex >= prices.Length) {
