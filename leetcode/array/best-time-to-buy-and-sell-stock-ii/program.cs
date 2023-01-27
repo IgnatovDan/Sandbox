@@ -1,3 +1,5 @@
+// https://leetcode.com/explore/featured/card/top-interview-questions-easy/92/array/564/
+
 static int calcMaxProfit(int[] prices, int initialBuyIndex, int initialSellIndex, int[] maxPriceByBuyIndex) {
   CallCounter.value++;
   if (initialSellIndex >= prices.Length) {
@@ -47,19 +49,30 @@ static int calcMaxProfit(int[] prices, int initialBuyIndex, int initialSellIndex
   return result;
 }
 
-static int MaxProfit(int[] prices) {
+static int MaxProfitByTree(int[] prices) {
   int[] maxPriceByBuyIndex = Enumerable.Repeat(-1, prices.Length).ToArray();
   int result = calcMaxProfit(prices, 0, 1, maxPriceByBuyIndex);
   return result;
 }
 
+static int MaxProfit(int[] prices) {
+  int result = 0;
+
+  for (int i = 1; i < prices.Length; i++) {
+    int profit = prices[i] - prices[i - 1];
+    if (profit > 0)
+      result += profit;
+  }
+
+  return result;
+}
 
 Console.WriteLine("Hello, World!");
 static void runTest(int[] prices, int expected, int expectedCallCount) {
   CallCounter.value = 0;
   int actual = MaxProfit(prices);
   if (actual != expected) Console.WriteLine("expected result: " + expected + ", actual " + actual + ", [" + String.Join(",", prices) + "]");
-  if (CallCounter.value != expectedCallCount) Console.WriteLine("expected call count: " + expectedCallCount + ", actual " + CallCounter.value + ", [" + String.Join(",", prices) + "]");
+  //if (CallCounter.value != expectedCallCount) Console.WriteLine("expected call count: " + expectedCallCount + ", actual " + CallCounter.value + ", [" + String.Join(",", prices) + "]");
 }
 
 runTest(new int[] { 1, 2 }, 1, 2);
@@ -68,6 +81,7 @@ runTest(new int[] { 1, 2, 3 }, 2, 3);
 runTest(new int[] { 1, 2, 3, 4 }, 3, 4);
 runTest(new int[] { 7, 6, 4, 3, 1 }, 0, 1);
 runTest(new int[] { 7, 1, 5, 3, 6, 4 }, 7, 6);
+runTest(new int[] { 5, 6, 7 }, 2, 1);
 
 runTest(new int[] { 397, 6621, 4997, 7506, 8918 }, 10145, 5);
 
