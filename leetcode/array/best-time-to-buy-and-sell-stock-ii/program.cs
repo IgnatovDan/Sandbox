@@ -55,20 +55,26 @@ static void runTest(int[] prices, int expected, int expectedCallCount) {
 
 runTest(new int[] { 1, 2 }, 1, 2);
 runTest(new int[] { 1, 3 }, 2, 2);
-runTest(new int[] { 1, 2, 3 }, 2, 4);
-runTest(new int[] { 1, 2, 3, 4 }, 3, 8);
+runTest(new int[] { 1, 2, 3 }, 2, 3);
+runTest(new int[] { 1, 2, 3, 4 }, 3, 4);
 runTest(new int[] { 7, 6, 4, 3, 1 }, 0, 1);
-runTest(new int[] { 7, 1, 5, 3, 6, 4 }, 7, 9); // 10 without perf optimization
+runTest(new int[] { 7, 1, 5, 3, 6, 4 }, 7, 8);
+
 runTest(new int[] { 397, 6621, 4997, 7506, 8918, 1662, 9187, 3278, 3890, 514, 18, 9305, 93, 5508, 3031, 2692, 6019, 1134 },
-  36311, 3022); // 8K without perf optimization
+  36311, 1386); // 8K without perf optimization
+
 runTest(new int[] { 397, 6621, 4997, 7506, 8918, 1662, 9187, 3278, 3890, 514, 18, 9305, 93, 5508, 3031, 2692, 6019, 1134, 1691, 4949, 5071, 799, 8953, 7882, 4273, 302, 6753, 4657, 8368, 3942, 1982, 5117, 563, 3332, 2623, 9482 },
-  71327, 23826903); // 202M/10s without perf optimization, 23M/1s with 'buy' optimization
+  71327, 3973707); // 202M/10s without perf optimization, 23M/1s with 'buy' optimization
 
 runTest(new int[] { 397, 6621, 4997, 7506, 8918, 1662, 9187, 3278, 3890, 514, 18, 9305, 93, 5508, 3031, 2692, 6019, 1134, 1691, 4949, 5071, 799, 8953, 7882, 4273, 302, 6753, 4657, 8368, 3942, 1982, 5117, 563, 3332, 2623, 9482, 4994, 8163, 9112, 5236, 5029, 548 },
-  75445, 215555538); // 1904M/100s without perf optimization, 215M/10s with 'buy' optimization, 27M/1s with 'buy+sell' optimization
+  75445, 27321860); // 1904M/100s without perf optimization, 215M/10s with 'buy' optimization, 27M/1s with 'buy+sell' optimization
 
-Console.WriteLine("finished"); 
+runTest(new int[] { 397, 6621, 4997, 7506, 8918, 1662, 9187, 3278, 3890, 514, 18, 9305, 93, 5508, 3031, 2692, 6019, 1134, 1691, 4949, 5071, 799, 8953, 7882, 4273, 302, 6753, 4657, 8368, 3942, 1982, 5117, 563, 3332, 2623, 9482, 4994, 8163, 9112, 5236, 5029 },
+  75445, 27287624);
+
+Console.WriteLine("finished");
 
 class CallCounter {
   static public int value;
 }
+
