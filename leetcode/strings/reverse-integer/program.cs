@@ -4,16 +4,13 @@ public class Solution {
     }
     
     public int Reverse_via_string(int x) {
-      // Abs(Int32.MinValue) > Int32.MaxValue but it is not possible to get these values reversing the input number
+      // Abs(Int32.MinValue) > Int32.MaxValue but it is not possible to get these values reversing source number
       // and I can remove the '-' sign
       var chars = x.ToString("D").TrimStart('-').ToCharArray();
       Array.Reverse(chars);
       int result;
-      if(int.TryParse(new String(chars), out result)) {
-        return result * Math.Sign(x);
-      } else {
-        return 0;
-      }
+      int.TryParse(new String(chars), out result);
+      return result * Math.Sign(x);
     }
 
     public int Reverse_via_double(int x) {
