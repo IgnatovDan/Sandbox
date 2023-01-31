@@ -1,4 +1,4 @@
-// Task description: ![image](https://user-images.githubusercontent.com/2094015/215684403-5abd6f1f-316c-41ae-9bde-a8b14d9416f6.png)
+// Task description: https://user-images.githubusercontent.com/2094015/215684403-5abd6f1f-316c-41ae-9bde-a8b14d9416f6.png
 
 for (let i = 0; i <= 999; i++) {
   for (let j = 0; j <= 999; j++) {
