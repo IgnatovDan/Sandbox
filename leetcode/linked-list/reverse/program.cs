@@ -22,8 +22,8 @@ public class Solution {
       var currentNode = head;
        while (currentNode != null) {
         var prevHead = newHead;
-        newHead = new ListNode(currenNode.val, prevHead);
-        currenNode = currentNode.next;
+        newHead = new ListNode(currentNode.val, prevHead);
+        currentNode = currentNode.next;
       }
 
       return newHead;
