@@ -13,14 +13,14 @@
  */
 public class Solution {
     public ListNode ReverseList(ListNode head) {
-      return ReverseList_CreateCopy(head);
+      return ReverseList_ModifyInitial(head);
     }
 
     public ListNode ReverseList_CreateCopy(ListNode head) {
       ListNode newHead = null;
       
       var currentNode = head;
-       while (currentNode != null) {
+      while (currentNode != null) {
         var prevHead = newHead;
         newHead = new ListNode(currentNode.val, prevHead);
         currentNode = currentNode.next;
@@ -30,19 +30,15 @@ public class Solution {
     }
 
     public ListNode ReverseList_ModifyInitial(ListNode head) {
-      if(head.next == null) {
-        return head;
-      }
-      
       var currentNode = head;
-      ListNode newHead = null, nextNode;
+      ListNode newHead, prevCurrentNode = null;
       
-      do {
-        nextNode = currentNode.next;
-        currentNode.next = newHead;
+      while (currentNode != null) {
         newHead = currentNode;
+        nextNode = currentNode.next;
+        currentNode.next = prevCurrentNode
         currentNode = nextNode;
-      } while (currentNode != null);
+      }
 
       return newHead;
     }
