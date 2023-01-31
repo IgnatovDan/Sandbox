@@ -13,7 +13,10 @@
  */
 public class Solution {
     public ListNode ReverseList(ListNode head) {
-      return ReverseList_ModifyInitial(head);
+      // return ReverseList_List_ByNext_ModifyInitial(head);
+      // return ReverseList_List_ByValue_ModifyInitial(head);
+      // return ReverseList_ModifyInitial(head);
+      return ReverseList_CreateCopy(head);
     }
 
     public ListNode ReverseList_CreateCopy(ListNode head) {
@@ -30,17 +33,16 @@ public class Solution {
     }
 
     public ListNode ReverseList_ModifyInitial(ListNode head) {
-      var currentNode = head;
-      ListNode newHead, prevCurrentNode = null;
+      ListNode newHead = head, prevHead = null;
       
-      while (currentNode != null) {
-        newHead = currentNode;
-        nextNode = currentNode.next;
-        currentNode.next = prevCurrentNode
-        currentNode = nextNode;
+      while (newHead != null) {
+        var nextNode = newHead.next;
+        newHead.next = prevHead;
+        prevHead = newHead;
+        newHead = nextNode;
       }
 
-      return newHead;
+      return prevHead;
     }
 
     public ListNode ReverseList_List_ByNext_ModifyInitial(ListNode head) {
