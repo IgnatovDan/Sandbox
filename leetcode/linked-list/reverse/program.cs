@@ -1,6 +1,9 @@
 // https://leetcode.com/explore/featured/card/top-interview-questions-easy/93/linked-list/560/
 
 /**
+
+Given the head of a singly linked list, reverse the list, and return the reversed list.
+
  * Definition for singly-linked list.
  * public class ListNode {
  *     public int val;
