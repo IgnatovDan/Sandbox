@@ -69,7 +69,6 @@ function rotateByStepByStepShift(nums, k) {
       nums[i] = nums[i - 1];
     }
     nums[0] = lastValue;
-    //console.log('nums ' + nums);
   }
 }
 
@@ -79,8 +78,6 @@ function rotateByIntermediateCopyShiftedItems(nums, k) {
   }
   let shiftLength = k % nums.length;
   let shiftedNums = nums.splice(0, nums.length - shiftLength);
-  console.log('shiftedNums ' + shiftedNums);
-  console.log('nums ' + nums);
   nums.push(...shiftedNums);
 }
 
@@ -90,8 +87,5 @@ function rotateByIntermediateCopyRotatedItems(nums, k) {
   }
   let shiftLength = k % nums.length;
   let rotatedNums = nums.splice(nums.length - shiftLength, shiftLength);
-  console.log('rotatedNums ' + rotatedNums);
-  console.log('nums ' + nums);
   nums.unshift(...rotatedNums);
-  console.log(nums);
 }
