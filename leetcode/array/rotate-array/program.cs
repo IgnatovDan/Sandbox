@@ -11,8 +11,8 @@ Given an integer array nums, rotate the array to the right by k steps, where k i
 
 public class Solution {
   public void Rotate(int[] nums, int k) {
-    this.rotateByStepByStepShift(nums, k);
-    //this.rotateByOneStepShiftWithFullCopy(nums, k);
+    //this.rotateByStepByStepShift(nums, k);
+    this.rotateByOneStepShiftWithFullCopy(nums, k);
   }
 
   int calcNewIndex(int currentIndex, int shiftPosition, int length) {
@@ -20,9 +20,6 @@ public class Solution {
   }
   
   void rotateByOneStepShiftWithFullCopy(int[] nums, int k) {
-    if(nums.Length == 0 || nums.Length == 1) {
-      return;
-    }
     var shiftPosition = k % nums.Length;
     var numsCopy = (int[])nums.Clone();
     
@@ -34,9 +31,6 @@ public class Solution {
   
   void rotateByStepByStepShift(int[] nums, int k) {
     //  Time Limit Exceeded for int[54944] array
-    if(nums.Length == 0 || nums.Length == 1) {
-      return;
-    }
     var shiftPosition = k % nums.Length;
     
     for(int step = 0; step < shiftPosition; step++) {
@@ -46,5 +40,9 @@ public class Solution {
       }
       nums[0] = lastValue;
     }
+  }
+  
+  void rotateByIntermediateCopyShiftedItems(int[] nums, int k) {
+    
   }
 }
