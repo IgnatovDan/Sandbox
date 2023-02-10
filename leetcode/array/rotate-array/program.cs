@@ -11,8 +11,10 @@ Given an integer array nums, rotate the array to the right by k steps, where k i
 
 public class Solution {
   public void Rotate(int[] nums, int k) {
+    this.rotateByIntermediateCopyShiftedItems(nums, k);
+    //this.rotateByIntermediateCopyRotatedItems(nums, k);
     //this.rotateByStepByStepShift(nums, k);
-    this.rotateByOneStepShiftWithFullCopy(nums, k);
+    //this.rotateByOneStepShiftWithFullCopy(nums, k);
   }
 
   int calcNewIndex(int currentIndex, int shiftPosition, int length) {
@@ -42,7 +44,21 @@ public class Solution {
     }
   }
   
+  void rotateByIntermediateCopyRotatedItems(int[] nums, int k) {
+    var shiftPosition = k % nums.Length;
+    int[] rotatedItems = new int[shiftPosition];
+    Array.Copy(nums, nums.Length - shiftPosition, rotatedItems, 0, shiftPosition);
+    Console.WriteLine(String.Join(",", rotatedItems));
+    Array.Copy(nums, 0, nums, shiftPosition,  nums.Length - shiftPosition);
+    Array.Copy(rotatedItems, nums, rotatedItems.Length);
+  }
+
   void rotateByIntermediateCopyShiftedItems(int[] nums, int k) {
-    
+    var shiftPosition = k % nums.Length;
+    int[] shiftedItems = new int[nums.Length - shiftPosition];
+    Array.Copy(nums, 0, shiftedItems, 0, nums.Length - shiftPosition);
+    Console.WriteLine(String.Join(",", shiftedItems));
+    Array.Copy(nums, nums.Length - shiftPosition, nums, 0,  shiftPosition);
+    Array.Copy(shiftedItems, 0, nums, shiftPosition, shiftedItems.Length);
   }
 }
