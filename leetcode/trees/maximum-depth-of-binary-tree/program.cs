@@ -21,7 +21,7 @@ The number of nodes in the tree is in the range [0, 10^4].
 
 public class Solution {
   public int MaxDepth(TreeNode root) {
-    int maxDepth = 1;
+    int maxDepth = 0;
     var currentItem = root;
     var parents = new List<TreeNode>();
     while(currentItem != null) {
@@ -32,14 +32,16 @@ public class Solution {
         var prevCurrenItem = currentItem;
         currentItem = currentItem.left;
         prevCurrenItem.left = null;
-      } else if(currentItem.right != null) {
+      }
+      else if(currentItem.right != null) {
         Console.WriteLine("right");
         parents.Add(currentItem);
         var prevCurrenItem = currentItem;
         currentItem = currentItem.right;
         prevCurrenItem.right = null;
-      } else {
-        Console.WriteLine("up");
+      }
+      else {
+        Console.WriteLine("leaf");
         int currentDepth = parents.Count + 1;
         Console.WriteLine("depth: " + currentDepth);
         maxDepth = (currentDepth > maxDepth) ? currentDepth : maxDepth;
@@ -47,7 +49,8 @@ public class Solution {
         if(parents.Count > 0) {
           currentItem = parents[parents.Count - 1];
           parents.RemoveAt(parents.Count - 1);
-        } else {
+        }
+        else {
           currentItem = null;
         }
       }
