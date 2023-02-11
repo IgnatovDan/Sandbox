@@ -21,8 +21,8 @@ The number of nodes in the tree is in the range [0, 10^4].
 
 public class Solution {
   public int MaxDepth(TreeNode root) {
-    return this.CalcMaxDepthWithRecursion(root);
-    //return this.CalcMaxDepthNoRecursion(root);
+    //return this.CalcMaxDepthWithRecursion(root);
+    return this.CalcMaxDepthNoRecursion(root);
   }
   
   public int CalcMaxDepthWithRecursion(TreeNode root) {
@@ -43,25 +43,25 @@ public class Solution {
     var currentItem = root;
     var parents = new List<TreeNode>();
     while(currentItem != null) {
-      Console.WriteLine(currentItem.val);
+      //Console.WriteLine(currentItem.val);
       if(currentItem.left != null) {
-        Console.WriteLine("down left");
+        //Console.WriteLine("down left");
         parents.Add(currentItem);
         var prevCurrenItem = currentItem;
         currentItem = currentItem.left;
         prevCurrenItem.left = null;
       } else if(currentItem.right != null) {
-        Console.WriteLine("down right");
+        //Console.WriteLine("down right");
         parents.Add(currentItem);
         var prevCurrenItem = currentItem;
         currentItem = currentItem.right;
         prevCurrenItem.right = null;
       } else {
-        Console.WriteLine("leaf");
+        //Console.WriteLine("leaf is found");
         int currentDepth = parents.Count + 1;
-        Console.WriteLine("current depth: " + currentDepth);
+        //Console.WriteLine("current depth: " + currentDepth);
         maxDepth = (currentDepth > maxDepth) ? currentDepth : maxDepth;
-        Console.WriteLine("maxDepth: " + maxDepth);
+        //Console.WriteLine("maxDepth: " + maxDepth);
         if(parents.Count > 0) {
           currentItem = parents[parents.Count - 1];
           parents.RemoveAt(parents.Count - 1);
