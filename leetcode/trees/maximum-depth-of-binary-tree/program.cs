@@ -21,36 +21,51 @@ The number of nodes in the tree is in the range [0, 10^4].
 
 public class Solution {
   public int MaxDepth(TreeNode root) {
+    return this.CalcMaxDepthWithRecursion(root);
+    //return this.CalcMaxDepthNoRecursion(root);
+  }
+  
+  public int CalcMaxDepthWithRecursion(TreeNode root) {
+    if(root == null) {
+      return 0;
+    }
+    
+    int leftDepth = this.CalcMaxDepthWithRecursion(root.left);
+    int rightDepth = this.CalcMaxDepthWithRecursion(root.right);
+    
+    var maxChildDepth = (leftDepth > rightDepth) ? leftDepth : rightDepth;
+      
+    return 1 + maxChildDepth;
+  }
+  
+  public int CalcMaxDepthNoRecursion(TreeNode root) {
     int maxDepth = 0;
     var currentItem = root;
     var parents = new List<TreeNode>();
     while(currentItem != null) {
       Console.WriteLine(currentItem.val);
       if(currentItem.left != null) {
-        Console.WriteLine("left");
+        Console.WriteLine("down left");
         parents.Add(currentItem);
         var prevCurrenItem = currentItem;
         currentItem = currentItem.left;
         prevCurrenItem.left = null;
-      }
-      else if(currentItem.right != null) {
-        Console.WriteLine("right");
+      } else if(currentItem.right != null) {
+        Console.WriteLine("down right");
         parents.Add(currentItem);
         var prevCurrenItem = currentItem;
         currentItem = currentItem.right;
         prevCurrenItem.right = null;
-      }
-      else {
+      } else {
         Console.WriteLine("leaf");
         int currentDepth = parents.Count + 1;
-        Console.WriteLine("depth: " + currentDepth);
+        Console.WriteLine("current depth: " + currentDepth);
         maxDepth = (currentDepth > maxDepth) ? currentDepth : maxDepth;
         Console.WriteLine("maxDepth: " + maxDepth);
         if(parents.Count > 0) {
           currentItem = parents[parents.Count - 1];
           parents.RemoveAt(parents.Count - 1);
-        }
-        else {
+        } else {
           currentItem = null;
         }
       }
