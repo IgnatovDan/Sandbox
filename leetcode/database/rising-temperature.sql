@@ -8,8 +8,14 @@ inner join Weather as WeatherYesterday on DATE_ADD(WeatherToday.recordDate, INTE
 where WeatherYesterday.temperature < WeatherToday.temperature;
 
 /*
-# Error: Table 'test.wheather' doesn't exist
+select WeatherToday.id from Weather as WeatherToday, Weather as WeatherYesterday
+where 
+    WeatherYesterday.temperature < WeatherToday.temperature 
+    and DATE_ADD(WeatherToday.recordDate, INTERVAL -1 DAY) = WeatherYesterday.recordDate
+*/
 
+
+/*
 select * from Weather as WeatherToday
 where exists(
     select 1 
