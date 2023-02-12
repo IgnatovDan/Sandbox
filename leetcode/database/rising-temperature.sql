@@ -16,10 +16,11 @@ where
 
 
 /*
-select * from Weather as WeatherToday
+select WeatherToday.id from Weather as WeatherToday
 where exists(
     select 1 
-    from Wheather as WeatherYesterday 
+    from Weather as WeatherYesterday 
     where DATE_ADD(WeatherToday.recordDate, INTERVAL -1 DAY) = WeatherYesterday.recordDate
         and WeatherToday.temperature > WeatherYesterday.temperature
-)*/
+)
+*/
