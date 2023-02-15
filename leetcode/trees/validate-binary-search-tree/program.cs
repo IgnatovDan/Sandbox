@@ -29,6 +29,11 @@ class TreeNodeDetails {
 }
 
 public class Solution {
+  public bool IsValidBST(TreeNode root) {
+    return IsValidBST_MinMax(root);
+    //return IsValidBST_NodeDetails(root);
+  }
+  
   private TreeNodeDetails GetNodeDetails(TreeNode root) {
     if(root == null) {
       return null;
@@ -66,7 +71,23 @@ public class Solution {
     };
   }
   
-  public bool IsValidBST(TreeNode root) {
+  private bool IsValidBST_NodeDetails(TreeNode root) {
     return GetNodeDetails(root)?.valid ?? true;
+  }
+
+  private bool ValidateTree(TreeNode node, int? min, int? max) {
+    if(node == null) {
+      return true;
+    }
+    
+    if(min.HasValue && (node.val <= min) || max.HasValue && (node.val >= max)) {
+      return false;
+    }
+    
+    return ValidateTree(node?.left, min, node?.val) && ValidateTree(node?.right, node?.val, max);
+  }
+  
+  private bool IsValidBST_MinMax(TreeNode root) {
+    return ValidateTree(root?.left, null, root?.val) && ValidateTree(root?.right, root?.val, null);
   }
 }
