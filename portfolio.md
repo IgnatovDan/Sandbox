@@ -17,7 +17,7 @@ https://github.com/IgnatovDan/Sandbox/tree/main/tasks/transactions-web-api - web
 Подробнее в readme.md в этом репозитории
 
 - https://github.com/IgnatovDan/yandex-p3-russian-travel-my - варианты тестирования страницы. В проекте я добавил:
-  - скриншотные тесты на testcafe и на storybook+chromatic (оба проверяют одно и то же, я хотел сравнить их на одних и тех же сценариях, увидел что testcafe гораздо дешевле)
+  - скриншотные тесты на testcafe и на storybook+chromatic (оба проверяют одно и то же, я хотел сравнить их на одних и тех же сценариях, увидел что storybook почти сразу хочет денег)
   - автоматические проверки, в репозитории настроен автоматический запуск тестов при создании нового PR и на каждое изменение в PR (отдельные yaml файлы в ./github/workflows для testcafe и chromatic)
   - сделал локальный запуск тестов testcafe в докере, что бы локально получать скриншоты "как на гитхабе" (.\tests-testcafe\README.md)
 
