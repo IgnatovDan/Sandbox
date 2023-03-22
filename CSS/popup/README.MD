@@ -1,5 +1,9 @@
 ### Popup (overlay) is used in these projects/files:
-- https://github.com/IgnatovDan/yandex-mesto/blob/p5/blocks/popup/popup.css - fade in/out in 500ms
+- fade in/out in 500ms
+  - https://github.com/IgnatovDan/yandex-mesto/blob/p5/blocks/popup/popup.css
+  - https://github.com/IgnatovDan/yandex-mesto/blob/p5/blocks/popup/_opened/popup_opened.css
+  - https://github.com/IgnatovDan/yandex-mesto/blob/p5/blocks/popup/_page-is-loading/popup_page-is-loading.css
+  - https://github.com/IgnatovDan/yandex-mesto/blob/p5/scripts/index.js#L139
 
 ### Links
 
