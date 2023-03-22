@@ -1,8 +1,8 @@
 ### Grid is used in these projects/files:
 - https://github.com/IgnatovDan/yandex-p3-russian-travel-my/blob/main/blocks/photo-grid/photo-grid.css
 - https://github.com/IgnatovDan/yandex-p3-russian-travel-my/blob/main/blocks/place/place.css
-- https://github.com/IgnatovDan/yandex-p4-mesto-my/blob/main/blocks/profile/profile.css
-- https://github.com/IgnatovDan/yandex-p4-mesto-my/blob/main/blocks/places-list/places-list.css
+- https://github.com/IgnatovDan/yandex-mesto/blob/p4/blocks/profile/profile.css
+- https://github.com/IgnatovDan/yandex-mesto/blob/p4/blocks/places-list/places-list.css
 
 ### Links
 
