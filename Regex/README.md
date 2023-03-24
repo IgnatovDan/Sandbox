@@ -1,5 +1,5 @@
 ### Used in these projects/files:
-- BEM project template: https://github.com/IgnatovDan/bem-project
+- BEM project template: https://github.com/IgnatovDan/bem-project/blob/main/.stylelintrc.js
 - Stylelint BEM rules for newbie: https://github.com/IgnatovDan/stylelint-bem-newbie/blob/master/utils/try-parse-bem-name.js
 
 ### Links
