@@ -1,6 +1,6 @@
 ### Client validation is implemented in these projects/files:
 
-- https://github.com/IgnatovDan/yandex-mesto/blob/p6/scripts/validation.js#L139
+- https://github.com/IgnatovDan/yandex-mesto/blob/p6/scripts/validation.js
 
 ### Links
 
