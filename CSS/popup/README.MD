@@ -5,6 +5,8 @@
   - https://github.com/IgnatovDan/yandex-mesto/blob/p5/blocks/popup/_opened/popup_opened.css
   - https://github.com/IgnatovDan/yandex-mesto/blob/p5/blocks/popup/_page-is-loading/popup_page-is-loading.css
   - https://github.com/IgnatovDan/yandex-mesto/blob/p5/scripts/index.js#L139
+- Close by Esc or overlay click:
+  - https://github.com/IgnatovDan/yandex-mesto/blob/p6/scripts/index.js#L9
 
 ### Links
 
