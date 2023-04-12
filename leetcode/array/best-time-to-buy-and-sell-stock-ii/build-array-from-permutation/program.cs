@@ -24,7 +24,7 @@ public class Solution {
     }
     private int[] BuildByForeach(int[] nums) {
         var ans = new int[nums.Length];
-        foreach(int i in nums) {
+        foreach(int i in nums) { // each index is a value of some array item, this approach seems to be correct but it isn't clear
             ans[i] = nums[nums[i]];
         }
         return ans;
