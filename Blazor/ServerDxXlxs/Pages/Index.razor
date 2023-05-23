@@ -1,0 +1,32 @@
+﻿@page "/"
+
+@using DevExpress.Spreadsheet;
+@inject IJSRuntime iJSRuntime;
+
+<PageTitle>DxWorkbook</PageTitle>
+
+<h1>Download Xlsx file</h1>
+
+<button @onclick="GenerateAndDownload">Generate and download</button>
+<p role="status">Status: @exportStatus</p>
+
+
+@code {
+  private string? exportStatus = "Export is not started";
+  private int counter = 0;
+
+  private void GenerateAndDownload() {
+    exportStatus = "Started...";
+    using var wb = new Workbook();
+    var ws = wb.Worksheets[0];
+    ws.Cells["A1"].Value = "hello worl";
+
+    byte[] bytes = wb.SaveDocument(DocumentFormat.Xlsx);
+    exportStatus = "Workbook was created...";
+
+    // wwwroot\js\SaveAsFile.js
+    iJSRuntime.InvokeVoidAsync("SaveAsFile", "DxWorkbook.xlsx", Convert.ToBase64String(bytes));
+    counter++;
+    exportStatus = "Workbook was saved...(" + counter + ")";
+  }
+}
