@@ -1,0 +1,34 @@
+﻿@page "/"
+@using ServerDxChart.Data
+@inject WeatherForecastService ForecastService
+
+<PageTitle>DxChart</PageTitle>
+
+<h1>DxChart</h1>
+
+@if(forecasts == null) {
+  <p>Loading...</p>
+}
+else {
+  <DxChart Data="@forecasts">
+    <DxChartBarSeries ArgumentField="@(item => item.Date)"
+                      ValueField="@((WeatherForecast item) => item.Precipitation)"
+                      Name="Precipitation">
+    </DxChartBarSeries>
+    <DxChartLineSeries ArgumentField="@((WeatherForecast i) => i.Date)"
+                       ValueField="@((WeatherForecast i) => i.TemperatureC)"    
+                       Name="Temperature">
+    </DxChartLineSeries>
+  </DxChart>
+}
+
+@code {
+  private WeatherForecast[]? forecasts { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+      await Task.Delay(2000);
+      forecasts = await ForecastService.GetForecastAsync();
+    }
+
+}
