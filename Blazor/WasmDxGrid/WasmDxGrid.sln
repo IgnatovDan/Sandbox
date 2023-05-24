@@ -1,0 +1,64 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.0.0
+MinimumVisualStudioVersion = 16.0.0.0
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WasmDxGrid.Server", "Server\WasmDxGrid.Server.csproj", "{2F61F5A1-6A29-407D-9097-745C7170F469}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WasmDxGrid.Client", "Client\WasmDxGrid.Client.csproj", "{C07E7069-C204-4081-BA27-4E6899CC8832}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WasmDxGrid.Shared", "Shared\WasmDxGrid.Shared.csproj", "{273F22A5-E789-4B83-AFEA-128F037955B1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C07E7069-C204-4081-BA27-4E6899CC8832}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C07E7069-C204-4081-BA27-4E6899CC8832}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C07E7069-C204-4081-BA27-4E6899CC8832}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C07E7069-C204-4081-BA27-4E6899CC8832}.Debug|x64.Build.0 = Debug|Any CPU
+		{C07E7069-C204-4081-BA27-4E6899CC8832}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C07E7069-C204-4081-BA27-4E6899CC8832}.Debug|x86.Build.0 = Debug|Any CPU
+		{C07E7069-C204-4081-BA27-4E6899CC8832}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C07E7069-C204-4081-BA27-4E6899CC8832}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C07E7069-C204-4081-BA27-4E6899CC8832}.Release|x64.ActiveCfg = Release|Any CPU
+		{C07E7069-C204-4081-BA27-4E6899CC8832}.Release|x64.Build.0 = Release|Any CPU
+		{C07E7069-C204-4081-BA27-4E6899CC8832}.Release|x86.ActiveCfg = Release|Any CPU
+		{C07E7069-C204-4081-BA27-4E6899CC8832}.Release|x86.Build.0 = Release|Any CPU
+		{2F61F5A1-6A29-407D-9097-745C7170F469}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F61F5A1-6A29-407D-9097-745C7170F469}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F61F5A1-6A29-407D-9097-745C7170F469}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2F61F5A1-6A29-407D-9097-745C7170F469}.Debug|x64.Build.0 = Debug|Any CPU
+		{2F61F5A1-6A29-407D-9097-745C7170F469}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2F61F5A1-6A29-407D-9097-745C7170F469}.Debug|x86.Build.0 = Debug|Any CPU
+		{2F61F5A1-6A29-407D-9097-745C7170F469}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F61F5A1-6A29-407D-9097-745C7170F469}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F61F5A1-6A29-407D-9097-745C7170F469}.Release|x64.ActiveCfg = Release|Any CPU
+		{2F61F5A1-6A29-407D-9097-745C7170F469}.Release|x64.Build.0 = Release|Any CPU
+		{2F61F5A1-6A29-407D-9097-745C7170F469}.Release|x86.ActiveCfg = Release|Any CPU
+		{2F61F5A1-6A29-407D-9097-745C7170F469}.Release|x86.Build.0 = Release|Any CPU
+		{273F22A5-E789-4B83-AFEA-128F037955B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{273F22A5-E789-4B83-AFEA-128F037955B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{273F22A5-E789-4B83-AFEA-128F037955B1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{273F22A5-E789-4B83-AFEA-128F037955B1}.Debug|x64.Build.0 = Debug|Any CPU
+		{273F22A5-E789-4B83-AFEA-128F037955B1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{273F22A5-E789-4B83-AFEA-128F037955B1}.Debug|x86.Build.0 = Debug|Any CPU
+		{273F22A5-E789-4B83-AFEA-128F037955B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{273F22A5-E789-4B83-AFEA-128F037955B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{273F22A5-E789-4B83-AFEA-128F037955B1}.Release|x64.ActiveCfg = Release|Any CPU
+		{273F22A5-E789-4B83-AFEA-128F037955B1}.Release|x64.Build.0 = Release|Any CPU
+		{273F22A5-E789-4B83-AFEA-128F037955B1}.Release|x86.ActiveCfg = Release|Any CPU
+		{273F22A5-E789-4B83-AFEA-128F037955B1}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A57E0CE7-51AF-4C6B-BFEE-EF8303E2C000}
+	EndGlobalSection
+EndGlobal
