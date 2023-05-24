@@ -1,7 +1,7 @@
 ## Commands to create application
 
 - `dotnet new web -o WasmDxXlxsServer`
-- `dotnet add package DevExpress.Document.Processor -s https://nuget.devexpress.com/.....`
+- `dotnet add package DevExpress.Document.Processor`
 
 ## Commands to start application
 
