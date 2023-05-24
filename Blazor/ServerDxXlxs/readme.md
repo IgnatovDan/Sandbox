@@ -1,6 +1,7 @@
 ## Commands to create application
 
 - `dotnet new blazorserver -o ServerDxXlxs -f net7.0`
+- `dotnet add package DevExpress.Document.Processor `
 
 ## Commands to start application
 
@@ -14,5 +15,6 @@
 
 ## See also
 
+- [learn.microsoft.com: ASP.NET Core Razor component lifecycle](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/lifecycle?view=aspnetcore-7.0)
 - [learn.microsoft: Build a Blazor todo list app, BlazorServer]([https://learn.microsoft.com/en-us/aspnet/core/blazor/tutorials/build-a-blazor-app?view=aspnetcore-7.0&pivots=webassembly](https://learn.microsoft.com/en-us/aspnet/core/blazor/tutorials/build-a-blazor-app?view=aspnetcore-7.0&pivots=server))
 - [docs.devexpress: ICustomFunction Interface](https://docs.devexpress.com/OfficeFileAPI/DevExpress.Spreadsheet.Functions.ICustomFunction)
