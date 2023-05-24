@@ -8,6 +8,10 @@
 - `dotnet dev-certs https --trust`
 - `Press Ctrl+F5 to run the app`
 
+## Details
+
+- See https://github.com/IgnatovDan/Sandbox/blob/main/Blazor/WasmDxXlxs/WasmDxXlxsServer/Program.cs
+
 ## See also
 
 - [learn.microsoft.com: Create a minimal API with ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-7.0&tabs=visual-studio-code)
