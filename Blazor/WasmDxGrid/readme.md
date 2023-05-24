@@ -5,7 +5,7 @@
 
 ## Commands to start application
 
-- `dotnet watch run` or `Ctrl+F5`
+- `Ctrl+F5`
 
 ## Details
 
