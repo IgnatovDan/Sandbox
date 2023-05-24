@@ -1,0 +1,12 @@
+﻿@page "/"
+
+<PageTitle>DxWorkbook</PageTitle>
+
+<h1>Download Xlsx file</h1>
+
+<a href="@apiGetXlsxFile" class="btn btn-primary">Generate and download</a>
+
+@code {
+  // Sandbox\Blazor\WasmDxXlxs\WasmDxXlxsServer\Properties\launchSettings.json
+  private string apiGetXlsxFile = "https://localhost:7172/xlsxfile";
+}
