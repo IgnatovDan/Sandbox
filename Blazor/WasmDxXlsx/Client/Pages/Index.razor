@@ -1,0 +1,8 @@
+﻿@page "/"
+@inject HttpClient Http;
+
+<PageTitle>DxWorkbook</PageTitle>
+
+<h1>Download Xlsx file</h1>
+
+<a href="@(Http.BaseAddress + WasmDxXlsx.Client.Utils.RouteUrls.GenerateXlsxFile)" target="_blank" class="btn btn-primary">Download Xlsx</a>
