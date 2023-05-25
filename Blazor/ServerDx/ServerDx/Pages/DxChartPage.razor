@@ -1,0 +1,33 @@
+﻿@page "/DxChart"
+@using CoreLib.WeatherForecast
+@using ServerDx.Services
+@inject WeatherForecastService ForecastService
+
+<PageTitle>DxChart</PageTitle>
+
+<h1>DxChart</h1>
+
+@if(forecasts == null) {
+  <p>Loading...</p>
+}
+else {
+  <DxChart Data="@forecasts">
+    <DxChartBarSeries ArgumentField="@(item => item.Date)"
+                      ValueField="@((Forecast item) => item.Precipitation)"
+                      Name="Precipitation">
+    </DxChartBarSeries>
+    <DxChartLineSeries ArgumentField="@((Forecast i) => i.Date)"
+                       ValueField="@((Forecast i) => i.TemperatureC)"    
+                       Name="Temperature">
+    </DxChartLineSeries>
+  </DxChart>
+}
+
+@code {
+  IEnumerable<Forecast>? forecasts { get; set; }
+  protected override async Task OnInitializedAsync()
+  {
+    base.OnInitialized();
+    forecasts = await ForecastService.GetForecastsAsync(DateOnly.FromDateTime(DateTime.Today));
+  }
+}

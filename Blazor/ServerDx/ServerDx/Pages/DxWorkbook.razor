@@ -1,0 +1,10 @@
+﻿@page "/DxWorkbook"
+@inject NavigationManager NavigationManager
+
+<PageTitle>DxWorkbook</PageTitle>
+
+<h1>Download XLSX file</h1>
+
+<a href="@(NavigationManager.BaseUri + ServerDx.Utils.RouteUrls.GenerateXlsxFile)" target="_blank" class="btn btn-primary">
+  Download XLSX file
+</a>
