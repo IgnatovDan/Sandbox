@@ -1,0 +1,32 @@
+﻿@page "/DxChart"
+@using WasmDx.Shared
+@using WasmDx.Client.Utils
+@inject HttpClient Http
+
+<PageTitle>DxChart</PageTitle>
+
+<h1>DxChart</h1>
+
+@if(forecasts == null) {
+  <p>Loading...</p>
+}
+else {
+  <DxChart Data="@forecasts">
+    <DxChartBarSeries ArgumentField="@(item => item.Date)"
+                      ValueField="@((SharedWeatherForecast item) => item.Precipitation)"
+                      Name="Precipitation">
+    </DxChartBarSeries>
+    <DxChartLineSeries ArgumentField="@((SharedWeatherForecast i) => i.Date)"
+                       ValueField="@((SharedWeatherForecast i) => i.TemperatureC)"    
+                       Name="Temperature">
+    </DxChartLineSeries>
+  </DxChart>
+}
+
+@code {
+  IEnumerable<SharedWeatherForecast>? forecasts { get; set; }
+  protected override async Task OnInitializedAsync()
+  {
+    forecasts = await Http.GetFromJsonAsync<SharedWeatherForecast[]>(RouteUrls.WeatherForecast);
+  }
+}
