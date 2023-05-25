@@ -21,10 +21,10 @@ else {
 }
 
 @code {
-    private WeatherForecast[]? forecasts;
+    private SharedForecast[]? forecasts;
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
+        forecasts = await Http.GetFromJsonAsync<SharedForecast[]>("WeatherForecast");
     }
 }
