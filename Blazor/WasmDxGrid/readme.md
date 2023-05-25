@@ -9,9 +9,16 @@
 
 ## Details
 
-- [Client/Pages/Index.razor](Client/Pages/Index.razor)
-- [Server/Controllers/WeatherForecastController.cs](Server/Controllers/WeatherForecastController.cs)
-- [Shared/WeatherForecast.cs](Shared/WeatherForecast.cs)
+- Client
+  - [Client/Pages/Index.razor](Client/Pages/Index.razor)
+- Server
+  - [Server/Controllers/WeatherForecastController.cs](Server/Controllers/WeatherForecastController.cs)
+  - [Server/Services/WeatherForecastService.cs](Server/Services/WeatherForecastService.cs)
+- Client/Server Shared
+  - [Shared/SharedForecast.cs](Shared/SharedForecast.cs)
+- Library
+  - [WeatherForecast/WeatherForecastProvider.cs](WeatherForecast/WeatherForecastProvider.cs)
+  - [WeatherForecast/WeatherForecast.cs](WeatherForecast/WeatherForecast.cs)
 
 ## See also
 
