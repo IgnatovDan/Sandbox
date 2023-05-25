@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Client\WasmDxGrid.Client.csproj" />
     <ProjectReference Include="..\Shared\WasmDxGrid.Shared.csproj" />
+    <ProjectReference Include="..\WeatherForecast\WeatherForecast.csproj" />
   </ItemGroup>
 
 

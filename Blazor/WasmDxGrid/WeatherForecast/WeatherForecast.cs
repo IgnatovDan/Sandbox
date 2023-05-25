@@ -1,6 +1,6 @@
-namespace WasmDxGrid.Shared;
+namespace WeatherForecast;
 
-public class WeatherForecast
+public class Forecast
 {
     public DateOnly Date { get; set; }
 
