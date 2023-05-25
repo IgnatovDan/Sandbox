@@ -1,0 +1,30 @@
+﻿@page "/DxGrid"
+@using WasmDx.Shared
+@using WasmDx.Client.Utils
+@inject HttpClient Http;
+
+<PageTitle>DxGrid</PageTitle>
+
+<h1>DxGrid!</h1>
+
+@if (forecasts == null)
+{
+    <p>Loading...</p>
+}
+else {
+  <DxGrid Data="@forecasts" ShowGroupPanel="true" ShowFilterRow="true">
+    <Columns>
+        <DxGridDataColumn FieldName="Date" DisplayFormat="D" />
+        <DxGridDataColumn FieldName="Summary" Width="120px" />
+        <DxGridDataColumn FieldName="TemperatureC" Caption="Temperature" Width="120px" />
+    </Columns>
+  </DxGrid>
+}
+
+@code {
+  IEnumerable<SharedWeatherForecast>? forecasts { get; set; }
+  protected override async Task OnInitializedAsync()
+  {
+    forecasts = await Http.GetFromJsonAsync<SharedWeatherForecast[]>(RouteUrls.WeatherForecast);
+  }
+}
