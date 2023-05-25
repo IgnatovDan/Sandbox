@@ -1,7 +1,9 @@
 ## Commands to create application
 
 - `dotnet new blazorwasm --hosted -o WasmDxXlsx -f net7.0`
+- `dotnet new classlib -o XlsxGenerator`
 - `dotnet add package DevExpress.Blazor`
+- `dotnet add reference ../XlsxGenerator`
 
 ## Commands to start application
 
