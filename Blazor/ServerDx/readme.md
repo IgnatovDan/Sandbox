@@ -4,7 +4,7 @@
   - `dotnet new editorconfig`
   - `dotnet new gitignore`
 - Blazor server project
-  - `dotnet new blazorserver --hosted -o ServerDx -f net7.0`
+  - `dotnet new blazorserver -o ServerDx -f net7.0`
   - `dotnet add package DevExpress.Blazor`
 - Core library
   - `dotnet new classlib -o CoreLib`
