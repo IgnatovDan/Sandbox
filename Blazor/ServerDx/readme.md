@@ -9,7 +9,7 @@
 - Core library
   - `dotnet new classlib -o CoreLib`
   - `dotnet add reference ../CoreLib`
-- DxXlsx
+- DxXlsx (add `NuGet.config` at root folder)
   - `dotnet add package DevExpress.Document.Processor`
 
 ## Commands to start application
@@ -27,6 +27,8 @@
     - [ServerDx/Services/XlsxFileGeneratorService.cs](ServerDx/Services/XlsxFileGeneratorService.cs)
   - Library
     - [CoreLib/XlsxFileGenerator.cs](CoreLib/XlsxFileGenerator.cs)
+  - Notes
+    - [mcr.microsoft.com/dotnet/sdk](https://hub.docker.com/_/microsoft-dotnet-sdk) is based on [nanoserver](https://hub.docker.com/_/microsoft-windows-nanoserver) image which doesn't include `gdiplus.dll` while Devexpress.Spreadsheet.Processor requires it to generate XLSX files. This is why I cannot use [mcr.microsoft.com/dotnet/sdk](https://hub.docker.com/_/microsoft-dotnet-sdk). (Unable to load DLL 'gdiplus.dll' when using Windows based docker images)[https://github.com/dotnet/dotnet-docker/issues/1098]
   - Links
     - [docs.devexpress: ICustomFunction Interface](https://docs.devexpress.com/OfficeFileAPI/DevExpress.Spreadsheet.Functions.ICustomFunction)
     - [docs.devexpress: Get Started - Create and Export an Excel File](https://docs.devexpress.com/OfficeFileAPI/15072/spreadsheet-document-api/getting-started)
