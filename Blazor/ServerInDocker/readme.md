@@ -35,6 +35,7 @@
   - ASP.NET Docker Containers
     - [Github: dotnet/dotnet-docker](https://github.com/dotnet/dotnet-docker/tree/main)
     - [Github: ASP.NET Core Docker Samples](https://github.com/dotnet/dotnet-docker/blob/main/samples/aspnetapp/README.md)
+    - [docs.docker.com: .NET samples repositories](https://docs.docker.com/samples/dotnet/)
     - [ASP.NET Core Runtime](https://hub.docker.com/_/microsoft-dotnet-aspnet)
     - [ASP.NET](https://hub.docker.com/_/microsoft-dotnet-framework-aspnet)
     - [Windows IIS](https://hub.docker.com/_/microsoft-windows-servercore-iis)
