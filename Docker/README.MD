@@ -8,6 +8,8 @@ Docker is used in these projects/files:
 Links
 
 - https://docs.docker.com/get-started/
+- [Compose file build reference](https://docs.docker.com/compose/compose-file/build/)
+- [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
 - https://hub.docker.com/ \
 `docker push YOUR-USER-NAME/YOUR-LOCAL-IMAGE-NAME` - uploads a local image to 'hub' storage which allows to use it everywhere
 - https://labs.play-with-docker.com/ \
