@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  myapp:
+    build:
+      no_cache: true
+      context: ./..
+      dockerfile: ./Docker_Dev_Linux/build.image.release_config.dockerfile
+      # docker file can be inlined: https://docs.docker.com/compose/compose-file/build/#dockerfile_inline
+      # but it doesn't work in my env ('no docker file' error occurs), there is a similar issue at https://github.com/microsoft/vscode-remote-release/issues/8445
+    image: blazor-server-in-docker
+    container_name: BlazorServerInDocker
+    ports:
+      - 8000:80
