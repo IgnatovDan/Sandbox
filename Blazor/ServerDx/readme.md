@@ -12,9 +12,14 @@
 - DxXlsx (add `NuGet.config` at root folder)
   - `dotnet add package DevExpress.Document.Processor`
 
-## Commands to start application
+## Run locally
 
-- `Ctrl+F5`
+  - `Ctrl+F5` or `dotnet run --project ServerDx`
+
+## Run in Docker container
+
+  - Run [\Docker\run.docker-compose.release_config.cmd](\Docker\run.docker-compose.release_config.cmd)
+  - Open `http://localhost:8000/`
 
 ## Details
 
@@ -52,6 +57,11 @@
     - [CoreLib/WeatherForecast/ForecastProvider.cs](CoreLib/WeatherForecast/ForecastProvider.cs)
   - Links
     - [docs.devexpress: Get Started with Charts](https://docs.devexpress.com/Blazor/401769/charts/get-started-with-charts)
+
+- Docker
+  - [Docker_Dev_Linux\build.image.release_config.dockerfile](Docker_Dev_Linux\build.image.release_config.dockerfile)
+  - [Docker_Dev_Windows\build.image.release_config.dockerfile](Docker_Dev_Windows\build.image.release_config.dockerfile)
+  - Links: https://github.com/IgnatovDan/Sandbox/tree/main/Blazor/ServerInDocker#links
 
 ## See also
 

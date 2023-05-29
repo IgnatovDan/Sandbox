@@ -44,3 +44,9 @@
   - Docker
     - [Compose file build reference](https://docs.docker.com/compose/compose-file/build/)
     - [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
+
+## See also
+
+- [docs.devexpress: Microsoft Templates (.NET CLI)](https://docs.devexpress.com/Blazor/402564/get-started/microsoft-templates-nuget-cli)
+- [learn.microsoft.com: ASP.NET Core Razor component lifecycle](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/lifecycle?view=aspnetcore-7.0)
+- [metanit: Async methods](https://metanit.com/sharp/tutorial/13.7.php)
