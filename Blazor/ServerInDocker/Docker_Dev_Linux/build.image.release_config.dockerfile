@@ -5,7 +5,7 @@ WORKDIR /source
 
 COPY . .
 RUN dotnet restore
-# use '-c Release' instead (it will publish css files in Linux container)
+# use '-c Release' instead (because css styles are not used in a Linux container)
 # RUN dotnet publish ./ServerInDocker/ServerInDocker.csproj --self-contained false --no-restore -o ./.artifacts
 RUN dotnet publish ./ServerInDocker/ServerInDocker.csproj -c Release -o ./.artifacts
 
