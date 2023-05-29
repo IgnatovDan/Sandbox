@@ -13,11 +13,11 @@
 
 ## Run locally
 
-  - `Ctrl+F5`
+  - `Ctrl+F5` or `dotnet run --project ServerInDocker`
 
 ## Run in Docker container
 
-  - Run [\Docker\run.docker-compose.release_config.cmd](\Docker\run.docker-compose.release_config.cmd)
+  - Run [\Docker_Dev_Linux\run.docker-compose.release_config.cmd](\Docker_Dev_Linux\run.docker-compose.release_config.cmd) or [\Docker_Dev_Windows\run.docker-compose.release_config.cmd](\Docker_Dev_Windows\run.docker-compose.release_config.cmd)
   - Open `http://localhost:8000/`
 
 ## Details
