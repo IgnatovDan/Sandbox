@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerInDocker", "ServerInDocker\ServerInDocker.csproj", "{B53FC3DC-89CC-462C-9D83-CFE6B77485E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreLib", "corelib\CoreLib.csproj", "{E4F96D3C-5979-45AC-8B99-F3C41383E773}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreLib", "CoreLib\CoreLib.csproj", "{E4F96D3C-5979-45AC-8B99-F3C41383E773}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
