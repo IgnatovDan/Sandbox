@@ -5,7 +5,8 @@ WORKDIR /source
 
 COPY . .
 RUN dotnet restore ./ServerDx/ServerDx.csproj
-RUN dotnet publish ./ServerDx/ServerDx.csproj --self-contained false --no-restore -o ./.artifacts
+RUN dotnet publish ./ServerDx/ServerDx.csproj -c Release -o ./.artifacts
+# RUN dotnet publish ./ServerDx/ServerDx.csproj --self-contained false --no-restore -o ./.artifacts
 
 # final stage/image
 # FROM mcr.microsoft.com/dotnet/aspnet:7.0 - I have to use `7.0-windowsservercore-ltsc2019` instead
@@ -20,4 +21,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:7.0-windowsservercore-ltsc2019
 
 WORKDIR /app
 COPY --from=build /source/.artifacts .
-ENTRYPOINT ["ServerDx.exe"]
+ENTRYPOINT ["dotnet", "ServerDx.dll"]
