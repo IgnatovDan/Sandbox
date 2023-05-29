@@ -32,6 +32,9 @@
     - [ServerDx/Services/XlsxFileGeneratorService.cs](ServerDx/Services/XlsxFileGeneratorService.cs)
   - Library
     - [CoreLib/XlsxFileGenerator.cs](CoreLib/XlsxFileGenerator.cs)
+  - Linux
+    - Requires DevExpress.Drawing.Skia assembly, [DevExpress.Drawing Graphics Library — v22.2 Update — SkiaSharp for .NET 6/7 and Linux Support (CTP)](https://community.devexpress.com/blogs/news/archive/2022/12/12/devexpress-drawing-graphics-library-v22-2-update-skiasharp-for-net-6-7-and-linux-support-ctp.aspx)
+    - Requires fonts, [Use Office File API on Linux](https://docs.devexpress.com/OfficeFileAPI/401441/dotnet-core-support/use-office-file-api-on-linux#prerequisites)
   - Notes
     - [mcr.microsoft.com/dotnet/sdk](https://hub.docker.com/_/microsoft-dotnet-sdk) is based on [nanoserver](https://hub.docker.com/_/microsoft-windows-nanoserver) image which doesn't include `gdiplus.dll` while Devexpress.Spreadsheet.Processor requires it to generate XLSX files. This is why I cannot use [mcr.microsoft.com/dotnet/sdk](https://hub.docker.com/_/microsoft-dotnet-sdk). (Unable to load DLL 'gdiplus.dll' when using Windows based docker images)[https://github.com/dotnet/dotnet-docker/issues/1098]
   - Links
