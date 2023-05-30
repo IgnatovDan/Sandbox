@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  wasmdxindockernginxapp:
+    build:
+      no_cache: true
+      context: ./..
+      dockerfile: ./Docker_nginx/build.image.release_config.dockerfile
+      # docker file can be inlined: https://docs.docker.com/compose/compose-file/build/#dockerfile_inline
+      # but it doesn't work in my env ('no docker file' error occurs), there is a similar issue at https://github.com/microsoft/vscode-remote-release/issues/8445
+    image: wasm-dx-in-docker-nginx
+    container_name: WasmDxInDockerNginx
+    ports:
+      - 8000:80

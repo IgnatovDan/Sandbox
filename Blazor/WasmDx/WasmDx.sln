@@ -8,7 +8,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WasmDx.Client", "Client\Was
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WasmDx.Shared", "Shared\WasmDx.Shared.csproj", "{B246459C-8647-4CB2-A9ED-284EAAE96B76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "corelib", "corelib\corelib.csproj", "{F1B03812-E446-4949-988D-B656032FE062}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreLib", "CoreLib\CoreLib.csproj", "{F1B03812-E446-4949-988D-B656032FE062}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -56,3 +56,4 @@
 - [docs.devexpress: Microsoft Templates (.NET CLI)](https://docs.devexpress.com/Blazor/402564/get-started/microsoft-templates-nuget-cli)
 - [learn.microsoft.com: ASP.NET Core Razor component lifecycle](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/lifecycle?view=aspnetcore-7.0)
 - [metanit: Async methods](https://metanit.com/sharp/tutorial/13.7.php)
+- [metanit: Публикация на IIS](https://metanit.com/sharp/aspnet5/20.1.php)

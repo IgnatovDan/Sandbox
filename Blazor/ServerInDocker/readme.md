@@ -45,6 +45,9 @@
     - [Compose file build reference](https://docs.docker.com/compose/compose-file/build/)
     - [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
 
+  - IIS
+    - [metanit: Публикация на IIS](https://metanit.com/sharp/aspnet5/20.1.php)
+
   - Docker IIS
     - [IIS Remote Management for Docker Containers](https://devblogs.microsoft.com/premier-developer/iis-remote-management-for-docker-containers/)
     - [Deploying ASP.NET Core Web Applications to Docker](https://www.textcontrol.com/blog/2020/06/23/deploying-an-aspnet-core-web-applications-to-docker/)
