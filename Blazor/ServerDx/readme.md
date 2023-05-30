@@ -66,6 +66,11 @@
   - [Docker_Dev_Windows\build.image.release_config.dockerfile](Docker_Dev_Windows\build.image.release_config.dockerfile)
   - Links: https://github.com/IgnatovDan/Sandbox/tree/main/Blazor/ServerInDocker#links
 
+- Docker IIS
+  - [IIS Remote Management for Docker Containers](https://devblogs.microsoft.com/premier-developer/iis-remote-management-for-docker-containers/)
+  - [Deploying ASP.NET Core Web Applications to Docker](https://www.textcontrol.com/blog/2020/06/23/deploying-an-aspnet-core-web-applications-to-docker/)
+  - [Deploying C# Web Applications with Docker](https://platform.uno/blog/deploying-c-web-applications-with-docker/)
+
 ## See also
 
 - [docs.devexpress: Microsoft Templates (.NET CLI)](https://docs.devexpress.com/Blazor/402564/get-started/microsoft-templates-nuget-cli)
