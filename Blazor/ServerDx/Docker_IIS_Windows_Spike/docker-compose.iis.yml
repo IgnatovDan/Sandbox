@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  serverdxindockerapp:
+    build:
+      no_cache: true
+      context: ./..
+      dockerfile: ./Docker_IIS_Windows/iis.dockerfile
+    image: server-dx-in-iis
+    container_name: ServerDxInIIS
+    ports:
+      - 8000:80

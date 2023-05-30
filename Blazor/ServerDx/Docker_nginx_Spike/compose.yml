@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  dxservernginx:
+    image: dxservernginx
+    build:
+      context: ./..
+      dockerfile: Docker_nginx/dockerfile
+    environment:
+      - ASPNETCORE_URLS=http://*:5005
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8080:80"
