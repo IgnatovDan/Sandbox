@@ -1,4 +1,5 @@
 ﻿@page "/DxGrid"
+@using DevExpress.Export
 @using CoreLib.WeatherForecast
 @using ServerDx.Services
 @inject WeatherForecastService ForecastService
@@ -12,7 +13,9 @@
     <p>Loading...</p>
 }
 else {
-  <DxGrid Data="@forecasts" ShowGroupPanel="true" ShowFilterRow="true">
+  @* Not supported: <DxButton RenderStyle="ButtonRenderStyle.Primary" Text="Export to Pdf" @Click="ExportToPdf_Click"/> *@
+  <DxButton RenderStyle="ButtonRenderStyle.Secondary" Text="Export to Xlsx" Click="@ExportToXlsx_Click"/>
+  <DxGrid @ref="grid" Data="@forecasts" ShowGroupPanel="true" ShowFilterRow="true">
     <Columns>
         <DxGridDataColumn FieldName="Date" DisplayFormat="D" />
         <DxGridDataColumn FieldName="Summary" Width="120px" />
@@ -22,7 +25,11 @@ else {
 }
 
 @code {
+  IGrid grid { get; set; }
   IEnumerable<Forecast>? forecasts { get; set; }
+  private async Task ExportToXlsx_Click() {
+    await grid.ExportToXlsxAsync("DxGrid");
+  }
   protected override async Task OnInitializedAsync()
   {
     base.OnInitialized();
