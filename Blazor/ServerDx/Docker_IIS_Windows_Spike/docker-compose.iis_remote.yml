@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  serverdxindockerappiis_remote:
+    build:
+      no_cache: true
+      context: ./..
+      dockerfile: ./Docker_IIS_Windows/iis_remote.dockerfile
+    image: server-dx-in-iis_remote
+    container_name: ServerDxIniis_remote
+    ports:
+      - 8000:80
