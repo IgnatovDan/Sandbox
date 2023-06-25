@@ -4,3 +4,4 @@
 - [How-To Bind C++ Code with Dotnet Core](https://medium.com/@xaviergeerinck/how-to-bind-c-code-with-dotnet-core-157a121c0aa6)
 - [CMake Documentation](https://cmake.org/cmake/help/latest/manual/cmake.1.html#)
 - [github MicrosoftDocs: Create and use your own Dynamic Link Library (C++)](https://github.com/MicrosoftDocs/cpp-docs/blob/main/docs/build/walkthrough-creating-and-using-a-dynamic-link-library-cpp.md)
+- [learn.microsoft: Install the .NET SDK or the .NET Runtime on Ubuntu](https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu)
