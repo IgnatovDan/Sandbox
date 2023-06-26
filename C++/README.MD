@@ -3,6 +3,7 @@
 
 - learn.microsoft
   - [dllexport, dllimport](https://learn.microsoft.com/en-us/cpp/cpp/dllexport-dllimport?view=msvc-170)
+  - [Tutorial: Create C++ cross-platform projects in Visual Studio](https://learn.microsoft.com/en-us/cpp/build/get-started-linux-cmake?view=msvc-170)
   - [Install the .NET SDK or the .NET Runtime on Ubuntu](https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu)
   - [Configure a Linux MSBuild C++ project in Visual Studio](https://learn.microsoft.com/en-us/cpp/linux/configure-a-linux-project?view=msvc-170)
   - [Get started with Docker remote containers on WSL 2](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers)
