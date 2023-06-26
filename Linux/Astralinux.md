@@ -1,0 +1,11 @@
+- Нужно использовать версию 1.7 SE (версии 2.хх устарели, у авторов своя система нумерации версий)
+- Можно ставить на VirtualBox: https://www.virtualbox.org/wiki/Downloads
+- Настройка VM и установка AstraLinux: https://www.youtube.com/watch?v=LeowcuGMLew
+- Образы последних версий Astralinux можно скачать с официального сайта или с торрентов
+- Для установки на VirtualBox нужно ~30Gb свободного места
+Ссылки:
+- https://astralinux.ru/software-services/os/astra-linux-se/
+- https://tlgrm.ru/channels/@snakers4/3142
+- https://habr.com/ru/news/741324/ - Совместимость с двумя российскими ОС станет обязательной для отечественного ПО
+- https://habr.com/ru/articles/715522/ - Astra Linux CE Orel (Simply Linux/РедОС Муром)
+- Postgres Professional собирает сборки для Astra Linux - https://1c.postgres.ru/ + https://postgrespro.com/products/download/postgrespro/latest + https://www.postgresql.org/download/linux/debian/
