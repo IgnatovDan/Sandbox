@@ -1,3 +1,3 @@
 - Project folders structure/layout samples:
-  - [.NET project structure](https://gist.github.com/davidfowl/ed7564297c61fe9ab814)
-  - [.NET Project Layout](https://github.com/dotnet-template/project-layout)
+  - [.NET project structure sample](https://gist.github.com/davidfowl/ed7564297c61fe9ab814)
+  - [.NET Project Layout sample](https://github.com/dotnet-template/project-layout)
