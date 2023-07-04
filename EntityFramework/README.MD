@@ -1,0 +1,2 @@
+- Links
+  - [www.learnentityframeworkcore.com: Learn Entity Framework Core](https://www.learnentityframeworkcore.com/)
