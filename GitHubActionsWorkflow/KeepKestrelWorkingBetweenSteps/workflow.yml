@@ -1,0 +1,51 @@
+name: selenium functional tests
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-and-test-selenium:
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+                
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v3
+      
+    - name: Install main solution dependencies
+      run: dotnet restore
+      working-directory: ./src
+      
+    - name: Build main solution
+      run: dotnet build --configuration Release --no-restore
+      working-directory: ./src
+    
+    - name: Run main solution ( windows )
+      run: Start-Process -FilePath start.cmd
+      working-directory: ./.github/workflows
+      if: matrix.os == 'windows-latest'
+
+    - name: Run main solution ( ubuntu )
+      run: |
+        dotnet run --project SeleniumTests --launch-profile https --configuration Release --no-build --no-restore &
+      working-directory: ./src
+      if: matrix.os == 'ubuntu-latest'
+
+    - name: Install test solution dependencies
+      run: dotnet restore
+      working-directory: ./tests/Functional
+      
+    - name: Build test solution
+      run: dotnet build --configuration Release --no-restore
+      working-directory: ./tests/Functional
+
+    - name: Test
+      run: dotnet test --configuration Release --no-build --no-restore
+      working-directory: ./tests/Functional
