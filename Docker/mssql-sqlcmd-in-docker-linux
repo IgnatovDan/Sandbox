@@ -1,5 +1,6 @@
 - https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sql-server-ver16&tabs=ubuntu-install#docker
   - on Linux
+    apt-get install curl
     curl https://packages.microsoft.com/keys/microsoft.asc | tee /etc/apt/trusted.gpg.d/microsoft.asc
     curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
     apt-get update
@@ -8,4 +9,4 @@
     apt-get update
     ACCEPT_EULA=Y apt-get install mssql-tools18 unixodbc-dev
   - run (add '[-C Trust Server Certificate]' for the 'certificate verify failed:self signed certificate' error)
-    /opt/mssql-tools18/bin/sqlcmd -S db-release -U sa -P 'Admin123' -C
+    /opt/mssql-tools18/bin/sqlcmd -S db-server-name -U sa -P 'sa_pwd' -C
