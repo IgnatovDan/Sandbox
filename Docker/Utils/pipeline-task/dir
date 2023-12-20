@@ -1,0 +1,4 @@
+    - script: dir /s $(FolderFullPathBackslash)
+      displayName: 'List files in $(FolderFullPathBackslash)'
+      condition: succeededOrFailed() # Run task even if previous one fails
+      continueOnError: true
