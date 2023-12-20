@@ -1,0 +1,13 @@
+resources:
+  repositories:
+  - repository: MyRepository2
+    type: git
+    name: MyRepository2/MyRepository2
+
+stages:
+
+- stage: prepare_stage
+  jobs:
+  - job: prepare_job
+    steps:
+    - checkout: MyRepository2
