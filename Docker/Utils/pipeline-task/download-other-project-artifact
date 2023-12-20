@@ -1,0 +1,8 @@
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        buildType: 'specific'
+        project: 'OtherProjectName'
+        definition: 'OtherProjectName'
+        buildVersionToDownload: 'latest'
+        artifactName: 'myartifactname'
+        targetPath: '$(Build.SourcesDirectory)/$(MyTargetFolder)'
