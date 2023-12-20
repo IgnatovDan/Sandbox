@@ -1,0 +1,18 @@
+    - task: PowerShell@2
+      displayName: Update $(DockerfileFullPathBackslash)
+      inputs:
+        targetType: inline
+        script: |
+            $fileFullPath = $env:DockerfileFullPathBackslash
+            $fileContent = [System.IO.File]::ReadAllText($fileFullPath)
+            $newFileContent = $fileContent.Replace("'FileNameToReplace'","'$($env:DockerfileFolderFullPathBackslash)\\NewFileName'")
+            [System.IO.File]::WriteAllText($fileFullPath, $newFileContent, [System.Text.Encoding]::UTF8)
+
+    - task: PowerShell@2
+      displayName: Show $(DockerfileFullPathBackslash)
+      inputs:
+        targetType: inline
+        script: |
+            $fileFullPath = $env:DockerfileFullPathBackslash
+            $fileContent = [System.IO.File]::ReadAllText($fileFullPath)
+            [System.Console]::Write($fileContent)
