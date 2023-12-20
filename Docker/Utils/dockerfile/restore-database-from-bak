@@ -1,0 +1,13 @@
+RUN start-service MSSQL`$SQLEXPRESS
+
+WORKDIR c:/database
+
+COPY MyDb.bak .
+
+RUN $VerbosePreference = 'Continue'; \
+    sqlcmd -Q \"RESTORE FILELISTONLY FROM DISK = 'c:/database/MyDb.bak'\"; \
+    sqlcmd -Q \"RESTORE DATABASE MyDb FROM DISK = 'c:/database/MyDb.bak' WITH MOVE 'MyDb' TO 'c:/database/MyDb_data.mdf', MOVE 'MyDb_log' TO 'c:/database/MyDb_data.ldf' \";
+
+EXPOSE 1433
+
+WORKDIR /
