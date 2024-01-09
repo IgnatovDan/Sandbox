@@ -1,0 +1,2 @@
+REM Use this command to locally review resulting image with new changes in the 'dockerfile' file
+docker run -d -p 1433:1433 -e sa_password=sapwd -e ACCEPT_EULA=Y -e attach_dbs="[]" mydockerhub/myproject:mydb-windows

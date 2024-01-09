@@ -1,0 +1,1 @@
+docker build --file dockerfile --tag mydockerhub/myproject:mssql-express-windows .

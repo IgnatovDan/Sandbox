@@ -1,0 +1,26 @@
+FROM mydockerhub/myproject:mssql-express-windows as builder
+
+SHELL [ "powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'Continue'; $verbosePreference='Continue'; "]
+
+WORKDIR c:/database_bak
+
+COPY mydb.bak .
+COPY build-image-stage1.ps1 .
+
+# Use a separate 'ps1' file because powershell '<7' doesn't support '&&' command chaining so the 'RUN' command is too complex (or I have to use 10 separate 'RUN' commands that takes 10x more time)
+RUN .\build-image-stage1.ps1 -Verbose
+
+WORKDIR c:/database_files
+
+FROM mydockerhub/myproject:mssql-express-windows
+
+WORKDIR c:/database
+
+COPY --from=builder c:/database_files .
+COPY build-image-stage2.ps1 .
+
+RUN .\build-image-stage2.ps1 -Verbose
+
+EXPOSE 1433
+
+WORKDIR /

@@ -1,0 +1,52 @@
+trigger:
+  branches:
+    exclude:
+    - '*'
+
+variables:
+  DockerfileArtifactName: 'dockerfile'
+  DockerfilePath: 'MyProject/src/docker/publish-sqlexpress-windows'
+  DockerfileFullName: '$(DockerfilePath)/dockerfile'
+  MyDockerRegistryServiceConnection: 'hub-docker-com-myconnection'
+  HubDockerComRepository: 'mydockerhub/myproject'
+
+stages:
+
+- stage: build_publish_image_stage
+  jobs:
+  - job: build_publish_image_job
+    pool:
+      vmImage: 'windows-2019'
+
+    steps:
+
+    - task: Docker@2
+      displayName: Login to Docker Hub
+      inputs:
+        command: login
+        # https://stackoverflow.com/questions/66429863/how-to-push-an-image-to-docker-hub-in-azure-pipelines
+        containerRegistry: $(MyDockerRegistryServiceConnection)
+
+    - task: Docker@2
+      displayName: 'Build image'
+      inputs:
+        command: 'build'
+        containerRegistry: '$(MyDockerRegistryServiceConnection)'
+        repository: '$(HubDockerComRepository)'
+        Dockerfile: '$(DockerfileFullName)'
+        buildContext: '$(DockerfilePath)'
+        tags: 'mssql-express-windows'
+
+    - task: Docker@2
+      displayName: 'Push image'
+      inputs:
+        command: 'push'
+        containerRegistry: '$(MyDockerRegistryServiceConnection)'
+        repository: '$(HubDockerComRepository)'
+        tags: 'mssql-express-windows'
+
+    - task: Docker@2
+      displayName: Logout of Docker Hub
+      inputs:
+        command: logout
+        containerRegistry: $(MyDockerRegistryServiceConnection)

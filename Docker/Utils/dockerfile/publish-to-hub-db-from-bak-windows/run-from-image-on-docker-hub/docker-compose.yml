@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+  pelican_demo_db_windows:
+    image: mydockerhub/myproject:mydb-windows
+    container_name: my_db_windows
+    ports:
+      - '1433:1433'
+    environment:
+      sa_password: "sapwd"
+      ACCEPT_EULA: "Y"
+      attach_dbs: "[]"
