@@ -1,4 +1,4 @@
-There are errors in browser' console when running Selenium tests:
+There are errors in browser' console when running Selenium tests (page is partially loaded in browser but then errors occured):
 ```
 [ERR_INSUFFICIENT_RESOURCES](http://webapp_linux_kestrel:5172/css/fonts/raleway/raleway-v29-latin-regular.WOFF2 - Failed to load resource: the server responded with a status of 404 (Not Found)
 http://selenium_webapp_linux_kestrel:5172/css/fonts/Raleway-Regular2.ttf - Failed to load resource: the server responded with a status of 404 (Not Found)
