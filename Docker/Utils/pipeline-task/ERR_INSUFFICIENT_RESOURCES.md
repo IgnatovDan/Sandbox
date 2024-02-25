@@ -1,5 +1,5 @@
 There are errors in browser' console when running Selenium tests:
-
+```
 [ERR_INSUFFICIENT_RESOURCES](http://webapp_linux_kestrel:5172/css/fonts/raleway/raleway-v29-latin-regular.WOFF2 - Failed to load resource: the server responded with a status of 404 (Not Found)
 http://selenium_webapp_linux_kestrel:5172/css/fonts/Raleway-Regular2.ttf - Failed to load resource: the server responded with a status of 404 (Not Found)
 http://selenium_webapp_linux_kestrel:5172/lib/dx-dashboard.min.js?v=iqGC_tLWmEHGESuQ0zoxnTfb7eiD9_WRG9K_Snzagmw - Failed to load resource: net::ERR_INSUFFICIENT_RESOURCES
@@ -7,6 +7,7 @@ http://selenium_webapp_linux_kestrel:5172/lib/dx-aspnetcore-spreadsheet.js?v=Yjq
 http://selenium_webapp_linux_kestrel:5172/js/site.js?v=U1YvIYKLTsK4X86sYNLzAuI5QrkyBSVc-KTEdTlQ0v0 - Failed to load resource: net::ERR_INSUFFICIENT_RESOURCES
 http://selenium_webapp_linux_kestrel:5172/GoalDetail?id=38 2386:2 Uncaught ReferenceError: waitingInitializeDocument is not defined
 http://selenium_webapp_linux_kestrel:5172/css/fonts/raleway/Raleway-Regular2.ttf - Failed to load resource: the server responded with a status of 404 (Not Found)
+```
 
 How to catch browser logs in Selenium tests:
 
