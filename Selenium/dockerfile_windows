@@ -1,0 +1,134 @@
+# ============================================================
+# Install Java runtime
+# ============================================================
+
+# --------------------
+# - Install java OpenJDK manually:
+#FROM mcr.microsoft.com/windows/servercore:ltsc2019
+# Install java scripts: 
+#   https://github.com/DataDog/datadog-agent-buildimages/blob/main/windows/Dockerfile
+#   https://github.com/DataDog/datadog-agent-buildimages/blob/main/windows/helpers/phase3/install_java.ps1
+# Microsoft OpenJDK: https://learn.microsoft.com/en-us/java/openjdk/install
+#$javazip = "https://aka.ms/download-jdk/microsoft-jdk-21.0.2-windows-x64.zip"
+#$out = 'java.zip'
+#(New-Object System.Net.WebClient).DownloadFile($javazip, $out)
+
+# --------------------
+# - Install manually via chocolatey
+# https://gist.github.com/dangtrinhnt/b6004667a2fcf1960ca53819fe662752
+
+# --------------------
+# - Start from Eclipse temurin image (OpenJDK v21):
+# https://hub.docker.com/_/eclipse-temurin
+FROM eclipse-temurin
+
+# --------------------
+# - Start from Docker openjdk image (obsoleted sinse 2022, OpenJDK v18 is the last published):
+# https://hub.docker.com/_/openjdk
+#FROM openjdk
+
+WORKDIR ./temp
+
+# ============================================================
+# Install Selenium
+# ============================================================
+
+# --------------------
+# - download using links on official www.selenium.dev/downloads page
+#   - https://www.selenium.dev/downloads/
+ADD https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.18.0/selenium-server-4.18.1.jar ./
+
+# --------------------
+# - download via selenium-release.storage.googleapis.com
+#   - https://github.com/artisticcheese/artisticcheesecontainer/blob/master/selenium/Dockerfile
+#ADD https://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.59.jar ./
+
+
+# ============================================================
+# Install Chrome
+# ============================================================
+
+# --------------------
+# - download via chocolatey: 
+#   - https://community.chocolatey.org/packages/GoogleChrome
+#   - choco install googlechrome --pre=114.0.5735.90 -y
+
+# --------------------
+# - download via chrome labs: 
+#   - Project page: https://github.com/GoogleChromeLabs/chrome-for-testing
+#   - Project blog post: https://developer.chrome.com/blog/chrome-for-testing/
+#   - All Chrome versions via API: https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json
+#   - 114.0.5735.90 Chrome versions via API: https://googlechromelabs.github.io/chrome-for-testing/114.0.5735.90.json
+# ADD https://storage.googleapis.com/chrome-for-testing-public/114.0.5735.90/win64/chrome-win64.zip ./
+
+# Final path: c:\chrome\chrome-win64\chrome.exe
+# RUN Expand-Archive chrome-win64.zip -DestinationPath c:\chrome
+
+# --------------------
+# - download via winget
+
+# --------------------
+# - download via versionhistory.googleapis.com
+#   - Stable versions history: https://versionhistory.googleapis.com/v1/chrome/platforms/win/channels/stable/versions
+#   - chrome/platforms/win/channels/stable/versions/114.0.5735.90
+
+# --------------------
+# - Stackoverflow: "Older version of Chrome are not publicly available"
+#   - https://stackoverflow.com/questions/54927496/how-to-download-older-versions-of-chrome-from-a-google-official-site
+
+# --------------------
+# - Trace network queries at official "Google Update API"
+#   - https://squirrelistic.com/blog/how_to_download_older_version_of_google_chrome
+
+# --------------------
+# - download both Chrome and ChromeDriver via googlechromelabs.github.io
+#   - https://googlechromelabs.github.io/chrome-for-testing/#stable
+ADD https://storage.googleapis.com/chrome-for-testing-public/123.0.6312.58/win64/chrome-headless-shell-win64.zip ./
+# Final path: c:\chrome\chrome-headless-shell-win64\chrome-headless-shell.exe
+RUN Expand-Archive chrome-headless-shell-win64.zip -DestinationPath c:\chrome
+
+ADD https://storage.googleapis.com/chrome-for-testing-public/123.0.6312.58/win64/chrome-win64.zip ./
+# Final path: c:\chrome_\chrome-win64\chrome.exe
+RUN Expand-Archive chrome-win64.zip -DestinationPath c:\chrome_
+
+# --------------------
+# - Selenium Manager automatically discovers, downloads, and caches the browsers driven with Selenium
+#   - https://www.selenium.dev/documentation/selenium_manager/#automated-browser-management
+#   - https://www.selenium.dev/documentation/selenium_manager/#getting-selenium-manager
+
+
+# ============================================================
+# Install ChromeDriver
+# https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location/#download-the-driver
+# ============================================================
+
+# --------------------
+# - download by a reference from www.selenium.dev/documentation/webdriver/
+#   - https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location/#download-the-driver
+#ADD https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_win32.zip ./
+#RUN Expand-Archive chromedriver_win32.zip -DestinationPath c:\chromedriver
+
+# --------------------
+# - download via chocolatey: https://community.chocolatey.org/packages/selenium-chrome-driver
+
+# --------------------
+# - download both Chrome and ChromeDriver via googlechromelabs.github.io
+#   - https://googlechromelabs.github.io/chrome-for-testing/#stable
+ADD https://storage.googleapis.com/chrome-for-testing-public/123.0.6312.58/win32/chromedriver-win32.zip ./
+RUN Expand-Archive chromedriver-win32.zip -DestinationPath c:\chromedriver
+
+# --------------------
+# - Selenium Manager automatically discovers, downloads, and caches the drivers required by Selenium when these drivers are unavailable.
+#   - https://www.selenium.dev/documentation/selenium_manager/#automated-driver-management
+#   - https://www.selenium.dev/documentation/selenium_manager/#getting-selenium-manager
+
+
+# ============================================================
+
+#ENTRYPOINT ["powershell", "java", "--version"]
+
+EXPOSE 4444
+
+ENTRYPOINT ping -t localhost
+#ENTRYPOINT java -jar selenium-server-4.18.1.jar hub
+#ENTRYPOINT java -jar selenium-server-4.18.1.jar standalone
