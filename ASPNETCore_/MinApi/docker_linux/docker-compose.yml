@@ -16,12 +16,12 @@ services:
     build:
       context: ./../MinApiClient
       dockerfile: ./docker_linux/dockerfile
-      # args:
-      #   SERVER_NAME: "sandbox_minapiserver_20240601"
+      args:
+        SERVER_NAME: "sandbox_minapiserver_20240601"
     image: sandbox_minapiclient_20240601
     container_name: sandbox_minapiclient_20240601
-    environment:
-      SERVER_NAME: "sandbox_minapiserver_20240601"
+    # environment: - value is not passed into second 'FROM' for multi staged 'FROM' build, use 'args' instead
+    #   SERVER_NAME: "sandbox_minapiserver_20240601"
     depends_on:
       sandbox_minapiserver_20240601:
         condition: service_started

@@ -7,7 +7,7 @@ class Program
         Console.WriteLine("Starting request...");
 
         var serverAddress = (args.Length > 0) ? args[0] : "localhost";
-        Console.WriteLine(serverAddress);
+        Console.WriteLine("serverAddress: " + serverAddress);
         var responseAsString = "";
         //Thread.Sleep(10000);
         var handler = new SocketsHttpHandler

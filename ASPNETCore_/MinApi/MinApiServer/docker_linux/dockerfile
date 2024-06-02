@@ -1,3 +1,4 @@
+# ****** BUILD ******
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS builder
 
 #SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
@@ -10,13 +11,13 @@ WORKDIR $BUILDER_SRC_PATH
 COPY ./ ./
 RUN dotnet publish "./MinApiServer.csproj" -c Debug -o "${env:BUILDER_BIN_PATH}" /p:UseAppHost=true
 
-#FROM mcr.microsoft.com/dotnet/aspnet:7.0
+# ****** RUN ******
+FROM mcr.microsoft.com/dotnet/aspnet:7.0
 
 WORKDIR /
-#ENV BUILDER_BIN_PATH=/_build_bin
+ENV BUILDER_BIN_PATH=/_bin
 ENV BIN_PATH=/_bin
-#COPY --from=builder "${BUILDER_BIN_PATH}" .
-#COPY ${BUILDER_BIN_PATH} ${BIN_PATH}
+COPY --from=builder "${BUILDER_BIN_PATH}" "${BIN_PATH}"
 
 EXPOSE 5201
 

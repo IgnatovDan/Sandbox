@@ -5,4 +5,5 @@ REM docker-compose up --force-recreate --build --abort-on-container-exit --exit-
 REM keep containers started
 pause
 docker compose down -v
+REM keep containers logs
 pause
