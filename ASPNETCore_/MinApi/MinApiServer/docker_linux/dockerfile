@@ -23,5 +23,5 @@ EXPOSE 5201
 
 WORKDIR $BIN_PATH
 ENTRYPOINT ["dotnet", "MinApiServer.dll"]
-#ENTRYPOINT ["dotnet", "MinApiServer.dll", "urls=http://0.0.0.0:5201"]
+#ENTRYPOINT ["dotnet", "MinApiServer.dll", "urls=http://0.0.0.0:5201"] - use '0.0.0.0' instead of 'localhost' to access from host
 #ENTRYPOINT ["tail", "-f", "/dev/null"]

@@ -1,4 +1,5 @@
 # ****** BUILD ******
+
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS builder
 
 #SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
@@ -9,9 +10,10 @@ ENV BUILDER_BIN_PATH=/_bin
 ENV BUILDER_SRC_PATH=/_build_src
 WORKDIR $BUILDER_SRC_PATH
 COPY ./ ./
-RUN dotnet publish "./MinApiServer.csproj" -c Debug -o "${env:BUILDER_BIN_PATH}" /p:UseAppHost=true
+RUN dotnet publish "./MinApiClient.csproj" -c Debug -o "${env:BUILDER_BIN_PATH}" /p:UseAppHost=true
 
 # ****** RUN ******
+
 FROM mcr.microsoft.com/dotnet/aspnet:7.0
 
 ENV BUILDER_BIN_PATH=/_bin
@@ -21,6 +23,8 @@ COPY --from=builder "${BUILDER_BIN_PATH}" "${BIN_PATH}"
 EXPOSE 5201
 
 WORKDIR $BIN_PATH
-ENTRYPOINT ["dotnet", "MinApiServer.dll"]
-#ENTRYPOINT ["dotnet", "MinApiServer.dll", "urls=http://0.0.0.0:5201"] - use '0.0.0.0' instead of 'localhost' to access from host
+
+ENTRYPOINT dotnet MinApiClient.dll sandbox_minapiserver_20240601
+#ENTRYPOINT dotnet MinApiClient.dll $SERVER_NAME - variable are not processed on Windows, use value directly
+#ENTRYPOINT ["dotnet", "MinApiClient.dll", "$env:SERVER_NAME"] - normal shell processing does not happen with 'array of arguments', https://stackoverflow.com/questions/37904682/how-do-i-use-docker-environment-variable-in-entrypoint-array
 #ENTRYPOINT ["tail", "-f", "/dev/null"]
