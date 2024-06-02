@@ -1,0 +1,34 @@
+version: "3.7"
+services:
+
+  sandbox_minapiserver_20240601:
+    build:
+      context: ./../MinApiServer
+      dockerfile: ./docker_linux/dockerfile
+    image: sandbox_minapiserver_20240601
+    container_name: sandbox_minapiserver_20240601
+    ports:
+      - '5201:5201'
+    # networks:
+    #   - my-network
+
+  sandbox_minapiclient_20240601:
+    build:
+      context: ./../MinApiClient
+      dockerfile: ./docker_linux/dockerfile
+      # args:
+      #   SERVER_NAME: "sandbox_minapiserver_20240601"
+    image: sandbox_minapiclient_20240601
+    container_name: sandbox_minapiclient_20240601
+    environment:
+      SERVER_NAME: "sandbox_minapiserver_20240601"
+    depends_on:
+      sandbox_minapiserver_20240601:
+        condition: service_started
+    # networks:
+    #   - my-network
+
+# networks:
+#   my-network:
+#     name: my-network
+#     driver: bridge

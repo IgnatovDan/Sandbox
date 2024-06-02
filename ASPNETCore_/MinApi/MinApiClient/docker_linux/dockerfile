@@ -1,0 +1,30 @@
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS builder
+
+# ARG SERVER_NAME
+
+#SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+# pwsh is not installed in '4.8-windowsservercore-ltsc2019' image
+SHELL [ "pwsh", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'Continue'; $verbosePreference='Continue'; "]
+
+# ENV SERVER_NAME ${SERVER_NAME}
+
+ENV BUILDER_BIN_PATH=/_bin
+ENV BUILDER_SRC_PATH=/_build_src
+WORKDIR $BUILDER_SRC_PATH
+COPY ./ ./
+RUN dotnet publish "./MinApiClient.csproj" -c Debug -o "${env:BUILDER_BIN_PATH}" /p:UseAppHost=true
+
+#FROM mcr.microsoft.com/dotnet/aspnet:7.0
+
+WORKDIR /
+#ENV BUILDER_BIN_PATH=/_build_bin
+ENV BIN_PATH=/_bin
+#COPY --from=builder "${BUILDER_BIN_PATH}" .
+#COPY ${BUILDER_BIN_PATH} ${BIN_PATH}
+
+EXPOSE 5201
+
+WORKDIR $BIN_PATH
+ENTRYPOINT dotnet MinApiClient.dll $env:SERVER_NAME
+#ENTRYPOINT ["dotnet", "MinApiClient.dll", "$env:SERVER_NAME"] - normal shell processing does not happen, https://stackoverflow.com/questions/37904682/how-do-i-use-docker-environment-variable-in-entrypoint-array
+#ENTRYPOINT ["tail", "-f", "/dev/null"]
