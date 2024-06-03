@@ -28,3 +28,4 @@ ENTRYPOINT dotnet MinApiClient.dll sandbox_minapiserver_20240601
 #ENTRYPOINT dotnet MinApiClient.dll $SERVER_NAME - variable are not processed on Windows, use value directly
 #ENTRYPOINT ["dotnet", "MinApiClient.dll", "$env:SERVER_NAME"] - normal shell processing does not happen with 'array of arguments', https://stackoverflow.com/questions/37904682/how-do-i-use-docker-environment-variable-in-entrypoint-array
 #ENTRYPOINT ["tail", "-f", "/dev/null"]
+#ENTRYPOINT ping -t localhost
