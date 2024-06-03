@@ -10,7 +10,7 @@ ENV BUILDER_BIN_PATH=/_bin
 ENV BUILDER_SRC_PATH=/_build_src
 WORKDIR $BUILDER_SRC_PATH
 COPY ./ ./
-RUN dotnet publish "./MinApiClient.csproj" -c Debug -o "${env:BUILDER_BIN_PATH}" /p:UseAppHost=true
+RUN dotnet publish "./grpc_client.csproj" -c Debug -o "${env:BUILDER_BIN_PATH}" /p:UseAppHost=true
 
 # ****** RUN ******
 
@@ -24,6 +24,6 @@ ENV BIN_PATH=/_bin
 COPY --from=builder "${BUILDER_BIN_PATH}" "${BIN_PATH}"
 
 WORKDIR $BIN_PATH
-ENTRYPOINT dotnet MinApiClient.dll $SERVER_NAME
-#ENTRYPOINT ["dotnet", "MinApiClient.dll", "$env:SERVER_NAME"] - normal shell processing does not happen with 'array of arguments', https://stackoverflow.com/questions/37904682/how-do-i-use-docker-environment-variable-in-entrypoint-array
+ENTRYPOINT dotnet grpc_client.dll $SERVER_NAME
+#ENTRYPOINT ["dotnet", "grpc_client.dll", "$env:SERVER_NAME"] - normal shell processing does not happen with 'array of arguments', https://stackoverflow.com/questions/37904682/how-do-i-use-docker-environment-variable-in-entrypoint-array
 #ENTRYPOINT ["tail", "-f", "/dev/null"]

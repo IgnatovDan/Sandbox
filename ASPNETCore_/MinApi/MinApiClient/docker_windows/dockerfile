@@ -18,8 +18,6 @@ ENV BUILDER_BIN_PATH=/_bin
 ENV BIN_PATH=/_bin
 COPY --from=builder "${BUILDER_BIN_PATH}" "${BIN_PATH}"
 
-EXPOSE 5201
-
 WORKDIR $BIN_PATH
 
 ENTRYPOINT dotnet MinApiClient.dll sandbox_minapiserver_20240601

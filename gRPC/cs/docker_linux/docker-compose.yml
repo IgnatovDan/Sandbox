@@ -1,0 +1,34 @@
+version: "3.7"
+services:
+
+  sandbox_grpcserver_20240601:
+    build:
+      context: ./../grpc_server
+      dockerfile: ./docker_linux/dockerfile
+    image: sandbox_grpcserver_20240601
+    container_name: sandbox_grpcserver_20240601
+    healthcheck:
+      test: curl --fail http://sandbox_grpcserver_20240601:5258 || exit 1 # use sandbox_grpcserver_20240601 instead of localhost
+      #test: curl --fail http://localhost:5258 || exit 1 # something is not ready to reply at 'localhost is ready' moment, client connection will fail with error: No such host is known. (sandbox_grpcserver_20240601:5258)
+      interval: 160s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+      start_interval: 2s
+    ports:
+      - '5258:5258'
+
+  sandbox_grpcclient_20240601:
+    build:
+      context: ./../grpc_client
+      dockerfile: ./docker_linux/dockerfile
+      args:
+        SERVER_NAME: "sandbox_grpcserver_20240601"
+    image: sandbox_grpcclient_20240601
+    container_name: sandbox_grpcclient_20240601
+    # environment: - value is not passed into second 'FROM' for multi staged 'FROM' build, use 'args' instead
+    #   SERVER_NAME: "sandbox_grpcserver_20240601"
+    depends_on:
+      sandbox_grpcserver_20240601:
+        condition: service_healthy # use service_healthy instead of service_started
+        #condition: service_started # webserver is not ready to reply at this moment, connection will fail with error: No such host is known. (sandbox_grpcserver_20240601:5258)

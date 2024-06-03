@@ -1,5 +1,4 @@
 # ****** BUILD ******
-
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS builder
 
 #SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
@@ -10,20 +9,22 @@ ENV BUILDER_BIN_PATH=/_bin
 ENV BUILDER_SRC_PATH=/_build_src
 WORKDIR $BUILDER_SRC_PATH
 COPY ./ ./
-RUN dotnet publish "./MinApiClient.csproj" -c Debug -o "${env:BUILDER_BIN_PATH}" /p:UseAppHost=true
+RUN dotnet publish "./grpc_server.csproj" -c Debug -o "${env:BUILDER_BIN_PATH}" /p:UseAppHost=true
 
 # ****** RUN ******
-
 FROM mcr.microsoft.com/dotnet/aspnet:7.0
 
-ARG SERVER_NAME
-ENV SERVER_NAME ${SERVER_NAME}
-
+WORKDIR /
 ENV BUILDER_BIN_PATH=/_bin
 ENV BIN_PATH=/_bin
 COPY --from=builder "${BUILDER_BIN_PATH}" "${BIN_PATH}"
 
+# 'mcr.microsoft.com/dotnet/aspnet' doesn't contain 'curl'
+RUN apt-get update && apt-get install -y curl
+
+EXPOSE 5258
+
 WORKDIR $BIN_PATH
-ENTRYPOINT dotnet MinApiClient.dll $SERVER_NAME
-#ENTRYPOINT ["dotnet", "MinApiClient.dll", "$env:SERVER_NAME"] - normal shell processing does not happen with 'array of arguments', https://stackoverflow.com/questions/37904682/how-do-i-use-docker-environment-variable-in-entrypoint-array
+ENTRYPOINT ["dotnet", "grpc_server.dll"]
+#ENTRYPOINT ["dotnet", "grpc_server.dll", "urls=http://0.0.0.0:5258"] - use '0.0.0.0' instead of 'localhost' to access from host
 #ENTRYPOINT ["tail", "-f", "/dev/null"]
