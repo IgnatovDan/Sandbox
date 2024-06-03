@@ -7,6 +7,18 @@ services:
       dockerfile: ./docker_linux/dockerfile
     image: sandbox_minapiserver_20240601
     container_name: sandbox_minapiserver_20240601
+    healthcheck:
+      #test: wget --spider --tries=1 --no-verbose http://sandbox_minapiserver_20240601:5201
+      #test: curl --fail http://sandbox_minapiserver_20240601:5201 || exit 1
+      #test: ["CMD", "curl", "-f", "http://sandbox_minapiserver_20240601:5201"]
+
+      test: curl --fail http://sandbox_minapiserver_20240601:5201 || exit 1 # use sandbox_minapiserver_20240601 instead of localhost
+      #test: curl --fail http://localhost:5201 || exit 1 # something is not ready to reply at 'localhost is ready' moment, client connection will fail with error: No such host is known. (sandbox_minapiserver_20240601:5201)
+      interval: 160s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+      start_interval: 2s
     ports:
       - '5201:5201'
 
@@ -22,4 +34,5 @@ services:
     #   SERVER_NAME: "sandbox_minapiserver_20240601"
     depends_on:
       sandbox_minapiserver_20240601:
-        condition: service_started
+        condition: service_healthy # use service_healthy instead of service_started
+        #condition: service_started # webserver is not ready to reply at this moment, connection will fail with error: No such host is known. (sandbox_minapiserver_20240601:5201)

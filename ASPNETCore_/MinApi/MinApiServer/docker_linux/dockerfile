@@ -19,6 +19,9 @@ ENV BUILDER_BIN_PATH=/_bin
 ENV BIN_PATH=/_bin
 COPY --from=builder "${BUILDER_BIN_PATH}" "${BIN_PATH}"
 
+# 'mcr.microsoft.com/dotnet/aspnet' doesn't contain 'curl'
+RUN apt-get update && apt-get install -y curl
+
 EXPOSE 5201
 
 WORKDIR $BIN_PATH
