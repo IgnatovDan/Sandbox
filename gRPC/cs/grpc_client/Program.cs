@@ -50,7 +50,7 @@ internal class Program {
                 break;
             }
             catch (Exception e) {
-                // 3 errors until successfull call: "No such host is known. (sandbox_minapiserver_20240601:5201)"
+                // 3 errors until successfull call: "No such host is known. (sandbox_grpcserver_20240601:5258)"
                 Console.WriteLine("\r\nError occurs: " + e.Message + "\r\n");
                 Thread.Sleep(1000);
             }

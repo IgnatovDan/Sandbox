@@ -1,0 +1,26 @@
+# ****** BUILD ******
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS builder
+
+#SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+# pwsh is not installed in '4.8-windowsservercore-ltsc2019' image
+SHELL [ "pwsh", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'Continue'; $verbosePreference='Continue'; "]
+
+ENV BUILDER_BIN_PATH=/_bin
+ENV BUILDER_SRC_PATH=/_build_src
+WORKDIR $BUILDER_SRC_PATH
+COPY ./ ./
+RUN dotnet publish "./grpc_server.csproj" -c Debug -o "${env:BUILDER_BIN_PATH}" /p:UseAppHost=true
+
+# ****** RUN ******
+FROM mcr.microsoft.com/dotnet/aspnet:7.0
+
+ENV BUILDER_BIN_PATH=/_bin
+ENV BIN_PATH=/_bin
+COPY --from=builder "${BUILDER_BIN_PATH}" "${BIN_PATH}"
+
+EXPOSE 5258
+
+WORKDIR $BIN_PATH
+ENTRYPOINT ["dotnet", "grpc_server.dll"]
+#ENTRYPOINT ["dotnet", "grpc_server.dll", "urls=http://0.0.0.0:5258"] - use '0.0.0.0' instead of 'localhost' to access from host
+#ENTRYPOINT ping -t localhost
