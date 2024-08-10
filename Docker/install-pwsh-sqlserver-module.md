@@ -1,3 +1,4 @@
+```
 Write-Verbose "$($MyInvocation.MyCommand.Name) starting"
 
 try {
@@ -25,3 +26,4 @@ Write-Verbose "Trace New Powershell SqlServer module details"
 Get-InstalledModule sqlserver
 
 Write-Verbose "$($MyInvocation.MyCommand.Name) finished"
+```
