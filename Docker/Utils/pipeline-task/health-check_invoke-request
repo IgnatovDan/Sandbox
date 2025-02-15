@@ -1,7 +1,7 @@
   selenium_webapp:
     healthcheck:
-      test: ["CMD", "powershell", "200 -eq (Invoke-WebRequest -Uri http://localhost:5221 -Method Head -UseBasicParsing -ConnectionTimeoutSeconds 2 | Select-Object -Expand StatusCode)"]
-      # OR: test: ["CMD", "pwsh",...
+      test: ["CMD", "powershell", "200 -eq (Invoke-WebRequest -Uri http://localhost:5221 -Method Head -UseBasicParsing -TimeoutSec 2 | Select-Object -Expand StatusCode)"]
+      # OR: test: ["CMD", "pwsh", "200 -eq (Invoke-WebRequest -Uri http://localhost:5221 -Method Head -UseBasicParsing -ConnectionTimeoutSeconds 2 | Select-Object -Expand StatusCode)"]
       #test: wget --no-verbose --tries=1 --spider http://localhost:5175 || exit 1  - wget is not installed
       interval: 5s
       retries: 20
