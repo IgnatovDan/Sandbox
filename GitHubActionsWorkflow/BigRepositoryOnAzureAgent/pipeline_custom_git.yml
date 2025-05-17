@@ -71,7 +71,7 @@ stages:
           cd '$(Build.Repository.LocalPath)'
           git sparse-checkout set --no-cone
           git config core.sparsecheckout true
-          git sparse-checkout set /* !/* !/PelicanNetCore/* /PelicanNetCore/src/ !/PelicanNetCore/src/PelicanShared
+          git sparse-checkout set /* !/* !/RootFolder/* /RootFolder/src/ !/RootFolder/src/Shared
           
           write-host "> checkout " + $(Get-Date -Format "HH:mm:ss")
           git checkout $(Build.SourceBranchName) --progress
