@@ -67,3 +67,14 @@ stages:
       # Resolving deltas: 100% (8/8)
       # checkout
       # Updating files: 100% (2153/2153)
+
+    - task: PowerShell@2
+      displayName: 'Get-PSDrive'
+      continueOnError: true
+      condition: succeededOrFailed()
+      inputs:
+        targetType: inline
+        script: |
+          Set-PSDebug -Trace 1
+          Get-PSDrive
+          Get-ChildItem -Path '$(Build.SourcesDirectory)' -Name
