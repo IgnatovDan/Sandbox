@@ -1,0 +1,69 @@
+stages:
+- stage: main_stage
+  jobs:
+  - job: main_job
+
+    steps:
+
+    #- checkout: none
+
+    - task: PowerShell@2
+      displayName: 'Get-PSDrive'
+      continueOnError: true
+      condition: succeededOrFailed()
+      inputs:
+        targetType: inline
+        script: |
+          Set-PSDebug -Trace 1
+          Get-PSDrive
+          Get-ChildItem -Path '$(Build.SourcesDirectory)' -Name
+
+    #- checkout: self
+      # 21s
+      # 1050 Mb (24.27->23.22)
+      # Receiving objects: 100% (14486/14486
+      # Resolving deltas: 100% (3659/3659)
+      # checkout
+      # Updating files: 100% (29821/29821)
+  
+    # - checkout: self
+    #   fetchDepth: 1
+      # 20s
+      # 1060 Mb (24.26->23.21)
+      # Receiving objects: 100% (14486/14486
+      # Resolving deltas: 100% (3659/3659)
+      # checkout
+      # Updating files: 100% (29821/29821)
+
+    # - checkout: self
+    #   fetchDepth: 1
+    #   fetchTags: false
+      # 18s
+      # 1060 Mb (24.26->23.21)
+      # Receiving objects: 100% (14486/14486
+      # Resolving deltas: 100% (3659/3659)
+      # checkout
+      # Updating files: 100% (29821/29821)
+
+    # - checkout: self
+    #   fetchDepth: 1
+    #   fetchTags: false
+    #   sparseCheckoutPatterns: /* !/* !/RootFolder/* /RootFolder/src/ !/RootFolder/src/Shared
+      # 14s
+      # 330 Mb (24.26->23.93)
+      # Receiving objects: 100% (14486/14486
+      # Resolving deltas: 100% (3659/3659)
+      # checkout
+      # none
+
+    - checkout: self
+      fetchDepth: 1
+      fetchTags: false
+      fetchFilter: blob:none
+      sparseCheckoutPatterns: /* !/* !/RootFolder/* /RootFolder/src/ !/RootFolder/src/Shared
+      # 6s
+      # 190 Mb (24.26->24.07 )
+      # Receiving objects: 100% (1244/1244
+      # Resolving deltas: 100% (8/8)
+      # checkout
+      # Updating files: 100% (2153/2153)
