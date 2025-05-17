@@ -5,6 +5,10 @@ stages:
 
     steps:
 
+    # https://github.blog/open-source/git/bring-your-monorepo-down-to-size-with-sparse-checkout/
+    # https://github.blog/open-source/git/get-up-to-speed-with-partial-clone-and-shallow-clone/
+    # https://blog.gitbutler.com/git-tips-3-really-large-repositories/
+
     - checkout: none
 
     - task: PowerShell@2
