@@ -1,0 +1,80 @@
+stages:
+- stage: main_stage
+  jobs:
+  - job: main_job
+
+    steps:
+
+    - checkout: none
+
+    - task: PowerShell@2
+      displayName: 'git clone'
+      continueOnError: true
+      condition: succeededOrFailed()
+      inputs:
+        targetType: inline
+        script: |
+          Set-PSDebug -Trace 1
+          Get-PSDrive
+
+          write-host "> clone " + $(Get-Date -Format "HH:mm:ss")
+          #git clone -c http.extraheader="AUTHORIZATION: bearer $(System.AccessToken)" -b $(Build.SourceBranchName) --single-branch --depth=1 --no-tags --no-checkout --progress $(Build.Repository.Uri) '$(Build.Repository.LocalPath)'
+          # 15s
+          # 320 Mb (24.26->23.92)
+          # Receiving objects: 100% (14486/14486
+          # Resolving deltas: 100% (3659/3659)
+          #   14s
+          # checkout
+          # Your branch is up to date
+          #   1s
+
+          #git clone -c http.extraheader="AUTHORIZATION: bearer $(System.AccessToken)" --depth=1 --no-tags --no-checkout --progress $(Build.Repository.Uri) '$(Build.Repository.LocalPath)'
+          # 24.26->24.10
+          # checkout
+          # !!! Error: pathspec 'PelicanNetCore_sparse' did not match any file(s) known to git
+
+          #git clone -c http.extraheader="AUTHORIZATION: bearer $(System.AccessToken)" --filter=blob:none --no-checkout --progress $(Build.Repository.Uri) '$(Build.Repository.LocalPath)'
+          # 6s
+          # 210 Mb (24.26->24.05)
+          # Receiving objects: 100% (47566/47566
+          # Resolving deltas: 100% (25489/25489)
+          #   10 Mb (24.26->24.25)
+          #   1s
+          # checkout
+          # Updating files: 100% (2153/2153)
+          #   200 Mb (24.25->24.05)
+          #   5s
+
+          #git clone -c http.extraheader="AUTHORIZATION: bearer $(System.AccessToken)" --filter=blob:none --depth=1 --no-tags --no-checkout --progress $(Build.Repository.Uri) '$(Build.Repository.LocalPath)'
+          # 24.28->24.25 
+          # Receiving objects: 100% (1244/1244)
+          # Resolving deltas: 100% (8/8)
+          # checkout
+          # !!! Error: pathspec 'PelicanNetCore_sparse' did not match any file(s) known to git
+
+          git clone -c http.extraheader="AUTHORIZATION: bearer $(System.AccessToken)" -b $(Build.SourceBranchName) --single-branch --filter=blob:none --depth=1 --no-tags --no-checkout --progress $(Build.Repository.Uri) '$(Build.Repository.LocalPath)'
+          # 5s
+          # 190 Mb (24.27->24.08)
+          # Receiving objects: 100% (1244/1244)
+          # Resolving deltas: 100% (8/8)
+          #   0 Mb (24.27->24.27)
+          #   0s
+          # checkout
+          # Updating files: 100% (2153/2153)
+          #   190 Mb (24.27->24.08)
+          #   5s
+          
+          write-host "< clone " + $(Get-Date -Format "HH:mm:ss")
+
+          Get-PSDrive
+
+          cd '$(Build.Repository.LocalPath)'
+          git sparse-checkout set --no-cone
+          git config core.sparsecheckout true
+          git sparse-checkout set /* !/* !/PelicanNetCore/* /PelicanNetCore/src/ !/PelicanNetCore/src/PelicanShared
+          
+          write-host "> checkout " + $(Get-Date -Format "HH:mm:ss")
+          git checkout $(Build.SourceBranchName) --progress
+          write-host "< checkout " + $(Get-Date -Format "HH:mm:ss")
+
+          Get-PSDrive
